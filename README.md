@@ -10,7 +10,7 @@ Clone / Download the repository and open it using Android Studio.
 
 The app is written entirely in Kotlin and uses the Gradle build system.
 
-To build the app, use the gradlew build command or use "Import Project" in Android Studio. A canary or stable version >= 3.2 of Android Studio is required and may be downloaded here.
+To build the app, use the gradlew build command or use "Import Project" in Android Studio. A canary or stable version >= 3.2 of Android Studio is required.
 
 ### Architecture
 
@@ -38,7 +38,7 @@ Unit tests are located under the "test" folder. Run by right-clicking the folder
 
 ## Authors
 
-* **Niklas Poussu* - [SulavaOperaattori](https://github.com/npoussu)
+* **Niklas Poussu* - [npoussu](https://github.com/npoussu)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
