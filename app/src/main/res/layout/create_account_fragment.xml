@@ -4,13 +4,13 @@
                 android:layout_height="match_parent">
 
     <ImageView
+            android:id="@+id/CreateAccImg"
             android:layout_width="116dp"
             android:layout_height="107dp"
-            app:srcCompat="@drawable/usericon"
+            app:srcCompat="@drawable/user_icon_img"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
-            android:id="@+id/imageView2"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="42dp"/>
     <EditText
             android:layout_width="250dp"
             android:layout_height="60dp"
@@ -19,7 +19,7 @@
             android:hint="Create your ID"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
-            android:id="@+id/editText"
+            android:id="@+id/CreateAccInput"
             android:layout_marginTop="170dp"/>
     <EditText
             android:layout_width="250dp"
@@ -27,9 +27,11 @@
             android:inputType="textPassword"
             android:ems="10"
             android:hint="Create your password"
-            android:layout_centerVertical="true"
-            android:id="@+id/editText2"
-            android:layout_alignStart="@+id/editText"/>
+            android:id="@+id/CreatePasswordInput"
+            android:layout_alignStart="@+id/CreateAccInput"
+            android:layout_marginStart="0dp"
+            android:layout_below="@+id/CreateAccInput"
+            android:layout_marginTop="6dp"/>
     <EditText
             android:layout_width="250dp"
             android:layout_height="60dp"
@@ -37,12 +39,12 @@
             android:ems="10"
             android:layout_centerHorizontal="true"
             android:hint="Re-enter your password"
-            android:layout_alignParentBottom="true"
             android:id="@+id/editText5"
-            android:layout_marginBottom="172dp"/>
+            android:layout_marginTop="6dp"
+            android:layout_below="@+id/CreatePasswordInput"/>
 
     <Button
-            android:text="CREATE ACCOUNT"
+            android:text="@string/create_account"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -52,15 +54,15 @@
             android:textStyle="bold"
             android:textSize="20dp"
             android:background="@color/green"
-            android:textColor="@color/whiteText"/>
+            android:textColor="@color/white"/>
     <TextView
-            android:text="Already have an account? Click here to Log in!"
+            android:text="@string/acc_exist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:id="@+id/textView2"
-            android:layout_marginBottom="43dp"
+            android:id="@+id/goToLogin"
+            android:layout_marginBottom="42dp"
             android:textStyle="italic"
             android:onClick="onClick"
             android:textSize="16dp"/>
