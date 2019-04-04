@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         LoginButton.setOnClickListener {
 
-            val databaseUser = "GET USERNAME FROM DB" //Your up Mr.Kia  We need the these varibles from the DB
+            val databaseUser = "GET USERNAME FROM DB" //Your up Mr.Kia  These varibles are to be compared to the database
             val databasePass = "GET PASSWORD FROM DB"
 
 
