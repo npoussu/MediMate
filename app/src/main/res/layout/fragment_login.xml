@@ -98,6 +98,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:id="@+id/goToCreateAcc"
+                android:onClick="@{() -> viewmodel.onCreateAccountClick()}"
                 android:layout_marginBottom="42dp"
                 android:textStyle="italic"
                 android:textSize="16sp"/>

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.hadilq.liveevent.LiveEvent
 import com.macrosoft.reminder.model.User
 import com.macrosoft.reminder.repository.FakeLoginRepository
 
@@ -23,13 +24,19 @@ class LoginViewModel : ObservableViewModel() {
     @Bindable
     val passwordContent = MutableLiveData<String>()
 
+    val createAccountClickedState = LiveEvent<Boolean>()
+
     val fakeUser: LiveData<User>
         get() = FakeLoginRepository.fakeUser
 
     // TODO: Add the user authentication function here
     fun onLoginClick() {
-        Log.i(TAG, userIdContent.value)
-        Log.i(TAG, passwordContent.value)
+        Log.i(TAG, "UserID: " + userIdContent.value)
+        Log.i(TAG, "Password: " + passwordContent.value)
+    }
+
+    fun onCreateAccountClick() {
+        createAccountClickedState.value = true
     }
 
 }
