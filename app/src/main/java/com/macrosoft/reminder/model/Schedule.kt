@@ -18,10 +18,22 @@ import androidx.room.PrimaryKey
         )]
 )
 data class Schedule(
-    @PrimaryKey
-    @ColumnInfo(name = "user_id") var userID: Int,
-    @ColumnInfo(name = "start_date") var startDate: Long,
-    @ColumnInfo(name = "end_date") var endDate: Long?,
-    @ColumnInfo(name = "indefinite_end_date") var indefiniteEndDate: Boolean,
-    @ColumnInfo(name = "time") var time: String?
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int,
+
+    @ColumnInfo(name = "user_id")
+    var userID: Int,
+
+    @ColumnInfo(name = "start_date")
+    var startDate: Long,
+
+    @ColumnInfo(name = "end_date")
+    var endDate: Long?,
+
+    @ColumnInfo(name = "indefinite_end_date")
+    var indefiniteEndDate: Boolean,
+
+    @ColumnInfo(name = "time")
+    var time: String?
 )

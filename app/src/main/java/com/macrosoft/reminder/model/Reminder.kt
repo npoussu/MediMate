@@ -17,10 +17,23 @@ import androidx.room.PrimaryKey
         )]
 )
 data class Reminder(
-    @PrimaryKey
-    @ColumnInfo(name = "user_id") var userID: Int,
-    @ColumnInfo(name = "frequency") var frequency: String,
-    @ColumnInfo(name = "ringtone") var ringtone: String?,
-    @ColumnInfo(name = "dosage") var dosage: Int,
-    @ColumnInfo(name = "medicine_checker") var medicineChecker: Int?
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int,
+
+
+    @ColumnInfo(name = "user_id")
+    var userID: Int,
+
+    @ColumnInfo(name = "frequency")
+    var frequency: String,
+
+    @ColumnInfo(name = "ringtone")
+    var ringtone: String?,
+
+    @ColumnInfo(name = "dosage")
+    var dosage: Int,
+
+    @ColumnInfo(name = "medicine_checker")
+    var medicineChecker: Int?
 )
