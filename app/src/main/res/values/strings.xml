@@ -23,6 +23,10 @@
     <string name="medimate_logo">MediMate: Logo</string>
     <string name="user_icon_image">User icon image</string>
     <string name="lock_icon_image">Lock icon image</string>
+    <string name="create_your_id">Create your ID</string>
+    <string name="create_your_password">Create your password</string>
+    <string name="re_enter_your_password">Re-enter your password</string>
+    <string name="icon_create_account">Icon: Create Account</string>
 
     //Frequency spinner??
     <string-array name="days">

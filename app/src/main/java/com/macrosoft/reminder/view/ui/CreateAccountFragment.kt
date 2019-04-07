@@ -9,32 +9,32 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.macrosoft.reminder.R
-import com.macrosoft.reminder.databinding.FragmentLoginBinding
-import com.macrosoft.reminder.viewmodel.LoginViewModel
+import com.macrosoft.reminder.databinding.FragmentCreateUserBinding
+import com.macrosoft.reminder.viewmodel.CreateAccountViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class LoginFragment : Fragment() {
+class CreateAccountFragment : Fragment() {
 
-    private val viewModel: LoginViewModel by viewModel()
+    private val viewModel: CreateAccountViewModel by viewModel()
 
-    lateinit var binding: FragmentLoginBinding
+    lateinit var binding: FragmentCreateUserBinding
 
-    var listener: OnCreateAccountClickedListener? = null
+    var listener: OnAccExistsClickedListener? = null
 
-    interface OnCreateAccountClickedListener {
-        fun onCreateAccountClicked()
+    interface OnAccExistsClickedListener {
+        fun onAccExistsClicked()
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        listener = context as? OnCreateAccountClickedListener
+        listener = context as? OnAccExistsClickedListener
         if (listener == null) {
-            throw ClassCastException("$context must implement OnCreateAccountClickedListener")
+            throw ClassCastException("$context must implement OnAccExistsClickedListener")
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_user, container, false)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
         return binding.root
@@ -42,8 +42,8 @@ class LoginFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.createAccountClickedState.observe(this, Observer {
-            listener!!.onCreateAccountClicked()
+        viewModel.showLoginFragment.observe(this, Observer {
+            listener!!.onAccExistsClicked()
         })
     }
 

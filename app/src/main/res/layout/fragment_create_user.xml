@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="viewmodel"
+                type="com.macrosoft.reminder.viewmodel.CreateAccountViewModel"/>
+    </data>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/CreateAccImg"
+                android:layout_width="116dp"
+                android:layout_height="107dp"
+                app:srcCompat="@drawable/user_icon_img"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="42dp"
+                android:contentDescription="@string/icon_create_account"/>
+
+        <EditText
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:text="@={viewmodel.userIdContent}"
+                android:hint="@string/create_your_id"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:id="@+id/CreateAccInput"
+                android:layout_marginTop="170dp"/>
+
+        <EditText
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:text="@={viewmodel.passwordContent}"
+                android:hint="@string/create_your_password"
+                android:id="@+id/CreatePasswordInput"
+                android:layout_alignStart="@+id/CreateAccInput"
+                android:layout_marginStart="0dp"
+                android:layout_below="@+id/CreateAccInput"
+                android:layout_marginTop="6dp"/>
+
+        <EditText
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:text="@={viewmodel.repeatPasswordContent}"
+                android:layout_centerHorizontal="true"
+                android:hint="@string/re_enter_your_password"
+                android:id="@+id/editText5"
+                android:layout_marginTop="6dp"
+                android:layout_below="@+id/CreatePasswordInput"/>
+
+        <Button
+                android:text="@string/create_account"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/createAccButton"
+                android:onClick="@{() -> viewmodel.onCreateAccountClick()}"
+                android:layout_marginBottom="84dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:background="@color/green"
+                android:textColor="@color/white"/>
+
+        <TextView
+                android:text="@string/acc_exist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/goToLogin"
+                android:onClick="@{() -> viewmodel.onAccountExistsClick()}"
+                android:layout_marginBottom="42dp"
+                android:textStyle="italic"
+                android:textSize="16sp"/>
+
+    </RelativeLayout>
+</layout>
