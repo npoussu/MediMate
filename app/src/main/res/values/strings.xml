@@ -16,6 +16,13 @@
     <string name="set_alarm">Set Alarm</string>
     <string name="dosage_info">Dosage history over the last three months</string>
     <string name="date_of_pills_taken">Date</string>
+    <string name="click_here_to_create_an_account">Click here to create an account!</string>
+    <string name="log_in">LOG IN</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_id">Enter ID</string>
+    <string name="medimate_logo">MediMate: Logo</string>
+    <string name="user_icon_image">User icon image</string>
+    <string name="lock_icon_image">Lock icon image</string>
 
     //Frequency spinner??
     <string-array name="days">
