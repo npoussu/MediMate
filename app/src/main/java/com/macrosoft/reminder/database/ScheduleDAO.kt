@@ -1,5 +1,6 @@
 package com.macrosoft.reminder.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -10,7 +11,7 @@ import com.macrosoft.reminder.model.Schedule
 @Dao
 interface ScheduleDAO {
     @Query("SELECT * FROM schedules where :user_id = user_id")
-    fun getByUserID(user_id: Int): Schedule
+    fun getByUserID(user_id: Int): LiveData<Schedule>
 
     @Insert
     fun insert(schedule: Schedule)
