@@ -6,6 +6,7 @@ import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
 
+
 @Entity(
     tableName = "schedules",
     foreignKeys = [
@@ -21,6 +22,6 @@ data class Schedule(
     @ColumnInfo(name = "user_id") var userID: Int,
     @ColumnInfo(name = "start_date") var startDate: Long,
     @ColumnInfo(name = "end_date") var endDate: Long?,
-    @ColumnInfo(name = "indefinite_end_date") var indefiniteEndDate: Boolean
-//    @ColumnInfo(name = "time") var time: Time?
+    @ColumnInfo(name = "indefinite_end_date") var indefiniteEndDate: Boolean,
+    @ColumnInfo(name = "time") var time: String?
 )

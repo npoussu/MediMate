@@ -8,17 +8,11 @@ import com.macrosoft.reminder.model.User
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM users")
-    fun getAll(): List<User>
-
-    @Query("SELECT * FROM users where id = 1")
-    fun getFirst(): User
-
-    @Query("SELECT * FROM users WHERE id IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<User>
+    @Query("SELECT * FROM users where user_name = :userName")
+    fun getUserByName(userName : String): User
 
     @Insert
-    fun insert(vararg users: User)
+    fun insert(users: User)
 
     @Delete
     fun delete(user: User)

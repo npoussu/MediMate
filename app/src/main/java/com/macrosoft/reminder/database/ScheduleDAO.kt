@@ -9,12 +9,12 @@ import com.macrosoft.reminder.model.Schedule
 
 @Dao
 interface ScheduleDAO {
-    @Query("SELECT * FROM schedules where :id = user_id")
-    fun get(id: Int): Schedule
+    @Query("SELECT * FROM schedules where :user_id = user_id")
+    fun getByUserID(user_id: Int): Schedule
 
     @Insert
-    fun insert(vararg s: Schedule)
+    fun insert(schedule: Schedule)
 
     @Delete
-    fun delete(s: Schedule)
+    fun delete(schedule: Schedule)
 }
