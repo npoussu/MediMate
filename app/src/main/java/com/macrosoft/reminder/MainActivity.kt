@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             val databasePass = "GET PASSWORD FROM DB"
 
 
+
             var enteredUser = findViewById(R.id.textuser) as EditText //get the data from the user and pass text boxes
             var enteredPass = findViewById(R.id.textpass) as EditText
 
