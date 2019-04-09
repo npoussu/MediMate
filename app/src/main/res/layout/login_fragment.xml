@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+>
+
+    <ImageView
+            android:layout_width="147dp"
+            android:layout_height="125dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="79dp"
+            android:src="@drawable/logo"/>
+    <EditText
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:inputType="textPersonName"
+            android:hint="Enter ID"
+            android:ems="10"
+            android:id="@+id/textuser"
+            android:layout_marginTop="34dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="43dp"
+            android:layout_marginStart="12dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="207dp"
+    />
+
+    <EditText
+        android:id="@+id/textpass"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/textuser"
+        android:layout_alignStart="@+id/textuser"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-207dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="146dp"
+        android:ems="10"
+        android:hint="Enter Password"
+        android:inputType="textPassword" />
+
+    <Button
+            android:text="LOG IN"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/loginButton"
+            android:background="@color/blue"
+            android:layout_marginBottom="84dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+    <ImageView
+            app:srcCompat="@drawable/user_icon_img"
+            android:layout_width="62dp"
+            android:layout_height="49dp"
+            android:id="@+id/userIdIconImg"
+            android:layout_marginStart="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="211dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/textuser"
+            android:layout_marginEnd="8dp"/>
+    <ImageView
+            app:srcCompat="@drawable/lock_icon_img"
+            android:layout_width="56dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="19dp"
+            android:layout_toStartOf="@+id/textuser"
+            android:layout_marginEnd="2dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="154dp"/>
+
+    <TextView
+            android:text="Click here to create an account!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/goToCreateAcc"
+            android:layout_marginBottom="42dp"
+            android:textStyle="italic"
+            android:onClick="onClick"
+            android:textSize="16dp"/>
+
+</RelativeLayout>

@@ -1,3 +1,45 @@
 <resources>
-    <string name="app_name">MainActivity</string>
+
+    <string name="app_name">MediMate</string>
+    <string name="create_account">Create Account</string>
+    <string name="acc_exist">Already have an account? Click here to Log in!</string>
+    <string name="time">Time</string>
+    <string name="med_name">Medicine name</string>
+    <string name="dosage">Add dosage</string>
+    <string name="schedule">Schedule</string>
+    <string name="alarm_type">Alarm type</string>
+    <string name="add_med">Add Reminder</string>
+    <string name="delete_med">Delete Reminder</string>
+    <string name="select_start_date">Select start date</string>
+    <string name="select_end_date">Select end date</string>
+    <string name="select_frequency">Select frequency</string>
+    <string name="set_alarm">Set Alarm</string>
+    <string name="dosage_info">Dosage history over the last three months</string>
+    <string name="date_of_pills_taken">Date</string>
+    <string name="click_here_to_create_an_account">Click here to create an account!</string>
+    <string name="log_in">LOG IN</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_id">Enter ID</string>
+    <string name="medimate_logo">MediMate: Logo</string>
+    <string name="user_icon_image">User icon image</string>
+    <string name="lock_icon_image">Lock icon image</string>
+    <string name="create_your_id">Create your ID</string>
+    <string name="create_your_password">Create your password</string>
+    <string name="re_enter_your_password">Re-enter your password</string>
+    <string name="icon_create_account">Icon: Create Account</string>
+
+    //Frequency spinner??
+    <string-array name="days">
+        <item>Everyday</item>
+        <item>Weekdays</item>
+        <item>Weekends</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
 </resources>

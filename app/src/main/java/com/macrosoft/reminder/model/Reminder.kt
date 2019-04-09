@@ -1,5 +1,6 @@
 package com.macrosoft.reminder.model
 
+
 import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
 
@@ -35,3 +36,4 @@ data class Reminder(
     @ColumnInfo(name = "medicine_checker")
     var medicineChecker: Int?
 )
+
