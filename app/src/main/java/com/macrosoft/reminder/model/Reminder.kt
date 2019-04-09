@@ -1,10 +1,7 @@
 package com.macrosoft.reminder.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
+import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
-import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "reminders",
@@ -14,7 +11,8 @@ import androidx.room.PrimaryKey
             parentColumns = ["id"],
             childColumns = ["user_id"],
             onDelete = CASCADE
-        )]
+        )],
+    indices = [Index(value = ["user_id"])]
 )
 data class Reminder(
     @PrimaryKey(autoGenerate = true)
@@ -32,7 +30,7 @@ data class Reminder(
     var ringtone: String?,
 
     @ColumnInfo(name = "dosage")
-    var dosage: Int,
+    var dosage: String,
 
     @ColumnInfo(name = "medicine_checker")
     var medicineChecker: Int?

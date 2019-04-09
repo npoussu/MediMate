@@ -5,6 +5,8 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
+import java.sql.Date
+import java.sql.Time
 
 
 @Entity(
@@ -15,7 +17,8 @@ import androidx.room.PrimaryKey
             parentColumns = ["id"],
             childColumns = ["user_id"],
             onDelete = CASCADE
-        )]
+        )],
+    indices = [androidx.room.Index(value = ["user_id"])]
 )
 data class Schedule(
     @PrimaryKey(autoGenerate = true)
@@ -26,14 +29,14 @@ data class Schedule(
     var userID: Int,
 
     @ColumnInfo(name = "start_date")
-    var startDate: Long,
+    var startDate: Date,
 
     @ColumnInfo(name = "end_date")
-    var endDate: Long?,
+    var endDate: Date?,
 
     @ColumnInfo(name = "indefinite_end_date")
     var indefiniteEndDate: Boolean,
 
     @ColumnInfo(name = "time")
-    var time: String?
+    var time: ArrayList<Time>
 )
