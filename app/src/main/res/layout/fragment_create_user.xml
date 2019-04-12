@@ -52,7 +52,7 @@
                 android:text="@={viewmodel.repeatPasswordContent}"
                 android:layout_centerHorizontal="true"
                 android:hint="@string/re_enter_your_password"
-                android:id="@+id/editText5"
+                android:id="@+id/confirm_pass"
                 android:layout_marginTop="6dp"
                 android:layout_below="@+id/CreatePasswordInput"/>
 
@@ -79,8 +79,43 @@
                 android:id="@+id/goToLogin"
                 android:onClick="@{() -> viewmodel.onAccountExistsClick()}"
                 android:layout_marginBottom="42dp"
-                android:textStyle="italic"
+                android:textStyle="italic|bold"
                 android:textSize="16sp"/>
+
+
+        <ImageView
+                android:layout_width="42dp"
+                android:layout_height="45dp"
+                app:srcCompat="@drawable/user_icon_img"
+                android:id="@+id/userIdIconImg"
+                android:layout_alignStart="@+id/createAccButton"
+                android:layout_toStartOf="@id/CreateAccInput"
+                android:layout_alignTop="@+id/CreateAccInput"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"/>
+
+        <ImageView
+                android:layout_width="42dp"
+                android:layout_height="45dp"
+                app:srcCompat="@drawable/lock_icon_img"
+                android:layout_alignTop="@id/CreatePasswordInput"
+                android:layout_alignStart="@id/createAccButton"
+                android:layout_toStartOf="@id/CreatePasswordInput"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"/>
+
+        <ImageView
+                android:layout_width="42dp"
+                android:layout_height="45dp"
+                app:srcCompat="@drawable/lock_icon_img"
+                android:layout_alignTop="@id/confirm_pass"
+                android:layout_alignStart="@+id/createAccButton"
+                android:layout_toStartOf="@id/confirm_pass"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"/>
 
     </RelativeLayout>
 </layout>

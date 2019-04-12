@@ -2,7 +2,9 @@
 
     <string name="app_name">MediMate</string>
     <string name="create_account">Create Account</string>
-    <string name="acc_exist">Already have an account? Click here to Log in!</string>
+    <string name="acc_exist">
+        <u>Already have an account? Click here to Log in!</u>
+    </string>
     <string name="time">Time</string>
     <string name="med_name">Medicine name</string>
     <string name="dosage">Add dosage</string>
@@ -16,7 +18,9 @@
     <string name="set_alarm">Set Alarm</string>
     <string name="dosage_info">Dosage history over the last three months</string>
     <string name="date_of_pills_taken">Date</string>
-    <string name="click_here_to_create_an_account">Click here to create an account!</string>
+    <string name="click_here_to_create_an_account">
+        <u>Click here to create an account!</u>
+    </string>
     <string name="log_in">LOG IN</string>
     <string name="enter_password">Enter Password</string>
     <string name="enter_id">Enter ID</string>
