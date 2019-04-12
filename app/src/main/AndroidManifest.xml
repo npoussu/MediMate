@@ -10,9 +10,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".view.ui.StartActivity">
+        <activity android:name=".view.ui.loggedout.StartActivity">
         </activity>
-        <activity android:name=".view.ui.SplashScreenActivity" android:theme="@style/SplashScreenTheme">
+        <activity android:name="com.macrosoft.reminder.view.ui.loggedin.MainActivity">
+        </activity>
+        <activity android:name=".view.ui.loggedout.SplashScreenActivity" android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

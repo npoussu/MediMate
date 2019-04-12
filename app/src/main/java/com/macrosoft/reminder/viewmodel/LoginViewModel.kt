@@ -26,13 +26,18 @@ class LoginViewModel : ObservableViewModel() {
 
     val createAccountClickedState = LiveEvent<Boolean>()
 
-    val fakeUser: LiveData<User>
+    val onLoginSuccess = LiveEvent<User>()
+
+    private val fakeUser: LiveData<User>
         get() = FakeLoginRepository.fakeUser
 
     // TODO: Add the user authentication function here
     fun onLoginClick() {
         Log.i(TAG, "UserID: " + userIdContent.value)
         Log.i(TAG, "Password: " + passwordContent.value)
+
+        // Only set this if credentials are valid, triggers transaction to MainActivity
+        onLoginSuccess.value = fakeUser.value
     }
 
     fun onCreateAccountClick() {

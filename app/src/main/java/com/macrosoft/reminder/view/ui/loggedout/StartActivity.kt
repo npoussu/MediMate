@@ -1,11 +1,12 @@
-package com.macrosoft.reminder.view.ui
+package com.macrosoft.reminder.view.ui.loggedout
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.macrosoft.reminder.R
 
-class StartActivity : AppCompatActivity(), LoginFragment.OnCreateAccountClickedListener,
+class StartActivity : AppCompatActivity(),
+    LoginFragment.OnCreateAccountClickedListener,
     CreateAccountFragment.OnAccExistsClickedListener {
 
     override fun onCreateAccountClicked() {
@@ -28,7 +29,7 @@ class StartActivity : AppCompatActivity(), LoginFragment.OnCreateAccountClickedL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_start)
 
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
         with(ft) {

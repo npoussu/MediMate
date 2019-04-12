@@ -1,4 +1,4 @@
-package com.macrosoft.reminder.view.ui
+package com.macrosoft.reminder.view.ui.loggedout
 
 import android.content.Context
 import android.os.Bundle
