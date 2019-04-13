@@ -51,6 +51,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha03'
 
     // Room
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
