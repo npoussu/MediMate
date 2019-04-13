@@ -32,6 +32,17 @@
     <string name="re_enter_your_password">Re-enter your password</string>
     <string name="icon_create_account">Icon: Create Account</string>
 
+    <string name="go_create_acc">➤ Click here to create your account!</string>
+    <string name="create_ID">Create your ID</string>
+    <string name="create_pass">Create your password</string>
+    <string name="confirm_pass">Re-enter your password</string>
+    <string name="pill">Medicine Name</string>
+    <string name="view_med_dosage">Dosage:</string>
+    <string name="pill_amount">Num of pills</string>
+    <string name="requirements">Requirements:</string>
+    <string name="req_info">Information</string>
+
+
     //Frequency spinner??
     <string-array name="days">
         <item>Everyday</item>
