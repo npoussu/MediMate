@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
 import com.macrosoft.reminder.model.User
-import com.macrosoft.reminder.repository.FakeLoginRepository
 
 /**
  * LoginViewModel: Holds the references to Data Binded fields at LoginFragment
