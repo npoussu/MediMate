@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="adapter"
+                type="com.macrosoft.reminder.data.MedicineListChildAdapter"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:background="@android:color/darker_gray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/medicineItemRecyclerView"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:adapter="@{adapter}"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="5dp"
+                android:layout_marginTop="2dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:textSize="16sp"/>
+
+    </LinearLayout>
+</layout>

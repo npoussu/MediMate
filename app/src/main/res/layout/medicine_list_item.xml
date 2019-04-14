@@ -5,8 +5,10 @@
         <import type="android.view.View"/>
 
         <variable name="item"
-                  type="com.macrosoft.reminder.model.MedicineListData">
+                  type="com.macrosoft.reminder.model.MedicineTimeObject">
         </variable>
+
+
     </data>
 
     <RelativeLayout android:layout_width="match_parent"
@@ -23,9 +25,10 @@
                 app:cardElevation="10dp"
                 android:layout_marginEnd="27dp">
 
-            <LinearLayout
+            <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/darker_gray"
                     android:orientation="vertical">
 
                 <TextView
@@ -37,17 +40,9 @@
                         android:layout_gravity="center_horizontal"
                         android:padding="5dp"
                         android:background="@color/green"
-                        android:textSize="16dp"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/medicineItemRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:padding="5dp"
-                        android:layout_marginTop="2dp"
                         android:textSize="16sp"/>
-            </LinearLayout>
+
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
     </RelativeLayout>

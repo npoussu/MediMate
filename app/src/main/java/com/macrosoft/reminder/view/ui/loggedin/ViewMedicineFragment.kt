@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.data.MedicineListAdapter
-import com.macrosoft.reminder.model.MedicineListData
+import com.macrosoft.reminder.model.MedicineNameObject
+import com.macrosoft.reminder.model.MedicineTimeObject
+import com.macrosoft.reminder.model.NestedMedicineNameObjectWrapper
 import kotlinx.android.synthetic.main.view_medicine_fragment.*
 
 
@@ -29,29 +31,26 @@ class ViewMedicineFragment : Fragment() {
 
         medicineList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
-        val adapter = MedicineListAdapter(
+        val adapter = MedicineListAdapter()
+
+        adapter.setData(
             listOf(
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope"),
-                MedicineListData("4:20AM", "Dope")
+                MedicineTimeObject("4:20AM"),
+                NestedMedicineNameObjectWrapper(
+                    listOf(
+                        MedicineNameObject("Paracetamol"),
+                        MedicineNameObject("Dope"),
+                        MedicineNameObject("LSD")
+                    )
+                ),
+                MedicineTimeObject("5:00AM"),
+                NestedMedicineNameObjectWrapper(
+                    listOf(
+                        MedicineNameObject("Huume"),
+                        MedicineNameObject("Piri"),
+                        MedicineNameObject("Kusi")
+                    )
+                )
             )
         )
 
