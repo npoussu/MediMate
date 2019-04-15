@@ -1,32 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data>
-        <import type="android.view.View"/>
 
-        <variable name="item"
-                  type="com.macrosoft.reminder.model.MedicineNameObject">
-        </variable>
-    </data>
 
-    <androidx.cardview.widget.CardView
-            android:layout_width="256dp"
-            android:layout_margin="4dp"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp"
-            android:layout_height="wrap_content">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    <TextView android:layout_width="match_parent"
+              android:gravity="center"
+              android:id="@+id/medicineNameNested"
+              android:layout_height="wrap_content"/>
 
-            <TextView android:layout_width="match_parent"
-                      android:gravity="center"
-                      android:text="@{item.name}"
-                      android:id="@+id/medicineNameNested"
-                      android:layout_height="wrap_content"/>
-
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-</layout>
+</RelativeLayout>

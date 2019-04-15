@@ -1,49 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data>
-        <import type="android.view.View"/>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <variable name="item"
-                  type="com.macrosoft.reminder.model.MedicineTimeObject">
-        </variable>
+    <androidx.cardview.widget.CardView
+            android:id="@+id/medicineListCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="27dp"
+            android:layout_gravity="center_horizontal"
+            app:cardBackgroundColor="#ffffff"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="10dp"
+            android:layout_marginEnd="27dp">
 
-
-    </data>
-
-    <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-        <androidx.cardview.widget.CardView
+        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="27dp"
-                android:layout_gravity="center_horizontal"
-                app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="10dp"
-                android:layout_marginEnd="27dp">
+                android:background="@android:color/darker_gray"
+                android:orientation="vertical">
 
-            <RelativeLayout
+            <TextView
+                    android:textAlignment="center"
+                    android:id="@+id/medicineListTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/darker_gray"
-                    android:orientation="vertical">
+                    android:layout_gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:background="@color/green"
+                    android:textSize="16sp"/>
 
-                <TextView
-                        android:text="@{item.time}"
-                        android:textAlignment="center"
-                        android:id="@+id/time"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:padding="5dp"
-                        android:background="@color/green"
-                        android:textSize="16sp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/medicineItem_rv_nested"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="5dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:textSize="16sp"
+                    android:layout_below="@+id/medicineListTime"/>
 
-            </RelativeLayout>
+        </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
-</layout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
+

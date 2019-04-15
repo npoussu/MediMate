@@ -1,82 +1,52 @@
 package com.macrosoft.reminder.data
 
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.macrosoft.reminder.BR
 import com.macrosoft.reminder.R
-import com.macrosoft.reminder.databinding.MedicineListItemBinding
-import com.macrosoft.reminder.databinding.MedicineListVerticalHostBinding
-import com.macrosoft.reminder.model.MedicineTimeObject
-import com.macrosoft.reminder.model.NestedMedicineNameObjectWrapper
-import kotlin.properties.Delegates
+import com.macrosoft.reminder.data.MedicineListAdapter.ViewHolder
+import com.macrosoft.reminder.model.MedicineListObject
 
-class MedicineListAdapter :
-    RecyclerView.Adapter<MedicineListAdapter.ViewHolder>() {
+/**
+ * MedicineListAdapter: Holds the data for the outer portion of the Medicine list layout (time)
+ * Also has a reference to it's nested RecyclerView MedicineListChildAdapter and sets the data inside the nested adapter
+ */
 
-    private var listOfMedicineTimeData = listOf<HasType>()
+class MedicineListAdapter(var context: Context, var medicineData: List<MedicineListObject>) :
+    RecyclerView.Adapter<ViewHolder>() {
 
-    fun setData(dataList: List<HasType>) {
-        listOfMedicineTimeData = emptyList()
-        listOfMedicineTimeData = dataList
-        notifyDataSetChanged()
-    }
+    private var recycledViewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        var binding: ViewDataBinding? = null
-
-        when (viewType) {
-            Holder.PARENT.type -> binding =
-                DataBindingUtil.inflate<MedicineListItemBinding>(
-                    inflater, R.layout.medicine_list_item, parent, false
-                )
-            Holder.NESTED.type -> binding = DataBindingUtil.inflate<MedicineListVerticalHostBinding>(
-                inflater,
-                R.layout.medicine_list_vertical_host,
-                parent,
-                false
-            )
-        }
-        return ViewHolder(binding!!)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.medicine_list_item, parent, false)
+        return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = listOfMedicineTimeData.size
+    override fun getItemCount(): Int = medicineData.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listOfMedicineTimeData[position], getItemViewType(position), position)
+        val item = medicineData[position]
+        holder.time?.text = item.time
+
+        // Create the adapter for the nested RecyclerView and set the data using a constructor parameter
+        val verticalAdapter = MedicineListChildAdapter(context, item.medicine)
+        holder.nestedRecyclerView?.adapter = verticalAdapter
+        holder.nestedRecyclerView?.setRecycledViewPool(recycledViewPool)
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return listOfMedicineTimeData[position].getType()
-    }
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val verticalManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
-    inner class ViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+        val time = itemView.findViewById<TextView?>(R.id.medicineListTime)
+        val nestedRecyclerView = itemView.findViewById<RecyclerView?>(R.id.medicineItem_rv_nested)
 
-        private var parentPosition: Int by Delegates.notNull()
-
-        fun bind(item: HasType, viewType: Int, parentPosition: Int) {
-            this.parentPosition = parentPosition
-
-            when (viewType) {
-                Holder.PARENT.type -> {
-                    with(binding) {
-                        setVariable(BR.item, item as MedicineTimeObject)
-                        executePendingBindings()
-                    }
-                }
-                Holder.NESTED.type -> {
-                    val nestedAdapter = MedicineListChildAdapter(parentPosition).apply {
-                        setData(dataList = (item as NestedMedicineNameObjectWrapper).nestedMedicineNameObjectList)
-                    }
-                    with(binding) {
-                        setVariable(BR.adapter, nestedAdapter)
-                        executePendingBindings()
-                    }
-                }
-            }
+        init {
+            nestedRecyclerView!!.isNestedScrollingEnabled = false
+            nestedRecyclerView.layoutManager = verticalManager
         }
     }
 }

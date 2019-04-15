@@ -10,14 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.data.MedicineListAdapter
-import com.macrosoft.reminder.model.MedicineNameObject
-import com.macrosoft.reminder.model.MedicineTimeObject
-import com.macrosoft.reminder.model.NestedMedicineNameObjectWrapper
+import com.macrosoft.reminder.model.MedicineListObject
 import kotlinx.android.synthetic.main.view_medicine_fragment.*
 
 
 /**
- * A simple [Fragment] subclass.
+ * ViewMedicineFragment: Main screen of the application. Displays a list of card representing medicine to be taken at
+ * certain times
  *
  */
 class ViewMedicineFragment : Fragment() {
@@ -29,32 +28,24 @@ class ViewMedicineFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        medicineList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        medicineList_main.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
-        val adapter = MedicineListAdapter()
-
-        adapter.setData(
-            listOf(
-                MedicineTimeObject("4:20AM"),
-                NestedMedicineNameObjectWrapper(
-                    listOf(
-                        MedicineNameObject("Paracetamol"),
-                        MedicineNameObject("Dope"),
-                        MedicineNameObject("LSD")
-                    )
-                ),
-                MedicineTimeObject("5:00AM"),
-                NestedMedicineNameObjectWrapper(
-                    listOf(
-                        MedicineNameObject("Huume"),
-                        MedicineNameObject("Piri"),
-                        MedicineNameObject("Kusi")
-                    )
-                )
+        // Initialize adapter for the RecyclerView with some sample data
+        val adapter = MedicineListAdapter(
+            context!!, listOf(
+                MedicineListObject("8:00AM", listOf("Alpha E", "Razadyne", "Donepezil", "Vitamin E")),
+                MedicineListObject("9:00AM", listOf("Alpha E", "Hydergine", "Donepezil", "Etanercept")),
+                MedicineListObject("10:00AM", listOf("Alpha E", "Aquasol E", "Donepezil", "Etanercept")),
+                MedicineListObject("11:00AM", listOf("Alpha E", "Razadyne", "Donepezil", "Vitamin E")),
+                MedicineListObject("12:00AM", listOf("Alpha E", "Hydergine", "Donepezil", "Etanercept")),
+                MedicineListObject("5:00PM", listOf("Alpha E", "Aquasol E", "Donepezil", "Etanercept")),
+                MedicineListObject("6:00PM", listOf("Alpha E", "Razadyne", "Donepezil", "Vitamin E")),
+                MedicineListObject("7:30PM", listOf("Alpha E", "Hydergine", "Donepezil", "Etanercept")),
+                MedicineListObject("8:00PM", listOf("Alpha E", "Aquasol E", "Donepezil", "Etanercept"))
             )
         )
 
-        medicineList.adapter = adapter
+        medicineList_main.adapter = adapter
 
     }
 }
