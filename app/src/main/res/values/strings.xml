@@ -2,7 +2,9 @@
 
     <string name="app_name">MediMate</string>
     <string name="create_account">Create Account</string>
-    <string name="acc_exist">Already have an account? Click here to Log in!</string>
+    <string name="acc_exist">
+        <u>Already have an account? Click here to Log in!</u>
+    </string>
     <string name="time">Time</string>
     <string name="med_name">Medicine name</string>
     <string name="dosage">Add dosage</string>
@@ -16,7 +18,9 @@
     <string name="set_alarm">Set Alarm</string>
     <string name="dosage_info">Dosage history over the last three months</string>
     <string name="date_of_pills_taken">Date</string>
-    <string name="click_here_to_create_an_account">Click here to create an account!</string>
+    <string name="click_here_to_create_an_account">
+        <u>Click here to create an account!</u>
+    </string>
     <string name="log_in">LOG IN</string>
     <string name="enter_password">Enter Password</string>
     <string name="enter_id">Enter ID</string>
@@ -27,6 +31,17 @@
     <string name="create_your_password">Create your password</string>
     <string name="re_enter_your_password">Re-enter your password</string>
     <string name="icon_create_account">Icon: Create Account</string>
+
+    <string name="go_create_acc">➤ Click here to create your account!</string>
+    <string name="create_ID">Create your ID</string>
+    <string name="create_pass">Create your password</string>
+    <string name="confirm_pass">Re-enter your password</string>
+    <string name="pill">Medicine Name</string>
+    <string name="view_med_dosage">Dosage:</string>
+    <string name="pill_amount">Num of pills</string>
+    <string name="requirements">Requirements:</string>
+    <string name="req_info">Information</string>
+
 
     //Frequency spinner??
     <string-array name="days">
@@ -41,5 +56,8 @@
         <item>Saturday</item>
         <item>Sunday</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

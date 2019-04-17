@@ -100,7 +100,7 @@
                 android:id="@+id/goToCreateAcc"
                 android:onClick="@{() -> viewmodel.onCreateAccountClick()}"
                 android:layout_marginBottom="42dp"
-                android:textStyle="italic"
+                android:textStyle="italic|bold"
                 android:textSize="16sp"/>
 
     </RelativeLayout>
