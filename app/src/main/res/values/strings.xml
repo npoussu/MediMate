@@ -8,6 +8,7 @@
     <string name="time">Time</string>
     <string name="med_name">Medicine name</string>
     <string name="dosage">Add dosage</string>
+    <string name="req_info_field">Add requirements</string>
     <string name="schedule">Schedule</string>
     <string name="alarm_type">Alarm type</string>
     <string name="add_med">Add Reminder</string>
