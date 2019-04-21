@@ -7,7 +7,7 @@ import com.macrosoft.reminder.model.Reminder
 class ReminderRepository(reminderDAO: ReminderDAO) {
     private val reminderDAOImpl: ReminderDAO = reminderDAO
 
-    fun getRedminderByID(id: Int): LiveData<Reminder> {
+    fun getReminderByID(id: Int): LiveData<Reminder> {
         return reminderDAOImpl.getReminderByID(id)
     }
 
