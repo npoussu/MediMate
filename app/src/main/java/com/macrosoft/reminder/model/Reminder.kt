@@ -20,7 +20,6 @@ data class Reminder(
     @ColumnInfo(name = "id")
     var id: Int,
 
-
     @ColumnInfo(name = "user_id")
     var userID: Int,
 

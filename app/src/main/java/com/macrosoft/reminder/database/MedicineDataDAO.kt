@@ -8,7 +8,7 @@ import com.macrosoft.reminder.model.MedicineData
 
 @Dao
 interface MedicineDataDAO: BaseDao<MedicineData>{
-    @Query("SELECT * FROM medicine_data where :user_id = user_id")
-    fun getByUserID(user_id: Int): LiveData<MedicineData>
+    @Query("SELECT * FROM medicine_data where :id = id")
+    fun getMedicineByID(Id: Int): LiveData<MedicineData>
 
 }
