@@ -6,6 +6,7 @@
                 android:background="@color/gray">
 
     <EditText
+            android:id="@+id/medicineNameInput"
             android:hint="@string/med_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -14,13 +15,11 @@
             android:paddingTop="25dp"
             android:paddingBottom="25dp"
             android:textSize="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginBottom="7dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:layout_alignParentTop="true"/>
 
     <EditText
+            android:id="@+id/dosageInput"
             android:hint="@string/dosage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,9 +29,22 @@
             android:paddingBottom="25dp"
             android:textSize="20dp"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="110dp"
-            android:layout_alignParentTop="true"/>
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/medicineNameInput"/>
+
+    <EditText
+            android:id="@+id/requirementsInput"
+            android:hint="@string/req_info_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:paddingLeft="90dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:textSize="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/dosageInput"/>
 
     <TextView
             android:text="@string/schedule"
@@ -44,10 +56,9 @@
             android:paddingTop="25dp"
             android:paddingBottom="25dp"
             android:textSize="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="214dp"
-            android:layout_alignParentTop="true"/>
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/requirementsInput"
+    />
 
     <TextView
             android:text="@string/alarm_type"
@@ -59,10 +70,8 @@
             android:paddingTop="25dp"
             android:paddingBottom="25dp"
             android:textSize="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="300dp"
-            android:layout_alignParentTop="true"/>
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/goToSchedule_fragment"/>
 
     <ImageView
             android:layout_width="65dp"
@@ -78,18 +87,27 @@
             android:layout_height="84dp"
             app:srcCompat="@drawable/dosage_img"
             android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="101dp"/>
+
+    <ImageView
+            android:layout_width="63dp"
+            android:layout_height="84dp"
+            app:srcCompat="@drawable/food"
+            android:layout_alignParentStart="true"
             android:layout_marginStart="9dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="104dp"/>
+            android:layout_marginTop="182dp"/>
 
     <ImageView
             android:layout_width="63dp"
             android:layout_height="84dp"
             app:srcCompat="@drawable/calendar_img"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="13dp"
+            android:layout_marginStart="10dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="215dp"/>
+            android:layout_marginTop="266dp"/>
 
     <ImageView
             android:layout_width="63dp"
@@ -98,7 +116,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="12dp"
             android:id="@+id/imageView"
-            android:layout_marginTop="296dp"
+            android:layout_marginTop="345dp"
             android:layout_alignParentTop="true"/>
 
     <Button
