@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout
+        android:id="@+id/cardRelativeLayout"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -33,17 +34,6 @@
                     android:padding="5dp"
                     android:background="@color/green"
                     android:textSize="16sp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/medicineItem_rv_nested"
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:padding="5dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:textSize="16sp"
-                    android:layout_below="@+id/medicineListTime"/>
 
         </RelativeLayout>
 

@@ -1,25 +1,25 @@
 package com.macrosoft.reminder.data
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.data.MedicineListAdapter.ViewHolder
 import com.macrosoft.reminder.model.MedicineListObject
 
 /**
- * MedicineListAdapter: Holds the data for the outer portion of the Medicine list layout (time)
- * Also has a reference to it's nested RecyclerView MedicineListChildAdapter and sets the data inside the nested adapter
+ * An adapter holding data for the Main Screen of the app displaying a card of reminder times for medicine to be taken
+ *
+ * @param medicineData Holds the reminder times
  */
 
-class MedicineListAdapter(var context: Context, var medicineData: List<MedicineListObject>) :
+class MedicineListAdapter :
     RecyclerView.Adapter<ViewHolder>() {
 
-    private var recycledViewPool = RecyclerView.RecycledViewPool()
+    private lateinit var listenerImpl: OnItemClickListener
+    private var medicineData: List<MedicineListObject> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.medicine_list_item, parent, false)
@@ -31,22 +31,32 @@ class MedicineListAdapter(var context: Context, var medicineData: List<MedicineL
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = medicineData[position]
         holder.time?.text = item.time
-
-        // Create the adapter for the nested RecyclerView and set the data using a constructor parameter
-        val verticalAdapter = MedicineListChildAdapter(context, item.medicine)
-        holder.nestedRecyclerView?.adapter = verticalAdapter
-        holder.nestedRecyclerView?.setRecycledViewPool(recycledViewPool)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val verticalManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-
         val time = itemView.findViewById<TextView?>(R.id.medicineListTime)
-        val nestedRecyclerView = itemView.findViewById<RecyclerView?>(R.id.medicineItem_rv_nested)
 
         init {
-            nestedRecyclerView!!.isNestedScrollingEnabled = false
-            nestedRecyclerView.layoutManager = verticalManager
+            itemView.setOnClickListener {
+                listenerImpl.onClick(adapterPosition)
+            }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onClick(pos: Int)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        listenerImpl = listener
+    }
+
+    fun setMedicineList(medicineListObject: List<MedicineListObject>) {
+        medicineData = medicineListObject
+        notifyDataSetChanged()
+    }
+
+    fun getMedicineAt(pos: Int): MedicineListObject {
+        return medicineData[pos]
     }
 }
