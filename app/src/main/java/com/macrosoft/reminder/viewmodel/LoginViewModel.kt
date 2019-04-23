@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
 import com.macrosoft.reminder.model.User
-import com.macrosoft.reminder.repository.FakeLoginRepository
+import com.macrosoft.reminder.repository.FakeRepository
 
 /**
  * LoginViewModel: Holds the references to Data Binded fields at LoginFragment
@@ -29,7 +29,7 @@ class LoginViewModel : ObservableViewModel() {
     val onLoginSuccess = LiveEvent<User>()
 
     private val fakeUser: LiveData<User>
-        get() = FakeLoginRepository.fakeUser
+        get() = FakeRepository.fakeUser
 
     // TODO: Add the user authentication function here
     fun onLoginClick() {
