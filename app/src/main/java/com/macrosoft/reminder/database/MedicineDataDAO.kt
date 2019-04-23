@@ -1,14 +1,14 @@
 package com.macrosoft.reminder.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Query
 import com.macrosoft.reminder.model.MedicineData
-
 
 
 @Dao
 interface MedicineDataDAO: BaseDao<MedicineData>{
     @Query("SELECT * FROM medicine_data where :id = id")
-    fun getMedicineByID(Id: Int): LiveData<MedicineData>
+    fun getMedicineByID(id: Int): LiveData<MedicineData>
 
 }
