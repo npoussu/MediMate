@@ -60,5 +60,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_title">Login</string>
+    <string name="my_medicines_title">My Medicines</string>
+    <string name="create_account_title">Create Account</string>
 
 </resources>
