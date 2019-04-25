@@ -6,6 +6,10 @@
               android:orientation="vertical"
               tools:context=".view.ui.loggedout.StartActivity">
 
+    <include android:id="@+id/toolbar_layout"
+             layout="@layout/toolbar_main">
+    </include>
+
     <FrameLayout
             android:id="@+id/fragment_holder"
             android:layout_width="match_parent"
