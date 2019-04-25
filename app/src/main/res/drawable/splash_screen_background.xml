@@ -2,12 +2,27 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="match_parent"
             android:layout_width="match_parent">
 
-    <item android:drawable="@color/colorPrimary"/>
-
     <!-- Set the Background Image-->
     <item android:gravity="center" android:width="500dp" android:height="700dp">
         <bitmap
                 android:gravity="fill_horizontal|fill_vertical"
-                android:src="@drawable/pikachu"/>
+                android:src="@drawable/landingbg"/>
     </item>
+
+    <item
+            android:height="135dp"
+            android:width="140dp"
+            android:drawable="@drawable/logo"
+            android:gravity="center">
+    </item>
+
+    <item
+            android:height="30dp"
+            android:width="147dp"
+            android:drawable="@drawable/splashtext"
+            android:gravity="bottom|center_horizontal"
+            android:bottom="200dp"
+    >
+    </item>
+
 </layer-list>
