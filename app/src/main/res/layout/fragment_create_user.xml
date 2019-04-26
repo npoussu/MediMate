@@ -24,12 +24,24 @@
                 android:layout_height="60dp"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:text="@={viewmodel.userIdContent}"
-                android:hint="@string/create_your_id"
+                android:hint="@string/enter_name"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
-                android:id="@+id/CreateAccInput"
+                android:id="@+id/EnterName"
                 android:layout_marginTop="170dp"/>
+
+        <EditText
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:text="@={viewmodel.userIdContent}"
+                android:hint="@string/create_your_id"
+                android:id="@+id/CreateAccInput"
+                android:layout_marginStart="0dp"
+                android:layout_below="@+id/EnterName"
+                android:layout_marginTop="6dp"
+                android:layout_alignStart="@+id/EnterName"/>
 
         <EditText
                 android:layout_width="250dp"
@@ -82,6 +94,17 @@
                 android:textStyle="italic|bold"
                 android:textSize="16sp"/>
 
+        <ImageView
+                android:layout_width="42dp"
+                android:layout_height="45dp"
+                app:srcCompat="@drawable/pen_img"
+                android:id="@+id/userNameIcon"
+                android:layout_alignStart="@+id/createAccButton"
+                android:layout_toStartOf="@id/EnterName"
+                android:layout_alignTop="@+id/EnterName"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"/>
 
         <ImageView
                 android:layout_width="42dp"
