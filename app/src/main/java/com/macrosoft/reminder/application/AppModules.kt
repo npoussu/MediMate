@@ -5,6 +5,7 @@ import com.macrosoft.reminder.database.AppDatabase
 import com.macrosoft.reminder.repository.UserRepository
 import com.macrosoft.reminder.viewmodel.CreateAccountViewModel
 import com.macrosoft.reminder.viewmodel.LoginViewModel
+import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -13,6 +14,7 @@ object AppModules {
     val viewModelModule = module(override = true) {
         viewModel { LoginViewModel(get()) }
         viewModel { CreateAccountViewModel() }
+        viewModel { ViewMedicineViewModel() }
     }
 
     val repositoryModule = module(override = true) {
