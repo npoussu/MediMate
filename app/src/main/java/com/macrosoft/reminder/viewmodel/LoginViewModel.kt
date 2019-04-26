@@ -7,13 +7,14 @@ import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
 import com.macrosoft.reminder.model.User
 import com.macrosoft.reminder.repository.FakeRepository
+import com.macrosoft.reminder.repository.UserRepository
 
 /**
  * LoginViewModel: Holds the references to Data Binded fields at LoginFragment
  * Handles authenticating the user
  */
 
-class LoginViewModel : ObservableViewModel() {
+class LoginViewModel(private val repo: UserRepository) : ObservableViewModel() {
 
     private val TAG = LoginViewModel::class.java.simpleName
 

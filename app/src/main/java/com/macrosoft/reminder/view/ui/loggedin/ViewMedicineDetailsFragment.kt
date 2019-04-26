@@ -12,7 +12,7 @@ import com.macrosoft.reminder.R
 import com.macrosoft.reminder.data.MedicineDetailedListAdapter
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
 import kotlinx.android.synthetic.main.fragment_view_medicine_details.*
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * A fragment displaying all the various medicine to be taken at X time.

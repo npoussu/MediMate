@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.databinding.FragmentCreateUserBinding
 import com.macrosoft.reminder.viewmodel.CreateAccountViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CreateAccountFragment : Fragment() {
 

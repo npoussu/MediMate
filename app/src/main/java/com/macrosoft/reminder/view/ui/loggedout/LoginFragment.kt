@@ -13,7 +13,7 @@ import com.macrosoft.reminder.R
 import com.macrosoft.reminder.databinding.FragmentLoginBinding
 import com.macrosoft.reminder.view.ui.loggedin.MainActivity
 import com.macrosoft.reminder.viewmodel.LoginViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
 
