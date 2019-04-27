@@ -29,29 +29,23 @@ class LoginViewModel(private val repo: UserRepository) : ObservableViewModel() {
 
     val onLoginSuccess = LiveEvent<User>()
 
-//    private val fakeUser: LiveData<User>
-//        get() = FakeRepository.fakeUser
+    val showToast = LiveEvent<String>()
 
-    // TODO: Add the user authentication function here
+    
     fun onLoginClick() {
-        Log.i(TAG, "UserID: " + userIdContent.value)
-        Log.i(TAG, "Password: " + passwordContent.value)
-
         val userName = userIdContent.value.toString()
         val userPassword = passwordContent.value.toString()
 
-        val databaseUser: LiveData<User>
-        databaseUser = repo.getUserByName(userName)
+        val databaseUser: LiveData<User> = repo.getUserByName(userName)
 
-
-        if(databaseUser.value!!.userPassword != userPassword) {
-            // Only set this if credentials are valid, triggers transaction to MainActivity
+        if (databaseUser.value == null) { // User Don't exist
+            showToast.value = "User does not exist!"
+        } else if (databaseUser.value!!.userPassword != userPassword) { // Exists but wrong password
+            showToast.value = "Incorrect Password"
+        } else { // Login Success
+            showToast.value = "Login Success!"
             onLoginSuccess.value = databaseUser.value
         }
-
-
-
-
     }
 
     fun onCreateAccountClick() {

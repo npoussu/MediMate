@@ -25,9 +25,7 @@ class CreateAccountViewModel(private val repo: UserRepository) : ObservableViewM
 
     val showLoginFragment = LiveEvent<Boolean>()
 
-    val showOnAccountExistsToast = LiveEvent<Boolean>()
-    val showNotMatchPasswordToast = LiveEvent<Boolean>()
-    val showOnAccountCreatedToast = LiveEvent<Boolean>()
+    val showToast = LiveEvent<String>()
 
     fun onCreateAccountClick() {
         val databaseUser: LiveData<User> = repo.getUserByName(userIdContent.value.toString())
@@ -35,29 +33,36 @@ class CreateAccountViewModel(private val repo: UserRepository) : ObservableViewM
         Log.i(TAG, databaseUser.value.toString())
 
         if (databaseUser.value != null) { // If user already exists
-            onAccountExistsClick()
+            onAccountExists()
         }
         else { // Input new user into db
-            onNewAccountClick()
+            onCreateNewAccount()
         }
     }
 
-    fun onNewAccountClick() {
+    fun onCreateNewAccount() {
+        val inputUserName = userIdContent.value.toString()
+        val inputPassword = passwordContent.value.toString()
+        val inputRepeatPassword = repeatPasswordContent.value.toString()
 
-        if(passwordContent.value.toString() != repeatPasswordContent.value.toString()) { // If both passwords not match
-            showNotMatchPasswordToast.value = true
+        if(inputPassword != inputRepeatPassword) { // If both passwords not match
+            showToast.value = "Password do not match"
         }
         else {
-            val user = User(userPassword = passwordContent.value.toString(), userName = userIdContent.value.toString(), id = 0, displayName = "Mary")
+            val user = User(userPassword = inputPassword, userName = inputUserName, id = 0, displayName = "Mary")
             repo.insertUser(user)
-            showOnAccountCreatedToast.value = true
+            showToast.value = "Account Created"
             showLoginFragment.value = true
         }
     }
 
-    fun onAccountExistsClick() {
-        showOnAccountExistsToast.value = true
+    fun onAccountExists() {
+        showToast.value = "Account Already Exist!"
         Log.i(TAG, "Account Exists")
+    }
+
+    fun onShowLoginClick() {
+        showLoginFragment.value = true
     }
 
 }

@@ -52,19 +52,11 @@ class CreateAccountFragment : Fragment() {
             startActivity(intent)
         })
 
-        viewModel.showOnAccountExistsToast.observe(this, Observer {
-            Toast.makeText(context, "Account Already Exist!", Toast.LENGTH_SHORT).show()
+
+        viewModel.showToast.observe(this, Observer {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         })
 
-
-        viewModel.showNotMatchPasswordToast.observe(this, Observer {
-            Toast.makeText(context, "Passwords Don't Match!", Toast.LENGTH_SHORT).show()
-        })
-
-
-        viewModel.showOnAccountCreatedToast.observe(this, Observer {
-            Toast.makeText(context, "Account Created!", Toast.LENGTH_SHORT).show()
-        })
     }
 
     override fun onStart() {

@@ -77,7 +77,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:id="@+id/goToLogin"
-                android:onClick="@{() -> viewmodel.onAccountExistsClick()}"
+                android:onClick="@{() -> viewmodel.onShowLoginClick()}"
                 android:layout_marginBottom="42dp"
                 android:textStyle="italic|bold"
                 android:textSize="16sp"/>
