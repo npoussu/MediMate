@@ -11,9 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.macrosoft.reminder.R
-import com.macrosoft.reminder.database.UserDAO
 import com.macrosoft.reminder.databinding.FragmentCreateUserBinding
-import com.macrosoft.reminder.view.ui.loggedin.MainActivity
 import com.macrosoft.reminder.viewmodel.CreateAccountViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -47,16 +45,9 @@ class CreateAccountFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.showLoginFragment.observe(this, Observer {
-            val intent = Intent(activity, StartActivity::class.java)
-            startActivity(intent)
-        })
-
-
         viewModel.showToast.observe(this, Observer {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         })
-
     }
 
     override fun onStart() {

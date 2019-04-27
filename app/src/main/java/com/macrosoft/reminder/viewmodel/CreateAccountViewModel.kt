@@ -1,7 +1,6 @@
 package com.macrosoft.reminder.viewmodel
 
 import android.util.Log
-import android.widget.Toast
 import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -40,12 +39,12 @@ class CreateAccountViewModel(private val repo: UserRepository) : ObservableViewM
         }
     }
 
-    fun onCreateNewAccount() {
+    private fun onCreateNewAccount() {
         val inputUserName = userIdContent.value.toString()
         val inputPassword = passwordContent.value.toString()
         val inputRepeatPassword = repeatPasswordContent.value.toString()
 
-        if(inputPassword != inputRepeatPassword) { // If both passwords not match
+        if (inputPassword != inputRepeatPassword) { // If both passwords not match
             showToast.value = "Password do not match"
         }
         else {
@@ -56,7 +55,7 @@ class CreateAccountViewModel(private val repo: UserRepository) : ObservableViewM
         }
     }
 
-    fun onAccountExists() {
+    private fun onAccountExists() {
         showToast.value = "Account Already Exist!"
         Log.i(TAG, "Account Exists")
     }
@@ -64,5 +63,4 @@ class CreateAccountViewModel(private val repo: UserRepository) : ObservableViewM
     fun onShowLoginClick() {
         showLoginFragment.value = true
     }
-
 }

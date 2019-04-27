@@ -1,6 +1,5 @@
 package com.macrosoft.reminder.viewmodel
 
-import android.util.Log
 import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -31,7 +30,6 @@ class LoginViewModel(private val repo: UserRepository) : ObservableViewModel() {
 
     val showToast = LiveEvent<String>()
 
-    
     fun onLoginClick() {
         val userName = userIdContent.value.toString()
         val userPassword = passwordContent.value.toString()
