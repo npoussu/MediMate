@@ -1,6 +1,5 @@
 package com.macrosoft.reminder.model
 
-
 import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
 

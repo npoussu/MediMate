@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
 import com.macrosoft.reminder.model.User
-import com.macrosoft.reminder.repository.FakeRepository
+//import com.macrosoft.reminder.repository.FakeRepository
 import com.macrosoft.reminder.repository.UserRepository
 
 /**
@@ -29,16 +29,29 @@ class LoginViewModel(private val repo: UserRepository) : ObservableViewModel() {
 
     val onLoginSuccess = LiveEvent<User>()
 
-    private val fakeUser: LiveData<User>
-        get() = FakeRepository.fakeUser
+//    private val fakeUser: LiveData<User>
+//        get() = FakeRepository.fakeUser
 
     // TODO: Add the user authentication function here
     fun onLoginClick() {
         Log.i(TAG, "UserID: " + userIdContent.value)
         Log.i(TAG, "Password: " + passwordContent.value)
 
-        // Only set this if credentials are valid, triggers transaction to MainActivity
-        onLoginSuccess.value = fakeUser.value
+        val userName = userIdContent.value.toString()
+        val userPassword = passwordContent.value.toString()
+
+        val databaseUser: LiveData<User>
+        databaseUser = repo.getUserByName(userName)
+
+
+        if(databaseUser.value!!.userPassword != userPassword) {
+            // Only set this if credentials are valid, triggers transaction to MainActivity
+            onLoginSuccess.value = databaseUser.value
+        }
+
+
+
+
     }
 
     fun onCreateAccountClick() {
