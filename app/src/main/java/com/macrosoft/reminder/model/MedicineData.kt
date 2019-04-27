@@ -22,6 +22,12 @@ data class MedicineData(
     @ColumnInfo(name = "user_id")
     var userID: Int,
 
+    @ColumnInfo(name = "reminder_id")
+    var reminderID: Int,
+
+    @ColumnInfo(name = "schedule_id")
+    var scheduleID: Int,
+
     @ColumnInfo(name = "medicine_name")
     var medicineName: String,
 

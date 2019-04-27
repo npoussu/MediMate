@@ -16,7 +16,7 @@ import com.macrosoft.reminder.data.MedicineListAdapter
 import com.macrosoft.reminder.model.MedicineListObject
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
 import kotlinx.android.synthetic.main.view_medicine_fragment.*
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 /**

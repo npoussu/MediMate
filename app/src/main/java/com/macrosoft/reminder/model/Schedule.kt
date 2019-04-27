@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey
 import java.sql.Date
 import java.sql.Time
 
-
 @Entity(
     tableName = "schedules",
     foreignKeys = [

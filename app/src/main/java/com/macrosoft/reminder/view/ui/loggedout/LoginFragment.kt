@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,7 +14,7 @@ import com.macrosoft.reminder.R
 import com.macrosoft.reminder.databinding.FragmentLoginBinding
 import com.macrosoft.reminder.view.ui.loggedin.MainActivity
 import com.macrosoft.reminder.viewmodel.LoginViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
 
@@ -52,6 +53,10 @@ class LoginFragment : Fragment() {
         viewModel.onLoginSuccess.observe(this, Observer {
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
+        })
+
+        viewModel.showToast.observe(this, Observer {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         })
     }
 }
