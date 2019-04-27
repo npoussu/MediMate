@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.macrosoft.reminder.R
+import com.macrosoft.reminder.database.UserDAO
 import com.macrosoft.reminder.databinding.FragmentCreateUserBinding
 import com.macrosoft.reminder.view.ui.loggedin.MainActivity
 import com.macrosoft.reminder.viewmodel.CreateAccountViewModel
@@ -45,14 +47,23 @@ class CreateAccountFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        viewModel.showLoginFragment.observe(this, Observer {
-////            val intent = Intent(activity, LoginFragment::class.java)
-////            startActivity(intent)
-////        })
-
         viewModel.showLoginFragment.observe(this, Observer {
             val intent = Intent(activity, StartActivity::class.java)
             startActivity(intent)
+        })
+
+        viewModel.showOnAccountExistsToast.observe(this, Observer {
+            Toast.makeText(context, "Account Already Exist!", Toast.LENGTH_SHORT).show()
+        })
+
+
+        viewModel.showNotMatchPasswordToast.observe(this, Observer {
+            Toast.makeText(context, "Passwords Don't Match!", Toast.LENGTH_SHORT).show()
+        })
+
+
+        viewModel.showOnAccountCreatedToast.observe(this, Observer {
+            Toast.makeText(context, "Account Created!", Toast.LENGTH_SHORT).show()
         })
     }
 

@@ -1,7 +1,9 @@
 package com.macrosoft.reminder.viewmodel
 
 import android.util.Log
+import android.widget.Toast
 import androidx.databinding.Bindable
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
 import com.macrosoft.reminder.model.User
@@ -23,20 +25,39 @@ class CreateAccountViewModel(private val repo: UserRepository) : ObservableViewM
 
     val showLoginFragment = LiveEvent<Boolean>()
 
+    val showOnAccountExistsToast = LiveEvent<Boolean>()
+    val showNotMatchPasswordToast = LiveEvent<Boolean>()
+    val showOnAccountCreatedToast = LiveEvent<Boolean>()
+
     fun onCreateAccountClick() {
-        Log.i(TAG, "UserID: " + userIdContent.value)
-        Log.i(TAG, "Password: " + passwordContent.value)
-        Log.i(TAG, "Repeat Password: " + repeatPasswordContent.value)
+        val databaseUser: LiveData<User> = repo.getUserByName(userIdContent.value.toString())
 
-        val user = User(userPassword = passwordContent.value.toString(), userName = userIdContent.value.toString(), id = 0, displayName = "Mary")
-//        repo.insertUser(user)
-        Log.i(TAG, user.userName + " : " + user.userPassword)
+        Log.i(TAG, databaseUser.value.toString())
 
-        showLoginFragment.value = true
+        if (databaseUser.value != null) { // If user already exists
+            onAccountExistsClick()
+        }
+        else { // Input new user into db
+            onNewAccountClick()
+        }
+    }
+
+    fun onNewAccountClick() {
+
+        if(passwordContent.value.toString() != repeatPasswordContent.value.toString()) { // If both passwords not match
+            showNotMatchPasswordToast.value = true
+        }
+        else {
+            val user = User(userPassword = passwordContent.value.toString(), userName = userIdContent.value.toString(), id = 0, displayName = "Mary")
+            repo.insertUser(user)
+            showOnAccountCreatedToast.value = true
+            showLoginFragment.value = true
+        }
     }
 
     fun onAccountExistsClick() {
-        showLoginFragment.value = true
+        showOnAccountExistsToast.value = true
+        Log.i(TAG, "Account Exists")
     }
 
 }

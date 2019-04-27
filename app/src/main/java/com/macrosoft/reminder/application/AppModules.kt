@@ -29,7 +29,7 @@ object AppModules {
                 get(),
                 AppDatabase::class.java,
                 "reminder"
-            )
+            ).allowMainThreadQueries()
                 .fallbackToDestructiveMigration() // On migration destroy DB
                 .build()
         }
