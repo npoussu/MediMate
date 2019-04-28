@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout
-        android:id="@+id/cardRelativeLayout"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cardRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -34,6 +34,15 @@
                     android:padding="5dp"
                     android:background="@color/green"
                     android:textSize="16sp"/>
+
+            <TextView android:id="@+id/medicineNameList"
+                      android:paddingTop="5dp"
+                      android:paddingBottom="5dp"
+                      android:layout_centerHorizontal="true"
+                      android:layout_below="@id/medicineListTime"
+                      tools:text="Drugs\nDrugs\nDrugs\nDrugs\n"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
 
         </RelativeLayout>
 

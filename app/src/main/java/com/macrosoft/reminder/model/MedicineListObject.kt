@@ -5,5 +5,6 @@ package com.macrosoft.reminder.model
  */
 data class MedicineListObject(
     val ID: Int,
-    val time: String
+    val time: String,
+    val medicineNames: String
 )

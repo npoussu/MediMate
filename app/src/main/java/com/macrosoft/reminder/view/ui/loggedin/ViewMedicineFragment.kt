@@ -61,15 +61,10 @@ class ViewMedicineFragment : Fragment() {
 
         adapter.setMedicineList(
             listOf(
-                MedicineListObject(1, "8:00AM"),
-                MedicineListObject(5, "9:00AM"),
-                MedicineListObject(11, "10:00AM"),
-                MedicineListObject(26, "11:00AM"),
-                MedicineListObject(27, "12:00AM"),
-                MedicineListObject(29, "5:00PM"),
-                MedicineListObject(35, "6:00PM"),
-                MedicineListObject(46, "7:30PM"),
-                MedicineListObject(50, "8:00PM")
+                MedicineListObject(1, "8:00AM", "Alpha E\nRazadyne\nDonepezil\nVitamin E1"),
+                MedicineListObject(5, "9:00AM", "Alpha E\nHydergine\nDonepezil\nEtanercept"),
+                MedicineListObject(11, "10:00AM", "Alpha E\nAquasol E\nDonepezil\nEtanercept"),
+                MedicineListObject(26, "11:00AM", "Alpha E\nAquasol E\nDonepezil\nEtanercept")
             )
         )
 
