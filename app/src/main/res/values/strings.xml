@@ -64,5 +64,6 @@
     <string name="login_title">Login</string>
     <string name="my_medicines_title">My Medicines</string>
     <string name="create_account_title">Create Account</string>
+    <string name="edit">Edit</string>
 
 </resources>

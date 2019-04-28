@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
+import com.macrosoft.reminder.model.MedicineDetails
 import com.macrosoft.reminder.model.MedicineDetailsList
 
 /**
@@ -18,6 +19,7 @@ import com.macrosoft.reminder.model.MedicineDetailsList
  */
 class MedicineDetailedListAdapter : RecyclerView.Adapter<MedicineDetailedListAdapter.ViewHolder>() {
 
+    private lateinit var listener: OnItemClickListener
     private lateinit var detailedList: MedicineDetailsList
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -46,5 +48,23 @@ class MedicineDetailedListAdapter : RecyclerView.Adapter<MedicineDetailedListAda
         val medicineTime = itemView.findViewById<TextView?>(R.id.medicineListTime)
         val pillAmount = itemView.findViewById<TextView?>(R.id.pillAmount)
         val requirementsText = itemView.findViewById<TextView?>(R.id.requirementsText)
+
+        init {
+            itemView.setOnClickListener {
+                listener.onClick(adapterPosition)
+            }
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onClick(pos: Int)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
+
+    fun getMedicineDetailsListAt(pos: Int): MedicineDetails {
+        return detailedList.items[pos]
     }
 }

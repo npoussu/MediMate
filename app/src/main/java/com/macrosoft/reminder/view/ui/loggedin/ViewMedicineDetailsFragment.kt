@@ -1,5 +1,6 @@
 package com.macrosoft.reminder.view.ui.loggedin
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -27,6 +28,20 @@ class ViewMedicineDetailsFragment : Fragment() {
 
     private lateinit var adapter: MedicineDetailedListAdapter
 
+    var listener: OnDetailedListCardClickedListener? = null
+
+    interface OnDetailedListCardClickedListener {
+        fun onDetailedListCardClick()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as? OnDetailedListCardClickedListener
+        if (listener == null) {
+            throw ClassCastException("$context must implement OnDetailedListCardClickedListener")
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_view_medicine_details, container, false)
     }
@@ -44,6 +59,18 @@ class ViewMedicineDetailsFragment : Fragment() {
         adapter.setDetailedList(viewModel.state.value!!)
 
         Log.i(TAG, viewModel.state.value!!.toString())
+
+        adapter.setOnItemClickListener(object : MedicineDetailedListAdapter.OnItemClickListener {
+            override fun onClick(pos: Int) {
+                Log.i(TAG, "Clicked adapter pos: $pos")
+
+                // Get the MedicineDetails object of the clicked item at the list
+                val medicine = adapter.getMedicineDetailsListAt(pos)
+
+                viewModel.setItemState(medicine)
+                listener?.onDetailedListCardClick()
+            }
+        })
     }
 }
 
