@@ -1,12 +1,17 @@
 package com.macrosoft.reminder.view.ui.loggedin
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.macrosoft.reminder.R
 import kotlinx.android.synthetic.main.toolbar_main.*
 
 class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardClickedListener {
+
+    companion object {
+        private val TAG = MainActivity::class.java.simpleName
+    }
 
     override fun onCreateAccountClicked() {
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
@@ -34,5 +39,11 @@ class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardCli
             replace(R.id.fragment_holder, ViewMedicineFragment())
             commit()
         }
+
+        // Get the userID from Intent extras, will be used to fetch data for a particular user from DB
+        val userID = intent.getIntExtra("userID", 0)
+        val userDisplayName = intent.getStringExtra("userDisplayName")
+
+        Log.i(TAG, "UserDisplayName: $userDisplayName, ID: $userID")
     }
 }

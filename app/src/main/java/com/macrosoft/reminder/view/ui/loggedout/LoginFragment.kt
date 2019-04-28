@@ -52,6 +52,8 @@ class LoginFragment : Fragment() {
 
         viewModel.onLoginSuccess.observe(this, Observer {
             val intent = Intent(activity, MainActivity::class.java)
+            intent.putExtra("userID", it.id)
+            intent.putExtra("userDisplayName", it.displayName)
             startActivity(intent)
         })
 
