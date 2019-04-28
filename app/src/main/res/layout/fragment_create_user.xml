@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
                 name="viewmodel"
@@ -26,6 +27,7 @@
                 android:ems="10"
                 android:text="@={viewmodel.displayNameContent}"
                 android:hint="@string/enter_name"
+                tools:ignore="Autofill"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
                 android:id="@+id/EnterName"
@@ -40,6 +42,7 @@
                 android:hint="@string/create_your_id"
                 android:id="@+id/CreateAccInput"
                 android:layout_marginStart="0dp"
+                tools:ignore="Autofill"
                 android:layout_below="@+id/EnterName"
                 android:layout_marginTop="6dp"
                 android:layout_alignStart="@+id/EnterName"/>
@@ -49,6 +52,7 @@
                 android:layout_height="60dp"
                 android:inputType="textPassword"
                 android:ems="10"
+                tools:ignore="Autofill"
                 android:text="@={viewmodel.passwordContent}"
                 android:hint="@string/create_your_password"
                 android:id="@+id/CreatePasswordInput"
@@ -62,6 +66,7 @@
                 android:layout_height="60dp"
                 android:inputType="textPassword"
                 android:ems="10"
+                tools:ignore="Autofill"
                 android:text="@={viewmodel.repeatPasswordContent}"
                 android:layout_centerHorizontal="true"
                 android:hint="@string/re_enter_your_password"
@@ -105,7 +110,8 @@
                 android:layout_alignTop="@+id/EnterName"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:contentDescription="@string/a_feather"/>
 
         <ImageView
                 android:layout_width="42dp"
@@ -117,7 +123,8 @@
                 android:layout_alignTop="@+id/CreateAccInput"
                 android:layout_marginTop="6dp"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"/>
+                android:layout_marginEnd="2dp"
+                android:contentDescription="@string/user_icon"/>
 
         <ImageView
                 android:layout_width="42dp"
@@ -128,7 +135,8 @@
                 android:layout_toStartOf="@id/CreatePasswordInput"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="2dp"
-                android:layout_marginStart="2dp"/>
+                android:layout_marginStart="2dp"
+                android:contentDescription="@string/lock_icon"/>
 
         <ImageView
                 android:layout_width="42dp"
@@ -139,7 +147,8 @@
                 android:layout_toStartOf="@id/confirm_pass"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="2dp"
-                android:layout_marginStart="2dp"/>
+                android:layout_marginStart="2dp"
+                android:contentDescription="@string/lock_icon"/>
 
     </RelativeLayout>
 </layout>

@@ -2,7 +2,7 @@
 
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
 >
     <data>
         <variable
@@ -27,6 +27,7 @@
                 android:layout_width="250dp"
                 android:layout_height="60dp"
                 android:inputType="textPersonName"
+                tools:ignore="Autofill"
                 android:hint="@string/enter_id"
                 android:ems="10"
                 android:id="@+id/userID"
@@ -40,6 +41,7 @@
 
         <EditText
                 android:id="@+id/password"
+                tools:ignore="Autofill"
                 android:layout_width="250dp"
                 android:layout_height="60dp"
                 android:inputType="textPassword"
