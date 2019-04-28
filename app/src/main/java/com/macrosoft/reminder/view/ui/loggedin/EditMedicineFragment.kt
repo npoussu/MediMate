@@ -1,5 +1,6 @@
 package com.macrosoft.reminder.view.ui.loggedin
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +15,24 @@ class EditMedicineFragment : Fragment() {
 
     private val viewModel: ViewMedicineViewModel by sharedViewModel()
 
+    var listener: OnPopBackStack? = null
+
+    interface OnPopBackStack {
+        fun setToolbarTitle(title: String)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as? OnPopBackStack
+        if (listener == null) {
+            throw ClassCastException("$context must implement OnPopBackStack")
+        }
+    }
+
     override fun onStart() {
         super.onStart()
+
+        listener?.setToolbarTitle(getString(R.string.edit))
 
         medicineNameInput.setText(viewModel.itemState.value?.name)
         dosageInput.setText(viewModel.itemState.value?.dosage)

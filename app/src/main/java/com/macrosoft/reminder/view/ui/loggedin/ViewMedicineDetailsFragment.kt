@@ -32,6 +32,7 @@ class ViewMedicineDetailsFragment : Fragment() {
 
     interface OnDetailedListCardClickedListener {
         fun onDetailedListCardClick()
+        fun setToolbarTitle(title: String)
     }
 
     override fun onAttach(context: Context) {
@@ -40,6 +41,11 @@ class ViewMedicineDetailsFragment : Fragment() {
         if (listener == null) {
             throw ClassCastException("$context must implement OnDetailedListCardClickedListener")
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        listener?.setToolbarTitle(getString(R.string.my_medicines_title))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

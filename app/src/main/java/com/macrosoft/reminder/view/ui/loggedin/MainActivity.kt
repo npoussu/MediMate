@@ -8,7 +8,11 @@ import com.macrosoft.reminder.R
 import kotlinx.android.synthetic.main.toolbar_main.*
 
 class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardClickedListener,
-    ViewMedicineDetailsFragment.OnDetailedListCardClickedListener {
+    ViewMedicineDetailsFragment.OnDetailedListCardClickedListener, EditMedicineFragment.OnPopBackStack {
+
+    override fun setToolbarTitle(title: String) {
+        toolbar_title.text = title
+    }
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
@@ -16,8 +20,6 @@ class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardCli
 
     override fun onDetailedListCardClick() {
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
-
-        toolbar_title.text = getString(R.string.edit)
 
         with(ft) {
             replace(R.id.fragment_holder, EditMedicineFragment())
@@ -28,8 +30,6 @@ class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardCli
 
     override fun onCreateAccountClicked() {
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
-
-        toolbar_title.text = getString(R.string.my_medicines_title)
 
         with(ft) {
             replace(R.id.fragment_holder, ViewMedicineDetailsFragment())
@@ -44,8 +44,6 @@ class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardCli
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
-        toolbar_title.text = getString(R.string.my_medicines_title)
 
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
         with(ft) {
