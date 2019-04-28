@@ -24,6 +24,7 @@
                 android:layout_height="60dp"
                 android:inputType="textPersonName"
                 android:ems="10"
+                android:text="@={viewmodel.displayNameContent}"
                 android:hint="@string/enter_name"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"

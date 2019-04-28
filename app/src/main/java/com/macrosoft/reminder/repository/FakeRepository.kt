@@ -15,7 +15,7 @@ object FakeRepository {
     private val _fakeMedicineDetails = MutableLiveData<MedicineDetailsList>()
 
     init {
-        _fakeUser.value = User(1, "mary", "maryodriscoll", "password123")
+        _fakeUser.value = User("mary", "maryodriscoll", "password123")
         val medicineDetails = listOf(
             MedicineDetails(
                 "Paracetamol", "8:00AM", "2 pills", "With water"

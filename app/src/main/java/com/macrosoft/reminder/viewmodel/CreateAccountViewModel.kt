@@ -22,6 +22,9 @@ class CreateAccountViewModel(private val repo: UserRepository) : ObservableViewM
     @Bindable
     val repeatPasswordContent = MutableLiveData<String>()
 
+    @Bindable
+    val displayNameContent = MutableLiveData<String>()
+
     val showLoginFragment = LiveEvent<Boolean>()
 
     val showToast = LiveEvent<String>()
@@ -43,12 +46,13 @@ class CreateAccountViewModel(private val repo: UserRepository) : ObservableViewM
         val inputUserName = userIdContent.value.toString()
         val inputPassword = passwordContent.value.toString()
         val inputRepeatPassword = repeatPasswordContent.value.toString()
+        val inputDisplayName = displayNameContent.value.toString()
 
         if (inputPassword != inputRepeatPassword) { // If both passwords not match
             showToast.value = "Password do not match"
         }
         else {
-            val user = User(userPassword = inputPassword, userName = inputUserName, id = 0, displayName = "Mary")
+            val user = User(userPassword = inputPassword, userName = inputUserName, displayName = inputDisplayName)
             repo.insertUser(user)
             showToast.value = "Account Created"
             showLoginFragment.value = true
