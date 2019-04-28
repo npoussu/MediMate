@@ -31,10 +31,12 @@ class MedicineListAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = medicineData[position]
         holder.time?.text = item.time
+        holder.medicineNames?.text = item.medicineNames
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val time = itemView.findViewById<TextView?>(R.id.medicineListTime)
+        val medicineNames = itemView.findViewById<TextView?>(R.id.medicineNameList)
 
         init {
             itemView.setOnClickListener {
