@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
->
+                android:layout_height="match_parent">
 
     <ImageView
             android:layout_width="147dp"
@@ -11,39 +11,42 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="79dp"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/logo"
+            android:contentDescription="@string/medimate_logo_string"/>
+
     <EditText
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:inputType="textPersonName"
-            android:hint="Enter ID"
+            android:hint="@string/enter_id"
             android:ems="10"
             android:id="@+id/textuser"
+            tools:ignore="Autofill"
             android:layout_marginTop="34dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="43dp"
             android:layout_marginStart="12dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="207dp"
-    />
+            android:layout_marginBottom="207dp"/>
 
     <EditText
-        android:id="@+id/textpass"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/textuser"
-        android:layout_alignStart="@+id/textuser"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="-207dp"
-        android:layout_marginEnd="43dp"
-        android:layout_marginBottom="146dp"
-        android:ems="10"
-        android:hint="Enter Password"
-        android:inputType="textPassword" />
+            android:id="@+id/textpass"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/textuser"
+            tools:ignore="Autofill"
+            android:layout_alignStart="@+id/textuser"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="-207dp"
+            android:layout_marginEnd="43dp"
+            android:layout_marginBottom="146dp"
+            android:ems="10"
+            android:hint="@string/enter_password"
+            android:inputType="textPassword"/>
 
     <Button
-            android:text="LOG IN"
+            android:text="@string/log_in"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -51,7 +54,7 @@
             android:id="@+id/loginButton"
             android:background="@color/blue"
             android:layout_marginBottom="84dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/white"/>
 
@@ -65,7 +68,9 @@
             android:layout_marginBottom="211dp"
             android:layout_alignParentBottom="true"
             android:layout_toStartOf="@+id/textuser"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/user_icon_image"/>
+
     <ImageView
             app:srcCompat="@drawable/lock_icon_img"
             android:layout_width="56dp"
@@ -75,10 +80,11 @@
             android:layout_toStartOf="@+id/textuser"
             android:layout_marginEnd="2dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="154dp"/>
+            android:layout_marginBottom="154dp"
+            android:contentDescription="@string/lock_icon_image"/>
 
     <TextView
-            android:text="Click here to create an account!"
+            android:text="@string/go_create_acc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -86,7 +92,6 @@
             android:id="@+id/goToCreateAcc"
             android:layout_marginBottom="42dp"
             android:textStyle="italic"
-            android:onClick="onClick"
-            android:textSize="16dp"/>
+            android:textSize="16sp"/>
 
 </RelativeLayout>

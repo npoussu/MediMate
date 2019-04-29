@@ -10,10 +10,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#ffffff"
-            android:paddingLeft="40dp"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
             android:paddingTop="25dp"
             android:paddingBottom="25dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_alignParentStart="true"
             android:layout_marginTop="24dp"
             android:layout_alignParentTop="true"/>
@@ -25,10 +26,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/selectStartDate"
             android:background="#ffffff"
-            android:paddingLeft="40dp"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
             android:paddingTop="25dp"
             android:paddingBottom="25dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_marginTop="9dp"/>
 
     <TextView
@@ -38,10 +40,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/selectEndDate"
             android:background="@color/white"
-            android:paddingLeft="40dp"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
             android:paddingTop="25dp"
             android:paddingBottom="25dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_marginTop="9dp"/>
 
     <TextView
@@ -54,7 +57,7 @@
             android:layout_below="@+id/selectFrequency"
             android:background="@color/orange"
             android:padding="10dp"
-            android:textSize="23dp"
+            android:textSize="23sp"
             android:layout_marginTop="9dp"/>
 
     <ImageView
@@ -65,7 +68,8 @@
             android:layout_alignEnd="@id/setAlarm"
             android:layout_marginEnd="0dp"
             android:id="@+id/plusAlarm"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/add_button_logo"/>
 
     <Spinner
             android:layout_width="match_parent"

@@ -12,7 +12,7 @@
     <string name="req_info_field">Add requirements</string>
     <string name="schedule">Schedule</string>
     <string name="alarm_type">Alarm type</string>
-    <string name="add_med">Add Reminder</string>
+    <string name="save_med">Save Reminder</string>
     <string name="delete_med">Delete Reminder</string>
     <string name="select_start_date">Select start date</string>
     <string name="select_end_date">Select end date</string>
@@ -23,7 +23,6 @@
     <string name="click_here_to_create_an_account">
         <u>Click here to create an account!</u>
     </string>
-    <string name="log_in">LOG IN</string>
     <string name="enter_password">Enter Password</string>
     <string name="enter_id">Enter ID</string>
     <string name="medimate_logo">MediMate: Logo</string>
@@ -64,5 +63,18 @@
     <string name="login_title">Login</string>
     <string name="my_medicines_title">My Medicines</string>
     <string name="create_account_title">Create Account</string>
+    <string name="edit">Edit</string>
+    <string name="decorative_image_medicine_box_and_pill">Medicine box and pill</string>
+    <string name="decorative_image_medicine_doser">Medicine doser</string>
+    <string name="a_box_of_vegetables">A box of vegetables</string>
+    <string name="calendar_image">Calendar image</string>
+    <string name="alarm_image">Alarm image</string>
+    <string name="splash_screen">SPLASH SCREEN</string>
+    <string name="a_feather">A feather</string>
+    <string name="user_icon">User icon</string>
+    <string name="lock_icon">Lock icon</string>
+    <string name="medimate_logo_string">MediMate logo</string>
+    <string name="add_button_logo">Add button logo</string>
+    <string name="log_in">LOG IN</string>
 
 </resources>

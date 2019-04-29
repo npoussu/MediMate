@@ -30,7 +30,7 @@
                     android:layout_gravity="center_horizontal"
                     android:padding="5dp"
                     android:background="@color/cream"
-                    android:textSize="16dp"/>
+                    android:textSize="16sp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                     android:layout_gravity="center_horizontal"
                     android:padding="5dp"
                     android:layout_marginTop="2dp"
-                    android:textSize="16dp"/>
+                    android:textSize="16sp"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

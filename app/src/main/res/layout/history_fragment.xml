@@ -14,7 +14,7 @@
             android:padding="10dp"
             android:textAlignment="center"
             android:background="@color/green"
-            android:textSize="18dp"/>
+            android:textSize="18sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
