@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+                name="viewmodel"
+                type="com.macrosoft.reminder.viewmodel.AddMedicineViewModel"/>
+    </data>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray">
+
+        <EditText
+                android:id="@+id/medicineNameInput"
+                android:hint="@string/med_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:background="#ffffff"
+                tools:ignore="Autofill"
+                android:paddingStart="90dp"
+                android:paddingEnd="90dp"
+                android:text="@={viewmodel.medicineNameInputContent}"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentTop="true"/>
+
+        <EditText
+                android:id="@+id/dosageInput"
+                android:hint="@string/dosage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:paddingStart="90dp"
+                tools:ignore="Autofill"
+                android:paddingEnd="90dp"
+                android:text="@={viewmodel.dosageInputContent}"
+                android:paddingTop="25dp"
+                android:inputType="text"
+                android:paddingBottom="25dp"
+                android:textSize="20sp"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/medicineNameInput"/>
+
+        <EditText
+                android:id="@+id/requirementsInput"
+                android:hint="@string/req_info_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="Autofill"
+                android:background="#ffffff"
+                android:text="@={viewmodel.requirementsInputContent}"
+                android:paddingStart="90dp"
+                android:inputType="text"
+                android:paddingEnd="90dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:textSize="20sp"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/dosageInput"/>
+
+        <TextView
+                android:text="@string/schedule"
+                android:id="@+id/goToSchedule_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:onClick="@{() -> viewmodel.onScheduleClick()}"
+                android:paddingStart="90dp"
+                android:paddingTop="25dp"
+                android:paddingEnd="90dp"
+                android:paddingBottom="25dp"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/requirementsInput"
+        />
+
+        <TextView
+                android:text="@string/alarm_type"
+                android:id="@+id/chooseAlarmType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:paddingTop="25dp"
+                android:paddingStart="90dp"
+                android:paddingEnd="90dp"
+                android:onClick="@{() -> viewmodel.onAlarmClick()}"
+                android:paddingBottom="25dp"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/goToSchedule_fragment"/>
+
+        <ImageView
+                android:layout_width="65dp"
+                android:layout_height="76dp"
+                app:srcCompat="@drawable/medicine_img"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="12dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="25dp"
+                android:contentDescription="@string/decorative_image_medicine_box_and_pill"/>
+
+        <ImageView
+                android:layout_width="63dp"
+                android:layout_height="84dp"
+                app:srcCompat="@drawable/dosage_img"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="101dp"
+                android:contentDescription="@string/decorative_image_medicine_doser"/>
+
+        <ImageView
+                android:layout_width="63dp"
+                android:layout_height="84dp"
+                app:srcCompat="@drawable/food"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="9dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="182dp"
+                android:contentDescription="@string/a_box_of_vegetables"/>
+
+        <ImageView
+                android:layout_width="63dp"
+                android:layout_height="84dp"
+                app:srcCompat="@drawable/calendar_img"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="266dp"
+                android:contentDescription="@string/calendar_image"/>
+
+        <ImageView
+                android:layout_width="63dp"
+                android:layout_height="86dp"
+                app:srcCompat="@drawable/alarm_img"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="12dp"
+                android:id="@+id/imageView"
+                android:layout_marginTop="345dp"
+                android:layout_alignParentTop="true"
+                android:contentDescription="@string/alarm_image"/>
+
+        <Button
+                android:text="@string/save_med"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/addMedButton"
+                android:background="@color/blue"
+                android:fontFamily="@font/royal"
+                android:textSize="20sp"
+                android:onClick="@{() -> viewmodel.onSaveMedClick()}"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="99dp"
+                android:layout_centerInParent="true"/>
+
+        <Button
+                android:text="@string/delete_med"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/deleteMedButton"
+                android:onClick="@{() -> viewmodel.onDeleteMedClick()}"
+                android:background="@color/red"
+                android:fontFamily="@font/royal"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="32dp"/>
+
+    </RelativeLayout>
+</layout>

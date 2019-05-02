@@ -38,6 +38,7 @@ class ViewMedicineFragment : Fragment() {
 
     interface OnMedicineCardClickedListener {
         fun onCreateAccountClicked()
+        fun onAddReminderClicked()
         fun setToolbarTitle(title: String)
     }
 
@@ -84,6 +85,11 @@ class ViewMedicineFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner, Observer {
             Log.i(TAG, it.toString())
             listener!!.onCreateAccountClicked()
+        })
+
+        viewModel.addReminderFragmentState.observe(viewLifecycleOwner, Observer {
+            Log.i(TAG, "onAddReminderFragmentStateEmit")
+            listener!!.onAddReminderClicked()
         })
 
         adapter.setOnItemClickListener(object : MedicineListAdapter.OnItemClickListener {
