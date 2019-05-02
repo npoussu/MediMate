@@ -82,4 +82,7 @@ class ViewMedicineViewModel : ObservableViewModel() {
         requirementsInputContent.value = itemState.requirements
     }
 
+    fun onAddMedicineClick() {
+        Log.i(TAG, "onAddMedicineClick()")
+    }
 }

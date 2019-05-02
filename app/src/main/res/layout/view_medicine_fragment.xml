@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                xmlns:tools="http://schemas.android.com/tools"
-                tools:context=".view.ui.loggedin.MainActivity"
-                android:orientation="vertical">
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/medicineList_main"
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+                name="viewmodel"
+                type="com.macrosoft.reminder.viewmodel.ViewMedicineViewModel"/>
+    </data>
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="100dp"
-    />
+            tools:context=".view.ui.loggedin.MainActivity"
+            android:orientation="vertical">
 
-    <Button
-            android:text="@string/add_med"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/addMedButton"
-            android:background="@color/blue"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/royal"
-            android:layout_marginBottom="28dp"
-            android:textColor="@color/white"
-            android:layout_centerInParent="true"
-            android:layout_alignParentBottom="true"/>
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/medicineList_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="100dp"
+        />
 
-</RelativeLayout>
+        <Button
+                android:text="@string/add_med"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/addMedButton"
+                android:background="@color/blue"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:onClick="@{() -> viewmodel.onAddMedicineClick()}"
+                android:fontFamily="@font/royal"
+                android:layout_marginBottom="28dp"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+</layout>
 
 
