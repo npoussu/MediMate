@@ -14,7 +14,7 @@
             android:gravity="center"
             android:layout_height="?attr/actionBarSize"
             android:elevation="4dp"
-            android:background="?attr/colorPrimary">
+            android:background="@color/pink">
 
         <TextView
                 android:id="@+id/toolbar_title"
@@ -22,7 +22,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:textStyle="bold"
                 tools:text="I like trains"
+                android:textSize="45sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/trench"
                 style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
 
     </androidx.appcompat.widget.Toolbar>
