@@ -80,21 +80,6 @@
                 android:layout_below="@+id/requirementsInput"
         />
 
-        <TextView
-                android:text="@string/alarm_type"
-                android:id="@+id/chooseAlarmType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:paddingTop="25dp"
-                android:paddingStart="90dp"
-                android:paddingEnd="90dp"
-                android:onClick="@{() -> viewmodel.onAlarmClick()}"
-                android:paddingBottom="25dp"
-                android:textSize="20sp"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/goToSchedule_fragment"/>
-
         <ImageView
                 android:layout_width="65dp"
                 android:layout_height="76dp"
@@ -134,17 +119,6 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="266dp"
                 android:contentDescription="@string/calendar_image"/>
-
-        <ImageView
-                android:layout_width="63dp"
-                android:layout_height="86dp"
-                app:srcCompat="@drawable/alarm_img"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="12dp"
-                android:id="@+id/imageView"
-                android:layout_marginTop="345dp"
-                android:layout_alignParentTop="true"
-                android:contentDescription="@string/alarm_image"/>
 
         <Button
                 android:text="@string/save_med"
