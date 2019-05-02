@@ -10,19 +10,19 @@
     </item>
 
     <item
-            android:height="135dp"
-            android:width="140dp"
+            android:top="-100dp"
+            android:height="100dp"
+            android:width="100dp"
             android:drawable="@drawable/logo"
             android:gravity="center">
     </item>
 
-    <item
+    <!-- <item
             android:height="30dp"
             android:width="147dp"
             android:drawable="@drawable/splashtext"
             android:gravity="bottom|center_horizontal"
-            android:bottom="200dp"
-    >
-    </item>
+            android:bottom="250dp">
+    </item> -->
 
 </layer-list>
