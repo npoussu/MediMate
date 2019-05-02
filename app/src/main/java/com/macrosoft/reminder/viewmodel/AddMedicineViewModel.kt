@@ -36,12 +36,6 @@ class AddMedicineViewModel : ObservableViewModel() {
         Log.i(TAG, "onAlarmClick()")
     }
 
-    fun onDeleteMedClick() {
-
-        // TODO: Update the DB entity "MedicineDetailsList" by deleting a medicine "MedicineDetails" member variable from the current DB entity
-        Log.i(TAG, "onDeleteMedClick()")
-    }
-
     fun onSaveMedClick() {
 
         // TODO: Update itemState here and update the DB entity "MedicineDetailsList" to save the new values
