@@ -8,7 +8,6 @@ import com.macrosoft.reminder.model.Schedule
 
 @Dao
 interface ScheduleDAO : BaseDao<Schedule>{
-    @Query("SELECT * FROM schedules where :user_id = user_id")
-    fun getByUserID(user_id: Int): LiveData<Schedule>
-
+    @Query("SELECT * FROM schedules where user_id = :user_id")
+    fun getScheduleByUserID(user_id: Int): LiveData<Schedule>
 }
