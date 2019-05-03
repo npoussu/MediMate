@@ -7,12 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.data.MedicineListAdapter
+import com.macrosoft.reminder.databinding.ViewMedicineFragmentBinding
 import com.macrosoft.reminder.model.MedicineListObject
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
 import kotlinx.android.synthetic.main.view_medicine_fragment.*
@@ -32,8 +34,11 @@ class ViewMedicineFragment : Fragment() {
 
     var listener: OnMedicineCardClickedListener? = null
 
+    lateinit var binding: ViewMedicineFragmentBinding
+
     interface OnMedicineCardClickedListener {
         fun onCreateAccountClicked()
+        fun onAddReminderClicked()
         fun setToolbarTitle(title: String)
     }
 
@@ -51,7 +56,10 @@ class ViewMedicineFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.view_medicine_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.view_medicine_fragment, container, false)
+        binding.lifecycleOwner = this
+        binding.viewmodel = viewModel
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -77,6 +85,11 @@ class ViewMedicineFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner, Observer {
             Log.i(TAG, it.toString())
             listener!!.onCreateAccountClicked()
+        })
+
+        viewModel.addReminderFragmentState.observe(viewLifecycleOwner, Observer {
+            Log.i(TAG, "onAddReminderFragmentStateEmit")
+            listener!!.onAddReminderClicked()
         })
 
         adapter.setOnItemClickListener(object : MedicineListAdapter.OnItemClickListener {

@@ -33,6 +33,9 @@ class ViewMedicineViewModel : ObservableViewModel() {
     private val fakeMedicineDetails: LiveData<MedicineDetailsList>
         get() = FakeRepository.fakeMedicineDetails
 
+    private val showAddReminderFragment = LiveEvent<Boolean>()
+    val addReminderFragmentState: LiveData<Boolean> = showAddReminderFragment
+
     fun setMedicineDetailsDatabaseID(id: Int) {
 
         // TODO: Get the Reminder from DB using the @id parameter and set the Reminder to medicineDetails.value
@@ -82,4 +85,8 @@ class ViewMedicineViewModel : ObservableViewModel() {
         requirementsInputContent.value = itemState.requirements
     }
 
+    fun onAddMedicineClick() {
+        Log.i(TAG, "onAddMedicineClick()")
+        showAddReminderFragment.value = true
+    }
 }

@@ -12,7 +12,8 @@
             android:theme="@style/AppTheme">
         <activity android:name=".view.ui.loggedout.StartActivity">
         </activity>
-        <activity android:name="com.macrosoft.reminder.view.ui.loggedin.MainActivity">
+        <activity android:name="com.macrosoft.reminder.view.ui.loggedin.MainActivity"
+                  android:windowSoftInputMode="adjustNothing">
         </activity>
         <activity android:name=".view.ui.loggedout.SplashScreenActivity" android:theme="@style/SplashScreenTheme">
             <intent-filter>

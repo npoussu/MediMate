@@ -4,7 +4,7 @@
     <data>
         <variable
                 name="viewmodel"
-                type="com.macrosoft.reminder.viewmodel.ViewMedicineViewModel"/>
+                type="com.macrosoft.reminder.viewmodel.AddMedicineViewModel"/>
     </data>
     <RelativeLayout
             android:layout_width="match_parent"
@@ -135,20 +135,6 @@
                 android:layout_marginBottom="99dp"
                 android:layout_centerInParent="true"/>
 
-        <Button
-                android:text="@string/delete_med"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/deleteMedButton"
-                android:onClick="@{() -> viewmodel.onDeleteMedClick()}"
-                android:background="@color/red"
-                android:fontFamily="@font/royal"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_centerInParent="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="32dp"/>
 
     </RelativeLayout>
 </layout>

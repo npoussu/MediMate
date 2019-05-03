@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+                name="viewmodel"
+                type="com.macrosoft.reminder.viewmodel.ViewMedicineViewModel"/>
+    </data>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -10,19 +16,21 @@
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/medicineList_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="100dp"
-    />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="100dp"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addMedButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
+            android:onClick="@{() -> viewmodel.onAddMedicineClick()}"
             android:backgroundTint="@color/pink"
             app:fabSize="normal"
             android:src="@drawable/ic_add_white_24dp"
@@ -39,5 +47,8 @@
     />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
+
 
 

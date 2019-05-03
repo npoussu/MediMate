@@ -3,6 +3,7 @@ package com.macrosoft.reminder.application
 import androidx.room.Room
 import com.macrosoft.reminder.database.AppDatabase
 import com.macrosoft.reminder.repository.UserRepository
+import com.macrosoft.reminder.viewmodel.AddMedicineViewModel
 import com.macrosoft.reminder.viewmodel.CreateAccountViewModel
 import com.macrosoft.reminder.viewmodel.LoginViewModel
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
@@ -15,6 +16,7 @@ object AppModules {
         viewModel { LoginViewModel(get()) }
         viewModel { CreateAccountViewModel(get()) }
         viewModel { ViewMedicineViewModel() }
+        viewModel { AddMedicineViewModel() }
     }
 
     val repositoryModule = module(override = true) {
