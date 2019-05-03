@@ -10,7 +10,7 @@ import com.macrosoft.reminder.model.User
 
 @Database(
     entities = [(User::class), (Schedule::class), (MedicineData::class), (Reminder::class)],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(DateTypeConverter::class)

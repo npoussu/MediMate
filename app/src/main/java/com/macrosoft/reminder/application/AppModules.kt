@@ -40,6 +40,8 @@ object AppModules {
     val daoModule = module(override = true) {
         // Declare DAO dependencies here
         single { get<AppDatabase>().userDao() }
-
+        single { get<AppDatabase>().scheduleDao() }
+        single { get<AppDatabase>().reminderDAO() }
+        single { get<AppDatabase>().medicineDataDAO() }
     }
 }
