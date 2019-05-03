@@ -8,7 +8,18 @@ import com.macrosoft.reminder.R
 import kotlinx.android.synthetic.main.toolbar_main.*
 
 class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardClickedListener,
-    ViewMedicineDetailsFragment.OnDetailedListCardClickedListener, EditMedicineFragment.OnPopBackStack {
+    ViewMedicineDetailsFragment.OnDetailedListCardClickedListener, EditMedicineFragment.OnPopBackStack,
+    AddMedicineFragment.OnPopBackStack {
+
+    override fun onAddReminderClicked() {
+        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+
+        with(ft) {
+            replace(R.id.fragment_holder, AddMedicineFragment())
+            addToBackStack(null)
+            commit()
+        }
+    }
 
     override fun setToolbarTitle(title: String) {
         toolbar_title.text = title
