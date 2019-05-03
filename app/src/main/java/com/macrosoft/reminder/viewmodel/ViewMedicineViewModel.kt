@@ -5,11 +5,13 @@ import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
+import com.macrosoft.reminder.model.MedicineData
 import com.macrosoft.reminder.model.MedicineDetails
 import com.macrosoft.reminder.model.MedicineDetailsList
 import com.macrosoft.reminder.repository.FakeRepository
+import com.macrosoft.reminder.repository.MedicineRepository
 
-class ViewMedicineViewModel : ObservableViewModel() {
+class ViewMedicineViewModel(private val med_repo: MedicineRepository) : ObservableViewModel() {
 
     companion object {
         private val TAG = ViewMedicineViewModel::class.java.simpleName
@@ -35,6 +37,11 @@ class ViewMedicineViewModel : ObservableViewModel() {
 
     private val showAddReminderFragment = LiveEvent<Boolean>()
     val addReminderFragmentState: LiveData<Boolean> = showAddReminderFragment
+
+
+    fun getUserMedicineData(userID : Int): Array<MedicineData> {
+        return med_repo.getMedicineByUserID(userID)
+    }
 
     fun setMedicineDetailsDatabaseID(id: Int) {
 

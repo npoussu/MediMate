@@ -11,6 +11,13 @@ class MedicineRepository(medicineDataDAO: MedicineDataDAO) {
         return medicineDataDAOImpl.getMedicineByID(id)
     }
 
+//    fun getMedicineByUserID(id: Int): LiveData<MedicineData> {
+//        return medicineDataDAOImpl.getMedicineByUserID(id)
+//    }
+    fun getMedicineByUserID(id: Int): Array<MedicineData> {
+        return medicineDataDAOImpl.getMedicineByUserID(id)
+    }
+
     fun deleteMedicine(medicine: MedicineData) {
         return medicineDataDAOImpl.delete(medicine)
     }

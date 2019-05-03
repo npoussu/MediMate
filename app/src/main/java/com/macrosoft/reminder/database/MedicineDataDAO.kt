@@ -11,4 +11,7 @@ interface MedicineDataDAO: BaseDao<MedicineData>{
     @Query("SELECT * FROM medicine_data where :id = id")
     fun getMedicineByID(id: Int): LiveData<MedicineData>
 
+    @Query("SELECT * FROM medicine_data where user_id = :id")
+//    fun getMedicineByUserID(id: Int): LiveData<MedicineData>
+    fun getMedicineByUserID(id: Int): Array<MedicineData>
 }

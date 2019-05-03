@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.data.MedicineListAdapter
 import com.macrosoft.reminder.databinding.ViewMedicineFragmentBinding
+import com.macrosoft.reminder.model.MedicineData
 import com.macrosoft.reminder.model.MedicineListObject
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
 import kotlinx.android.synthetic.main.view_medicine_fragment.*
@@ -25,7 +26,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
  * ViewMedicineFragment: Main screen of the application. Displays a list of card representing medicine to be taken at
  * certain times
  */
-class ViewMedicineFragment : Fragment() {
+class ViewMedicineFragment(val userId: Int) : Fragment() {
 
     private val TAG = ViewMedicineFragment::class.java.simpleName
 
@@ -73,6 +74,8 @@ class ViewMedicineFragment : Fragment() {
 
         medicineList_main.adapter = adapter
 
+        val userMedicines: Array<MedicineData> = viewModel.getUserMedicineData(userId)
+
         adapter.setMedicineList(
             listOf(
                 MedicineListObject(1, "8:00AM", "Alpha E\nRazadyne\nDonepezil\nVitamin E1"),
@@ -81,6 +84,7 @@ class ViewMedicineFragment : Fragment() {
                 MedicineListObject(26, "11:00AM", "Alpha E\nAquasol E\nDonepezil\nEtanercept")
             )
         )
+
 
         viewModel.state.observe(viewLifecycleOwner, Observer {
             Log.i(TAG, it.toString())
