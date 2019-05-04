@@ -46,22 +46,17 @@
     <string name="requirements">Requirements:</string>
     <string name="req_info">Information</string>
 
-
-    //Frequency spinner??
-    <string-array name="days">
-        <item>Everyday</item>
-        <item>Weekdays</item>
-        <item>Weekends</item>
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-        <item>Saturday</item>
-        <item>Sunday</item>
+    <string-array name="times_to_take_medicine">
+        <item>Once a day</item>
+        <item>Twice a day</item>
+        <item>3 times a day</item>
+        <item>4 times a day</item>
+        <item>6 times a day</item>
+        <item>8 times a day</item>
+        <item>12 times a day</item>
+        <item>Custom</item>
     </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_title">Login</string>
     <string name="my_medicines_title">My Medicines</string>
