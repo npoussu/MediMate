@@ -9,7 +9,17 @@ import kotlinx.android.synthetic.main.toolbar_main.*
 
 class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardClickedListener,
     ViewMedicineDetailsFragment.OnDetailedListCardClickedListener, EditMedicineFragment.OnPopBackStack,
-    AddMedicineFragment.OnPopBackStack {
+    AddMedicineFragment.OnPopBackStack, ScheduleFragment.IScheduleFragment {
+
+    override fun onScheduleClicked() {
+        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+
+        with(ft) {
+            replace(R.id.fragment_holder, ScheduleFragment())
+            addToBackStack(null)
+            commit()
+        }
+    }
 
     override fun onAddReminderClicked() {
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()

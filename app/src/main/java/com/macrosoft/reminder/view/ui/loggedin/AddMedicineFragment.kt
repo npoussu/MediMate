@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.databinding.FragmentAddReminderBinding
 import com.macrosoft.reminder.viewmodel.AddMedicineViewModel
@@ -22,6 +23,7 @@ class AddMedicineFragment : Fragment() {
 
     interface OnPopBackStack {
         fun setToolbarTitle(title: String)
+        fun onScheduleClicked()
     }
 
     override fun onAttach(context: Context) {
@@ -37,6 +39,13 @@ class AddMedicineFragment : Fragment() {
 
         listener?.setToolbarTitle(getString(R.string.add_reminder))
 
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel.showScheduleFragment.observe(viewLifecycleOwner, Observer {
+            listener!!.onScheduleClicked()
+        })
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
