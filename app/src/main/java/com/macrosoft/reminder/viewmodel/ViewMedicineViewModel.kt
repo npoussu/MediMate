@@ -36,7 +36,7 @@ class ViewMedicineViewModel : ObservableViewModel() {
     private val showAddReminderFragment = LiveEvent<Boolean>()
     val addReminderFragmentState: LiveData<Boolean> = showAddReminderFragment
 
-    val showScheduleFragment = LiveEvent<Boolean>()
+    val showEditScheduleFragment = LiveEvent<Boolean>()
 
     fun setMedicineDetailsDatabaseID(id: Int) {
 
@@ -58,7 +58,7 @@ class ViewMedicineViewModel : ObservableViewModel() {
         Log.i(TAG, dosageInputContent.value)
         Log.i(TAG, requirementsInputContent.value)
 
-        showScheduleFragment.value = true
+        showEditScheduleFragment.value = true
     }
 
     fun onDeleteMedClick() {
@@ -86,5 +86,17 @@ class ViewMedicineViewModel : ObservableViewModel() {
     fun onAddMedicineClick() {
         Log.i(TAG, "onAddMedicineClick()")
         showAddReminderFragment.value = true
+    }
+
+    fun onSelectFrequencyClick() {
+        Log.i(TAG, "onSelectFrequencyClick()")
+    }
+
+    fun onSelectEndDateClick() {
+        Log.i(TAG, "onSelectEndDateClick()")
+    }
+
+    fun onSelectStartDateClick() {
+        Log.i(TAG, "onSelectStartDateClick()")
     }
 }

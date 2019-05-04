@@ -12,6 +12,8 @@
     <string name="dosage">Add dosage</string>
     <string name="req_info_field">Add requirements</string>
     <string name="schedule">Schedule</string>
+    <string name="add_schedule">Add Schedule</string>
+    <string name="edit_schedule">Edit Schedule</string>
     <string name="alarm_type">Alarm type</string>
     <string name="save_med">Save Reminder</string>
     <string name="delete_med">Delete Reminder</string>

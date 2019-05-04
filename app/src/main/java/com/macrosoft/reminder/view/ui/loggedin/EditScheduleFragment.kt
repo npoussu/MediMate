@@ -7,47 +7,38 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.macrosoft.reminder.R
-import com.macrosoft.reminder.databinding.EditFragmentBinding
+import com.macrosoft.reminder.databinding.ScheduleEditFragmentBinding
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class EditMedicineFragment : Fragment() {
+class EditScheduleFragment : Fragment() {
+
+    lateinit var binding: ScheduleEditFragmentBinding
+
+    var listener: IEditScheduleFragment? = null
 
     private val viewModel: ViewMedicineViewModel by sharedViewModel()
 
-    var listener: OnPopBackStack? = null
-
-    lateinit var binding: EditFragmentBinding
-
-    interface OnPopBackStack {
+    interface IEditScheduleFragment {
         fun setToolbarTitle(title: String)
-        fun onEditScheduleClicked()
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        listener = context as? OnPopBackStack
+        listener = context as? IEditScheduleFragment
         if (listener == null) {
-            throw ClassCastException("$context must implement OnPopBackStack")
+            throw ClassCastException("$context must implement IEditScheduleFragment")
         }
     }
 
     override fun onStart() {
         super.onStart()
-
-        listener?.setToolbarTitle(getString(R.string.edit))
-
-        viewModel.setEditInputInitialValues(viewModel.itemState.value!!)
-        viewModel.showEditScheduleFragment.observe(viewLifecycleOwner, Observer {
-            listener!!.onEditScheduleClicked()
-        })
-
+        listener!!.setToolbarTitle(getString(R.string.edit_schedule))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.edit_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.schedule_edit_fragment, container, false)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
         return binding.root

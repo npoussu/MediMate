@@ -9,13 +9,24 @@ import kotlinx.android.synthetic.main.toolbar_main.*
 
 class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardClickedListener,
     ViewMedicineDetailsFragment.OnDetailedListCardClickedListener, EditMedicineFragment.OnPopBackStack,
-    AddMedicineFragment.OnPopBackStack, ScheduleFragment.IScheduleFragment {
+    AddMedicineFragment.OnPopBackStack, AddScheduleFragment.IAddScheduleFragment,
+    EditScheduleFragment.IEditScheduleFragment {
 
-    override fun onScheduleClicked() {
+    override fun onEditScheduleClicked() {
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
 
         with(ft) {
-            replace(R.id.fragment_holder, ScheduleFragment())
+            replace(R.id.fragment_holder, EditScheduleFragment())
+            addToBackStack(null)
+            commit()
+        }
+    }
+
+    override fun onAddScheduleClicked() {
+        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+
+        with(ft) {
+            replace(R.id.fragment_holder, AddScheduleFragment())
             addToBackStack(null)
             commit()
         }

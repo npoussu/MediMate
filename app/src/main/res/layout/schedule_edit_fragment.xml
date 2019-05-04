@@ -6,6 +6,9 @@
                 type="com.macrosoft.reminder.viewmodel.ViewMedicineViewModel"/>
 
     </data>
+
+    <!-- This is the layout for the EditMedicineFragment, identical to AddMedicineFragment but with different bindings -->
+
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -18,6 +21,7 @@
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
                 android:paddingStart="40dp"
+                android:onClick="@{() -> viewmodel.onSelectStartDateClick()}"
                 android:paddingEnd="40dp"
                 android:paddingTop="25dp"
                 android:paddingBottom="25dp"
@@ -30,6 +34,7 @@
                 android:id="@+id/selectEndDate"
                 android:hint="@string/select_end_date"
                 android:layout_width="match_parent"
+                android:onClick="@{() -> viewmodel.onSelectEndDateClick()}"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/selectStartDate"
                 android:background="#ffffff"
@@ -44,6 +49,7 @@
                 android:id="@+id/selectFrequency"
                 android:hint="@string/select_frequency"
                 android:layout_width="match_parent"
+                android:onClick="@{() -> viewmodel.onSelectFrequencyClick()}"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/selectEndDate"
                 android:background="@color/white"
@@ -81,7 +87,7 @@
         <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/selectEndDate"
+                android:layout_below="@id/setAlarm"
                 android:id="@+id/spinner"
                 android:layout_marginTop="9dp"
                 android:padding="10dp"/>

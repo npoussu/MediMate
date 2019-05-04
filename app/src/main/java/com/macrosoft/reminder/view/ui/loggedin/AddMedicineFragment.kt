@@ -11,11 +11,11 @@ import androidx.lifecycle.Observer
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.databinding.FragmentAddReminderBinding
 import com.macrosoft.reminder.viewmodel.AddMedicineViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class AddMedicineFragment : Fragment() {
 
-    private val viewModel: AddMedicineViewModel by viewModel()
+    private val viewModel: AddMedicineViewModel by sharedViewModel()
 
     var listener: OnPopBackStack? = null
 
@@ -23,7 +23,7 @@ class AddMedicineFragment : Fragment() {
 
     interface OnPopBackStack {
         fun setToolbarTitle(title: String)
-        fun onScheduleClicked()
+        fun onAddScheduleClicked()
     }
 
     override fun onAttach(context: Context) {
@@ -43,8 +43,8 @@ class AddMedicineFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.showScheduleFragment.observe(viewLifecycleOwner, Observer {
-            listener!!.onScheduleClicked()
+        viewModel.showAddScheduleFragment.observe(viewLifecycleOwner, Observer {
+            listener!!.onAddScheduleClicked()
         })
     }
 

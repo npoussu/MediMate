@@ -20,7 +20,7 @@ class AddMedicineViewModel : ObservableViewModel() {
     @Bindable
     val requirementsInputContent = MutableLiveData<String>()
 
-    val showScheduleFragment = LiveEvent<Boolean>()
+    val showAddScheduleFragment = LiveEvent<Boolean>()
 
 
     fun onScheduleClick() {
@@ -31,12 +31,24 @@ class AddMedicineViewModel : ObservableViewModel() {
         Log.i(TAG, "Dosage: " + dosageInputContent.value)
         Log.i(TAG, "Requirements: " + requirementsInputContent.value)
 
-        showScheduleFragment.value = true
+        showAddScheduleFragment.value = true
     }
 
     fun onSaveMedClick() {
 
         // TODO: Update itemState here and update the DB entity "MedicineDetailsList" to save the new values
         Log.i(TAG, "onSaveMedClick()")
+    }
+
+    fun onSelectFrequencyClick() {
+        Log.i(TAG, "onSelectFrequencyClick()")
+    }
+
+    fun onSelectEndDateClick() {
+        Log.i(TAG, "onSelectEndDateClick()")
+    }
+
+    fun onSelectStartDateClick() {
+        Log.i(TAG, "onSelectStartDateClick()")
     }
 }
