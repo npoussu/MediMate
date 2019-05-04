@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.databinding.EditFragmentBinding
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
@@ -22,6 +23,7 @@ class EditMedicineFragment : Fragment() {
 
     interface OnPopBackStack {
         fun setToolbarTitle(title: String)
+        fun onScheduleClicked()
     }
 
     override fun onAttach(context: Context) {
@@ -38,6 +40,9 @@ class EditMedicineFragment : Fragment() {
         listener?.setToolbarTitle(getString(R.string.edit))
 
         viewModel.setEditInputInitialValues(viewModel.itemState.value!!)
+        viewModel.showScheduleFragment.observe(viewLifecycleOwner, Observer {
+            listener!!.onScheduleClicked()
+        })
 
     }
 
