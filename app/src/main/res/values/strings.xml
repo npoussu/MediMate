@@ -75,5 +75,6 @@
     <string name="medimate_logo_string">MediMate logo</string>
     <string name="add_button_logo">Add button logo</string>
     <string name="log_in">LOG IN</string>
+    <string name="reminders">Reminders</string>
 
 </resources>

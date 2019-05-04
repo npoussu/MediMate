@@ -22,6 +22,10 @@ class AddMedicineViewModel : ObservableViewModel() {
 
     val showAddScheduleFragment = LiveEvent<Boolean>()
 
+    val showStartDatePicker = LiveEvent<Boolean>()
+
+    val showEndDatePicker = LiveEvent<Boolean>()
+
 
     fun onScheduleClick() {
 
@@ -46,9 +50,11 @@ class AddMedicineViewModel : ObservableViewModel() {
 
     fun onSelectEndDateClick() {
         Log.i(TAG, "onSelectEndDateClick()")
+        showEndDatePicker.value = true
     }
 
     fun onSelectStartDateClick() {
         Log.i(TAG, "onSelectStartDateClick()")
+        showStartDatePicker.value = true
     }
 }
