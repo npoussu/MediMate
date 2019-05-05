@@ -20,6 +20,9 @@ class AddMedicineViewModel : ObservableViewModel() {
     @Bindable
     val requirementsInputContent = MutableLiveData<String>()
 
+    @Bindable
+    val spinnerAddIdItemPosition = MutableLiveData<Int>()
+
     val showAddScheduleFragment = LiveEvent<Boolean>()
 
     val showStartDatePicker = LiveEvent<Boolean>()
@@ -46,6 +49,7 @@ class AddMedicineViewModel : ObservableViewModel() {
 
     fun onSelectFrequencyClick() {
         Log.i(TAG, "onSelectFrequencyClick()")
+        Log.i(TAG, spinnerAddIdItemPosition.value.toString())
     }
 
     fun onSelectEndDateClick() {

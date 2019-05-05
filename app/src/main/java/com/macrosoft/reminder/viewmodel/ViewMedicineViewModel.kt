@@ -42,6 +42,9 @@ class ViewMedicineViewModel : ObservableViewModel() {
 
     val showEndDatePicker = LiveEvent<Boolean>()
 
+    @Bindable
+    val spinnerEditIdItemPosition = MutableLiveData<Int>()
+
     fun setMedicineDetailsDatabaseID(id: Int) {
 
         // TODO: Get the Reminder from DB using the @id parameter and set the Reminder to medicineDetails.value
@@ -100,5 +103,10 @@ class ViewMedicineViewModel : ObservableViewModel() {
     fun onSelectStartDateClick() {
         Log.i(TAG, "onSelectStartDateClick()")
         showStartDatePicker.value = true
+    }
+
+    fun onSelectFrequencyClick() {
+        Log.i(TAG, "onSelectFrequencyClick()")
+        Log.i(TAG, spinnerEditIdItemPosition.value.toString())
     }
 }

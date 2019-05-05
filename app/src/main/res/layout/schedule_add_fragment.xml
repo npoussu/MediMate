@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View"/>
         <variable
                 name="viewmodel"
                 type="com.macrosoft.reminder.viewmodel.AddMedicineViewModel"/>
@@ -66,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/reminders"
+                    android:onClick="@{() -> viewmodel.onSelectFrequencyClick()}"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:layout_below="@+id/selectEndDate"
@@ -78,13 +80,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/selectFrequencyTitle"
-                    android:id="@+id/spinner"
+                    android:id="@+id/spinnerAdd"
+                    android:selectedItemPosition="@={viewmodel.spinnerAddIdItemPosition}"
                     android:layout_marginTop="9dp"
                     android:padding="10dp"/>
 
-            <RelativeLayout android:layout_width="match_parent"
-                            android:layout_below="@id/spinner"
-                            android:layout_height="wrap_content">
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/spinnerAdd"
+                    android:layout_height="wrap_content">
 
                 <TextView
                         android:id="@+id/reminderTimeOneAdd"
@@ -94,12 +98,14 @@
                         android:textStyle="bold"
                         android:padding="10dp"
                         tools:text="8:00"
+                        android:visibility="@{safeUnbox(viewmodel.spinnerAddIdItemPosition >= 0) ? View.VISIBLE : View.GONE}"
                         android:layout_height="wrap_content"/>
 
                 <TextView android:layout_width="wrap_content"
                           android:id="@+id/reminderTimeTwoAdd"
                           android:layout_centerHorizontal="true"
                           android:layout_below="@id/reminderTimeOneAdd"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerAddIdItemPosition >= 1) ? View.VISIBLE : View.GONE}"
                           android:textSize="20sp"
                           android:textStyle="bold"
                           android:padding="10dp"
@@ -111,6 +117,7 @@
                           android:id="@+id/reminderTimeThreeAdd"
                           android:layout_below="@id/reminderTimeTwoAdd"
                           android:textSize="20sp"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerAddIdItemPosition >= 2) ? View.VISIBLE : View.GONE}"
                           android:padding="10dp"
                           android:textStyle="bold"
                           tools:text="8:00"
@@ -120,6 +127,7 @@
                           android:id="@+id/reminderTimeFourAdd"
                           android:layout_below="@id/reminderTimeThreeAdd"
                           android:layout_centerHorizontal="true"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerAddIdItemPosition >= 3) ? View.VISIBLE : View.GONE}"
                           android:textSize="20sp"
                           android:padding="10dp"
                           android:textStyle="bold"
@@ -130,6 +138,7 @@
                           android:id="@+id/reminderTimeFiveAdd"
                           android:layout_below="@id/reminderTimeFourAdd"
                           android:layout_centerHorizontal="true"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerAddIdItemPosition >= 4) ? View.VISIBLE : View.GONE}"
                           android:padding="10dp"
                           android:textSize="20sp"
                           android:textStyle="bold"
@@ -138,6 +147,7 @@
 
                 <TextView android:layout_width="wrap_content"
                           android:id="@+id/reminderTimeSixAdd"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerAddIdItemPosition >= 5) ? View.VISIBLE : View.GONE}"
                           android:layout_centerHorizontal="true"
                           android:textSize="20sp"
                           android:padding="10dp"
@@ -148,6 +158,7 @@
 
                 <TextView android:layout_width="wrap_content"
                           android:layout_centerHorizontal="true"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerAddIdItemPosition >= 6) ? View.VISIBLE : View.GONE}"
                           android:textSize="20sp"
                           android:layout_below="@id/reminderTimeSixAdd"
                           android:textStyle="bold"
@@ -161,6 +172,7 @@
                           android:id="@+id/reminderTimeEightAdd"
                           android:textSize="20sp"
                           android:padding="10dp"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerAddIdItemPosition >= 7) ? View.VISIBLE : View.GONE}"
                           android:textStyle="bold"
                           android:layout_below="@id/reminderTimeSevenAdd"
                           tools:text="8:00"
@@ -171,6 +183,7 @@
                           android:layout_centerHorizontal="true"
                           android:textSize="20sp"
                           android:id="@+id/reminderTimeNineAdd"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerAddIdItemPosition >= 8) ? View.VISIBLE : View.GONE}"
                           android:padding="10dp"
                           android:textStyle="bold"
                           tools:text="8:00"
@@ -179,6 +192,7 @@
                 <TextView android:layout_width="wrap_content"
                           android:id="@+id/reminderTimeTenAdd"
                           android:layout_below="@id/reminderTimeNineAdd"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerAddIdItemPosition >= 9) ? View.VISIBLE : View.GONE}"
                           android:layout_centerHorizontal="true"
                           android:textSize="20sp"
                           android:textStyle="bold"

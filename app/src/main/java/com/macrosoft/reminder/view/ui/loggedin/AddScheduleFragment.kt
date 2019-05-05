@@ -51,7 +51,7 @@ class AddScheduleFragment : Fragment() {
             android.R.layout.simple_spinner_dropdown_item
         )
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = arrayAdapter
+        spinnerAdd.adapter = arrayAdapter
 
         val calendar = Calendar.getInstance()
 
