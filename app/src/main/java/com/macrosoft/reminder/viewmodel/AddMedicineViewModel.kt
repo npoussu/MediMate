@@ -53,6 +53,27 @@ class AddMedicineViewModel : ObservableViewModel() {
     @Bindable
     val reminderTimeTenAddContent = MutableLiveData<String>()
 
+    @Bindable
+    val reminderMondayAddChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val reminderTuesdayAddChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val reminderWednesdayAddChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val reminderThursdayAddChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val reminderFridayAddChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val reminderSaturdayAddChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val reminderSundayAddChecked = MutableLiveData<Boolean>()
+
     val showAddScheduleFragment = LiveEvent<Boolean>()
 
     val showStartDatePicker = LiveEvent<Boolean>()
@@ -70,6 +91,15 @@ class AddMedicineViewModel : ObservableViewModel() {
         reminderTimeEightAddContent.value = "15:00"
         reminderTimeNineAddContent.value = "16:00"
         reminderTimeTenAddContent.value = "17:00"
+
+        reminderMondayAddChecked.value = false
+        reminderTuesdayAddChecked.value = false
+        reminderWednesdayAddChecked.value = false
+        reminderThursdayAddChecked.value = false
+        reminderFridayAddChecked.value = false
+        reminderSaturdayAddChecked.value = false
+        reminderSundayAddChecked.value = false
+
     }
 
     fun onScheduleClick() {
@@ -102,6 +132,14 @@ class AddMedicineViewModel : ObservableViewModel() {
         Log.i(TAG, "Eight reminder: " + reminderTimeEightAddContent.value)
         Log.i(TAG, "Ninth reminder: " + reminderTimeNineAddContent.value)
         Log.i(TAG, "Tenth reminder: " + reminderTimeTenAddContent.value)
+
+        Log.i(TAG, "Monday reminder checked: " + reminderMondayAddChecked.value)
+        Log.i(TAG, "Tuesday reminder checked: " + reminderTuesdayAddChecked.value)
+        Log.i(TAG, "Wednesday reminder checked: " + reminderWednesdayAddChecked.value)
+        Log.i(TAG, "Thursday reminder checked: " + reminderThursdayAddChecked.value)
+        Log.i(TAG, "Friday reminder checked: " + reminderFridayAddChecked.value)
+        Log.i(TAG, "Saturday reminder checked: " + reminderSaturdayAddChecked.value)
+        Log.i(TAG, "Sunday reminder checked: " + reminderSundayAddChecked.value)
     }
 
     fun onSelectEndDateClick() {

@@ -86,6 +86,7 @@
 
             <RelativeLayout android:layout_width="match_parent"
                             android:layout_below="@id/spinnerEdit"
+                            android:id="@+id/reminderEditRelativeLayout"
                             android:layout_height="wrap_content">
 
                 <TextView
@@ -207,6 +208,77 @@
                           tools:text="8:00"
                           android:padding="10dp"
                           android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_below="@+id/reminderEditRelativeLayout"
+                            android:layout_marginBottom="20dp"
+                            android:layout_height="wrap_content">
+
+                <ToggleButton
+                        android:id="@+id/buttonMonday"
+                        android:layout_width="50dp"
+                        android:textOn="@string/mo"
+                        android:checked="@={viewmodel.reminderMondayEditChecked}"
+                        android:textOff="@string/mo"
+                        android:text="@string/mo"
+                        android:layout_height="wrap_content"/>
+
+                <ToggleButton
+                        android:id="@+id/buttonTuesday"
+                        android:layout_width="50dp"
+                        android:checked="@={viewmodel.reminderTuesdayEditChecked}"
+                        android:textOn="@string/tu"
+                        android:textOff="@string/tu"
+                        android:layout_toEndOf="@id/buttonMonday"
+                        android:layout_height="wrap_content"/>
+
+                <ToggleButton
+                        android:id="@+id/buttonWednesday"
+                        android:layout_width="50dp"
+                        android:checked="@={viewmodel.reminderWednesdayEditChecked}"
+                        android:textOn="@string/we"
+                        android:textOff="@string/we"
+                        android:layout_toEndOf="@id/buttonTuesday"
+                        android:layout_height="wrap_content"/>
+
+                <ToggleButton
+                        android:id="@+id/buttonThursday"
+                        android:layout_width="50dp"
+                        android:checked="@={viewmodel.reminderThursdayEditChecked}"
+                        android:textOn="@string/th"
+                        android:textOff="@string/th"
+                        android:layout_toEndOf="@id/buttonWednesday"
+                        android:layout_height="wrap_content"/>
+
+                <ToggleButton
+                        android:id="@+id/buttonFriday"
+                        android:layout_width="50dp"
+                        android:checked="@={viewmodel.reminderFridayEditChecked}"
+                        android:textOn="@string/fr"
+                        android:textOff="@string/fr"
+                        android:layout_toEndOf="@id/buttonThursday"
+                        android:layout_height="wrap_content"/>
+
+                <ToggleButton
+                        android:id="@+id/buttonSaturday"
+                        android:layout_width="50dp"
+                        android:textOn="@string/sa"
+                        android:checked="@={viewmodel.reminderSaturdayEditChecked}"
+                        android:textOff="@string/sa"
+                        android:text="@string/sa"
+                        android:layout_toEndOf="@id/buttonFriday"
+                        android:layout_height="wrap_content"/>
+
+                <ToggleButton
+                        android:id="@+id/buttonSunday"
+                        android:textOn="@string/su"
+                        android:textOff="@string/su"
+                        android:layout_width="50dp"
+                        android:checked="@={viewmodel.reminderSundayEditChecked}"
+                        android:layout_toEndOf="@id/buttonSaturday"
+                        android:layout_height="wrap_content"/>
 
             </RelativeLayout>
 

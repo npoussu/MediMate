@@ -79,5 +79,12 @@
     <string name="add_button_logo">Add button logo</string>
     <string name="log_in">LOG IN</string>
     <string name="reminders">Reminders</string>
+    <string name="mo">MO</string>
+    <string name="tu">TU</string>
+    <string name="we">WE</string>
+    <string name="th">TH</string>
+    <string name="fr">FR</string>
+    <string name="sa">SA</string>
+    <string name="su">SU</string>
 
 </resources>
