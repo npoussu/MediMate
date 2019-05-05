@@ -7,7 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.data.MedicineListAdapter.ViewHolder
-import com.macrosoft.reminder.model.MedicineListObject
+import com.macrosoft.reminder.model.MedicineData
+
 
 /**
  * An adapter holding data for the Main Screen of the app displaying a card of reminder times for medicine to be taken
@@ -19,7 +20,8 @@ class MedicineListAdapter :
     RecyclerView.Adapter<ViewHolder>() {
 
     private lateinit var listenerImpl: OnItemClickListener
-    private var medicineData: List<MedicineListObject> = ArrayList()
+    private var medicineData = arrayOf<MedicineData>()
+//    private var medicineData: LiveData<Array<MedicineData>> = MutableLiveData<Array<MedicineData>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.medicine_list_item, parent, false)
@@ -30,8 +32,8 @@ class MedicineListAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = medicineData[position]
-        holder.time?.text = item.time
-        holder.medicineNames?.text = item.medicineNames
+//        holder.time?.text = item.
+        holder.medicineNames?.text = item.medicineName
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -53,12 +55,12 @@ class MedicineListAdapter :
         listenerImpl = listener
     }
 
-    fun setMedicineList(medicineListObject: List<MedicineListObject>) {
-        medicineData = medicineListObject
+    fun setMedicineList(medicineArrayObject: Array<MedicineData>) {
+        medicineData = medicineArrayObject
         notifyDataSetChanged()
     }
 
-    fun getMedicineAt(pos: Int): MedicineListObject {
+    fun getMedicineAt(pos: Int): MedicineData {
         return medicineData[pos]
     }
 }

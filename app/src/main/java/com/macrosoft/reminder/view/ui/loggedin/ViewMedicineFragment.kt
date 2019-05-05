@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -74,17 +75,9 @@ class ViewMedicineFragment(val userId: Int) : Fragment() {
 
         medicineList_main.adapter = adapter
 
-        val userMedicines: Array<MedicineData> = viewModel.getUserMedicineData(userId)
-
-        adapter.setMedicineList(
-            listOf(
-                MedicineListObject(1, "8:00AM", "Alpha E\nRazadyne\nDonepezil\nVitamin E1"),
-                MedicineListObject(5, "9:00AM", "Alpha E\nHydergine\nDonepezil\nEtanercept"),
-                MedicineListObject(11, "10:00AM", "Alpha E\nAquasol E\nDonepezil\nEtanercept"),
-                MedicineListObject(26, "11:00AM", "Alpha E\nAquasol E\nDonepezil\nEtanercept")
-            )
-        )
-
+        viewModel.getUserMedicineData(userId).observe(this, Observer {
+            adapter.setMedicineList(it)
+        })
 
         viewModel.state.observe(viewLifecycleOwner, Observer {
             Log.i(TAG, it.toString())
@@ -101,7 +94,7 @@ class ViewMedicineFragment(val userId: Int) : Fragment() {
                 Log.i(TAG, "Adapter pos: $pos")
 
                 // Get the DB ID of a particular medicine item
-                val medicineID = adapter.getMedicineAt(pos).ID
+                val medicineID = adapter.getMedicineAt(pos).id!!
                 Log.i(TAG, "DB ID: $medicineID")
 
                 viewModel.setMedicineDetailsDatabaseID(medicineID)

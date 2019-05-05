@@ -39,7 +39,7 @@ class ViewMedicineViewModel(private val med_repo: MedicineRepository) : Observab
     val addReminderFragmentState: LiveData<Boolean> = showAddReminderFragment
 
 
-    fun getUserMedicineData(userID : Int): Array<MedicineData> {
+    fun getUserMedicineData(userID : Int): LiveData<Array<MedicineData>> {
         return med_repo.getMedicineByUserID(userID)
     }
 
