@@ -206,4 +206,8 @@ class ViewMedicineViewModel : ObservableViewModel() {
         Log.i(TAG, "Saturday reminder checked: " + reminderSaturdayEditChecked.value)
         Log.i(TAG, "Sunday reminder checked: " + reminderSundayEditChecked.value)
     }
+
+    fun onSaveButtonClick() {
+        Log.i(TAG, "onSaveButtonClick()")
+    }
 }

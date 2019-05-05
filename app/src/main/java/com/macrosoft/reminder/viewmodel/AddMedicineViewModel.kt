@@ -157,4 +157,8 @@ class AddMedicineViewModel : ObservableViewModel() {
         Log.i(TAG, "onSelectStartDateClick()")
         showStartDatePicker.value = true
     }
+
+    fun onSaveButtonClick() {
+        Log.i(TAG, "onSaveButtonClick()")
+    }
 }

@@ -214,6 +214,7 @@
             </RelativeLayout>
 
             <RelativeLayout android:layout_width="match_parent"
+                            android:id="@+id/weekdayEditRelativeLayout"
                             android:layout_below="@+id/reminderEditRelativeLayout"
                             android:layout_marginBottom="20dp"
                             android:layout_height="wrap_content">
@@ -283,6 +284,15 @@
                         android:layout_height="wrap_content"/>
 
             </RelativeLayout>
+
+            <Button
+                    android:id="@+id/saveButton"
+                    android:layout_below="@id/weekdayEditRelativeLayout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:text="@string/save"
+                    android:onClick="@{() -> viewmodel.onSaveButtonClick()}"
+                    android:layout_height="wrap_content"/>
 
         </RelativeLayout>
     </ScrollView>
