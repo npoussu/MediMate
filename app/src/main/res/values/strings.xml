@@ -51,9 +51,12 @@
         <item>Twice a day</item>
         <item>3 times a day</item>
         <item>4 times a day</item>
+        <item>5 times a day</item>
         <item>6 times a day</item>
+        <item>7 times a day</item>
         <item>8 times a day</item>
-        <item>12 times a day</item>
+        <item>9 times a day</item>
+        <item>10 times a day</item>
         <item>Custom</item>
     </string-array>
     
@@ -76,5 +79,13 @@
     <string name="add_button_logo">Add button logo</string>
     <string name="log_in">LOG IN</string>
     <string name="reminders">Reminders</string>
+    <string name="mo">MO</string>
+    <string name="tu">TU</string>
+    <string name="we">WE</string>
+    <string name="th">TH</string>
+    <string name="fr">FR</string>
+    <string name="sa">SA</string>
+    <string name="su">SU</string>
+    <string name="save">SAVE</string>
 
 </resources>
