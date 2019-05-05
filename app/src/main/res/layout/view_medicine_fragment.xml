@@ -27,7 +27,7 @@
                 android:onClick="@{() -> viewmodel.onAddMedicineClick()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/mint"
+                android:backgroundTint="@color/blue"
                 android:src="@drawable/ic_add_white_24dp"
                 app:layout_anchor="@id/bottomAppBar"
                 app:layout_anchorGravity="center_horizontal"
