@@ -60,11 +60,13 @@ class EditScheduleFragment : Fragment() {
         val startDatePicker =
             DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { _, startYear, monthOfYear, dayOfMonth ->
                 Log.i(AddScheduleFragment.TAG, "$startYear/$monthOfYear/$dayOfMonth")
+                viewModel.startDateEditContent.value = "$startYear/$monthOfYear/$dayOfMonth"
             }, year, month, day)
 
         val endDatePicker =
             DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { _, endYear, monthOfYear, dayOfMonth ->
                 Log.i(AddScheduleFragment.TAG, "$endYear/$monthOfYear/$dayOfMonth")
+                viewModel.endDateEditContent.value = "$endYear/$monthOfYear/$dayOfMonth"
             }, year, month, day)
 
         viewModel.showStartDatePicker.observe(this, androidx.lifecycle.Observer {

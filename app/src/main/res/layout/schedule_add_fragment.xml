@@ -36,6 +36,7 @@
                     android:hint="@string/select_start_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={viewmodel.startDateAddContent}"
                     android:background="#ffffff"
                     android:layout_below="@id/setAlarm"
                     android:paddingStart="40dp"
@@ -56,6 +57,7 @@
                     android:layout_below="@+id/selectStartDate"
                     android:background="#ffffff"
                     android:paddingStart="40dp"
+                    android:text="@={viewmodel.endDateAddContent}"
                     android:paddingEnd="40dp"
                     android:paddingTop="25dp"
                     android:paddingBottom="25dp"
@@ -233,6 +235,7 @@
                         android:textOn="@string/mo"
                         android:checked="@={viewmodel.reminderMondayAddChecked}"
                         android:textOff="@string/mo"
+                        android:layout_marginStart="10dp"
                         android:text="@string/mo"
                         android:layout_height="wrap_content"/>
 

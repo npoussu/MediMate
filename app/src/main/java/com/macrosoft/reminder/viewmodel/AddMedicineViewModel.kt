@@ -80,6 +80,12 @@ class AddMedicineViewModel : ObservableViewModel() {
 
     val showEndDatePicker = LiveEvent<Boolean>()
 
+    @Bindable
+    val startDateAddContent = MutableLiveData<String>()
+
+    @Bindable
+    val endDateAddContent = MutableLiveData<String>()
+
     init {
         reminderTimeOneAddContent.value = "8:00"
         reminderTimeTwoAddContent.value = "9:00"

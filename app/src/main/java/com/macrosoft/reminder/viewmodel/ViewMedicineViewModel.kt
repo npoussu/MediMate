@@ -96,6 +96,12 @@ class ViewMedicineViewModel : ObservableViewModel() {
     @Bindable
     val spinnerEditIdItemPosition = MutableLiveData<Int>()
 
+    @Bindable
+    val startDateEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val endDateEditContent = MutableLiveData<String>()
+
     init {
         reminderTimeOneEditContent.value = "8:00"
         reminderTimeTwoEditContent.value = "9:00"

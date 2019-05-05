@@ -63,14 +63,14 @@ class AddScheduleFragment : Fragment() {
 
         val startDatePicker =
             DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { _, startYear, monthOfYear, dayOfMonth ->
-                // TODO: Save the selected date to some variable that is used to setup the alarm and save data to DB
                 Log.i(TAG, "$startYear/$monthOfYear/$dayOfMonth")
+                viewModel.startDateAddContent.value = "$startYear/$monthOfYear/$dayOfMonth"
             }, year, month, day)
 
         val endDatePicker =
             DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { _, endYear, monthOfYear, dayOfMonth ->
-                // TODO: Save the selected date to some variable that is used to setup the alarm and save data to DB
                 Log.i(TAG, "$endYear/$monthOfYear/$dayOfMonth")
+                viewModel.endDateAddContent.value = "$endYear/$monthOfYear/$dayOfMonth"
             }, year, month, day)
 
         viewModel.showStartDatePicker.observe(this, androidx.lifecycle.Observer {
