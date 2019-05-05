@@ -51,9 +51,12 @@
         <item>Twice a day</item>
         <item>3 times a day</item>
         <item>4 times a day</item>
+        <item>5 times a day</item>
         <item>6 times a day</item>
+        <item>7 times a day</item>
         <item>8 times a day</item>
-        <item>12 times a day</item>
+        <item>9 times a day</item>
+        <item>10 times a day</item>
         <item>Custom</item>
     </string-array>
     

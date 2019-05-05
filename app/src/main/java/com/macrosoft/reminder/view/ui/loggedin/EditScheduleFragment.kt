@@ -13,7 +13,8 @@ import androidx.fragment.app.Fragment
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.databinding.ScheduleEditFragmentBinding
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
-import kotlinx.android.synthetic.main.schedule_add_fragment.*
+import kotlinx.android.synthetic.main.schedule_add_fragment.spinner
+import kotlinx.android.synthetic.main.schedule_edit_fragment.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.util.*
 
@@ -73,6 +74,17 @@ class EditScheduleFragment : Fragment() {
         viewModel.showEndDatePicker.observe(this, androidx.lifecycle.Observer {
             endDatePicker.show()
         })
+
+        reminderTimeOneEdit.text = "8:00"
+        reminderTimeTwoEdit.text = "8:00"
+        reminderTimeThreeEdit.text = "8:00"
+        reminderTimeFourEdit.text = "8:00"
+        reminderTimeFiveEdit.text = "8:00"
+        reminderTimeSixEdit.text = "8:00"
+        reminderTimeSevenEdit.text = "8:00"
+        reminderTimeEightEdit.text = "8:00"
+        reminderTimeNineEdit.text = "8:00"
+        reminderTimeTenEdit.text = "8:00"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

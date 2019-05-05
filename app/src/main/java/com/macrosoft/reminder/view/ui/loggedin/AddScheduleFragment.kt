@@ -62,11 +62,13 @@ class AddScheduleFragment : Fragment() {
 
         val startDatePicker =
             DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { _, startYear, monthOfYear, dayOfMonth ->
+                // TODO: Save the selected date to some variable that is used to setup the alarm and save data to DB
                 Log.i(TAG, "$startYear/$monthOfYear/$dayOfMonth")
             }, year, month, day)
 
         val endDatePicker =
             DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { _, endYear, monthOfYear, dayOfMonth ->
+                // TODO: Save the selected date to some variable that is used to setup the alarm and save data to DB
                 Log.i(TAG, "$endYear/$monthOfYear/$dayOfMonth")
             }, year, month, day)
 
@@ -77,6 +79,17 @@ class AddScheduleFragment : Fragment() {
         viewModel.showEndDatePicker.observe(this, androidx.lifecycle.Observer {
             endDatePicker.show()
         })
+
+        reminderTimeOneAdd.text = "8:00"
+        reminderTimeTwoAdd.text = "8:00"
+        reminderTimeThreeAdd.text = "8:00"
+        reminderTimeFourAdd.text = "8:00"
+        reminderTimeFiveAdd.text = "8:00"
+        reminderTimeSixAdd.text = "8:00"
+        reminderTimeSevenAdd.text = "8:00"
+        reminderTimeEightAdd.text = "8:00"
+        reminderTimeNineAdd.text = "8:00"
+        reminderTimeTenAdd.text = "8:00"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
