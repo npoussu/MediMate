@@ -120,35 +120,40 @@
                 android:layout_marginTop="266dp"
                 android:contentDescription="@string/calendar_image"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:text="@string/save_med"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/addMedButton"
                 android:background="@color/blue"
-                android:fontFamily="@font/royal"
+                android:fontFamily="@font/moonchild"
                 android:textSize="20sp"
                 android:onClick="@{() -> viewmodel.onSaveMedClick()}"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="99dp"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                app:cornerRadius="50dp"
+                android:padding="10dp"
+        />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:text="@string/delete_med"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/deleteMedButton"
                 android:onClick="@{() -> viewmodel.onDeleteMedClick()}"
-                android:background="@color/red"
-                android:fontFamily="@font/royal"
+                android:backgroundTint="@color/red"
+                android:fontFamily="@font/moonchild"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_centerInParent="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="32dp"/>
+                android:layout_marginBottom="32dp"
+                app:cornerRadius="50dp"
+                android:padding="10dp"/>
 
     </RelativeLayout>
 </layout>
