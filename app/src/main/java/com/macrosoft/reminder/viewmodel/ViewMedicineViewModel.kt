@@ -6,12 +6,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
 import com.macrosoft.reminder.model.MedicineData
-import com.macrosoft.reminder.model.MedicineDetails
-import com.macrosoft.reminder.model.MedicineDetailsList
+import com.macrosoft.reminder.data.MedicineDetails
+import com.macrosoft.reminder.data.MedicineDetailsList
+import com.macrosoft.reminder.model.Schedule
 import com.macrosoft.reminder.repository.FakeRepository
 import com.macrosoft.reminder.repository.MedicineRepository
+import com.macrosoft.reminder.repository.ScheduleRepository
+import java.sql.Date
+import java.sql.Time
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Observer
+import com.macrosoft.reminder.data.MedicineListObject
+import com.macrosoft.reminder.model.MedicineSchedule
 
-class ViewMedicineViewModel(private val med_repo: MedicineRepository) : ObservableViewModel() {
+
+class ViewMedicineViewModel(private val med_repo: MedicineRepository, private val schedule_repo: ScheduleRepository) :
+    ObservableViewModel() {
 
     companion object {
         private val TAG = ViewMedicineViewModel::class.java.simpleName
@@ -39,12 +49,12 @@ class ViewMedicineViewModel(private val med_repo: MedicineRepository) : Observab
     val addReminderFragmentState: LiveData<Boolean> = showAddReminderFragment
 
 
-    fun getUserMedicineData(userID : Int): LiveData<Array<MedicineData>> {
-        return med_repo.getMedicineByUserID(userID)
+    fun getMedicineSchedules(user_id: Int): LiveData<Array<MedicineSchedule>> {
+        return med_repo.getMedicineSchedule(user_id)
     }
 
-    fun setMedicineDetailsDatabaseID(id: Int) {
-
+//    fun setMedicineDetailsDatabaseID(id: Int) {
+    fun setMedicineDetailsDatabaseID(id: ArrayList<Int>) {
         // TODO: Get the Reminder from DB using the @id parameter and set the Reminder to medicineDetails.value
         medicineDetails.value = fakeMedicineDetails.value
     }
@@ -87,9 +97,9 @@ class ViewMedicineViewModel(private val med_repo: MedicineRepository) : Observab
 
         Log.i(TAG, "setEditInputInitialValues()")
 
-        medicineNameInputContent.value = itemState.name
+        medicineNameInputContent.value = itemState.medicine_name
         dosageInputContent.value = itemState.dosage
-        requirementsInputContent.value = itemState.requirements
+        requirementsInputContent.value = itemState.description
     }
 
     fun onAddMedicineClick() {

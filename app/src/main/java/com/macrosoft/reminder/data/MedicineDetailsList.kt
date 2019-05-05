@@ -1,4 +1,4 @@
-package com.macrosoft.reminder.model
+package com.macrosoft.reminder.data
 
 /**
  * Wrapper for MedicineDetails. Also holds an Database ID for a group of medicine to be taken

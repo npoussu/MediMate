@@ -1,10 +1,10 @@
-package com.macrosoft.reminder.model
+package com.macrosoft.reminder.data
 
 /**
  * MedicineListObject: Wrapper for time to take medicine & list of medicines
  */
-data class MedicineListObject(
-    val ID: Int,
+class MedicineListObject(
+    val medicineIDs: ArrayList<Int>,
     val time: String,
     val medicineNames: String
 )

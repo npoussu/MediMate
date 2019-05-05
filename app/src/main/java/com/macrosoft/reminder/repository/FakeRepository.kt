@@ -2,8 +2,8 @@ package com.macrosoft.reminder.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.macrosoft.reminder.model.MedicineDetails
-import com.macrosoft.reminder.model.MedicineDetailsList
+import com.macrosoft.reminder.data.MedicineDetails
+import com.macrosoft.reminder.data.MedicineDetailsList
 import com.macrosoft.reminder.model.User
 
 /**

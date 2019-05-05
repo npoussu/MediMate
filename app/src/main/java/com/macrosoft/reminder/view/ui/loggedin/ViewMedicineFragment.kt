@@ -9,15 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
-import com.macrosoft.reminder.data.MedicineListAdapter
+import com.macrosoft.reminder.adapter.MedicineListAdapter
 import com.macrosoft.reminder.databinding.ViewMedicineFragmentBinding
-import com.macrosoft.reminder.model.MedicineData
-import com.macrosoft.reminder.model.MedicineListObject
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
 import kotlinx.android.synthetic.main.view_medicine_fragment.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -75,7 +72,7 @@ class ViewMedicineFragment(val userId: Int) : Fragment() {
 
         medicineList_main.adapter = adapter
 
-        viewModel.getUserMedicineData(userId).observe(this, Observer {
+        viewModel.getMedicineSchedules(userId).observe(this, Observer {
             adapter.setMedicineList(it)
         })
 
@@ -94,7 +91,7 @@ class ViewMedicineFragment(val userId: Int) : Fragment() {
                 Log.i(TAG, "Adapter pos: $pos")
 
                 // Get the DB ID of a particular medicine item
-                val medicineID = adapter.getMedicineAt(pos).id!!
+                val medicineID = adapter.getMedicineAt(pos).medicineIDs
                 Log.i(TAG, "DB ID: $medicineID")
 
                 viewModel.setMedicineDetailsDatabaseID(medicineID)

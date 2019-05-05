@@ -1,4 +1,4 @@
-package com.macrosoft.reminder.model
+package com.macrosoft.reminder.data
 
 /**
  * Data class holding all the data needed to display for the CardViews showing details
@@ -11,8 +11,8 @@ package com.macrosoft.reminder.model
  *
  */
 data class MedicineDetails(
-    val name: String,
+    val medicine_name: String,
     val time: String,
     val dosage: String,
-    val requirements: String
+    val description: String
 )

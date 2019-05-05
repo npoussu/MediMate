@@ -19,14 +19,14 @@ object AppModules {
     val viewModelModule = module(override = true) {
         viewModel { LoginViewModel(get()) }
         viewModel { CreateAccountViewModel(get()) }
-        viewModel { ViewMedicineViewModel(get()) }
+        viewModel { ViewMedicineViewModel(get(), get()) }
         viewModel { AddMedicineViewModel() }
     }
 
     val repositoryModule = module(override = true) {
         // Declare Repository dependencies here
         single { UserRepository(get()) }
-        single { MedicineRepository(get()) }
+        single { MedicineRepository(get(), get()) }
         single { ReminderRepository(get()) }
         single { ScheduleRepository(get()) }
 

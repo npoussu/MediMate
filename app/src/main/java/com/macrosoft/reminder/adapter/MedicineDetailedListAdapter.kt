@@ -1,4 +1,4 @@
-package com.macrosoft.reminder.data
+package com.macrosoft.reminder.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
-import com.macrosoft.reminder.model.MedicineDetails
-import com.macrosoft.reminder.model.MedicineDetailsList
+import com.macrosoft.reminder.data.MedicineDetails
+import com.macrosoft.reminder.data.MedicineDetailsList
 
 /**
  * Adapter holding data for the list of CardViews showing various medicine to be taken and when
@@ -25,9 +25,9 @@ class MedicineDetailedListAdapter : RecyclerView.Adapter<MedicineDetailedListAda
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = detailedList.items[position]
         holder.medicineTime!!.text = item.time
-        holder.medicineName!!.text = item.name
+        holder.medicineName!!.text = item.medicine_name
         holder.pillAmount!!.text = item.dosage
-        holder.requirementsText!!.text = item.requirements
+        holder.requirementsText!!.text = item.description
     }
 
     override fun getItemCount() = detailedList.items.size
