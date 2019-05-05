@@ -12,7 +12,7 @@
             android:id="@+id/medicineListCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="27dp"
             android:layout_gravity="center_horizontal"
             app:cardBackgroundColor="#ffffff"
@@ -35,16 +35,25 @@
                     android:layout_gravity="center_horizontal"
                     android:padding="5dp"
                     android:background="@color/cream"
-                    android:textSize="16sp"/>
+                    android:textSize="22sp"/>
+
+            <TextView
+                    android:id="@+id/border"
+                    android:layout_below="@id/medicineListTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/dark_gray"/>
 
             <TextView android:id="@+id/medicineNameList"
                       android:paddingTop="5dp"
                       android:paddingBottom="5dp"
                       android:layout_centerHorizontal="true"
-                      android:layout_below="@id/medicineListTime"
+                      android:layout_below="@id/border"
                       tools:text="Drugs\nDrugs\nDrugs\nDrugs\n"
                       android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"/>
+                      android:layout_height="wrap_content"
+                      android:textSize="18sp"
+            />
 
         </RelativeLayout>
 
