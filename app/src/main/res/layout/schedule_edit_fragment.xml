@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+                name="viewmodel"
+                type="com.macrosoft.reminder.viewmodel.ViewMedicineViewModel"/>
+
+    </data>
+
+    <!-- This is the layout for the EditMedicineFragment, identical to AddMedicineFragment but with different bindings -->
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray">
+
+        <TextView
+                android:id="@+id/setAlarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/schedule"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@color/orange"
+                android:padding="10dp"
+                android:textSize="23sp"
+                android:layout_marginTop="9dp"/>
+
+        <TextView
+                android:id="@+id/selectStartDate"
+                android:hint="@string/select_start_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:layout_below="@id/setAlarm"
+                android:paddingStart="40dp"
+                android:onClick="@{() -> viewmodel.onSelectStartDateClick()}"
+                android:paddingEnd="40dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:textSize="20sp"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="24dp"/>
+
+        <TextView
+                android:id="@+id/selectEndDate"
+                android:hint="@string/select_end_date"
+                android:layout_width="match_parent"
+                android:onClick="@{() -> viewmodel.onSelectEndDateClick()}"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/selectStartDate"
+                android:background="#ffffff"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:paddingTop="25dp"
+                android:paddingBottom="25dp"
+                android:textSize="20sp"
+                android:layout_marginTop="9dp"/>
+
+        <TextView
+                android:id="@+id/selectFrequencyTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_below="@+id/selectEndDate"
+                android:background="@color/orange"
+                android:padding="10dp"
+                android:textSize="23sp"
+                android:layout_marginTop="9dp"/>
+
+        <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/selectFrequencyTitle"
+                android:id="@+id/spinner"
+                android:layout_marginTop="9dp"
+                android:padding="10dp"/>
+
+    </RelativeLayout>
+</layout>
