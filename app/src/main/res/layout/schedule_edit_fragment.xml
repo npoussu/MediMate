@@ -90,6 +90,7 @@
 
                 <TextView
                         android:id="@+id/reminderTimeOneEdit"
+                        android:text="@={viewmodel.reminderTimeOneEditContent}"
                         android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 0) ? View.VISIBLE : View.GONE}"
                         android:layout_width="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -102,6 +103,7 @@
                 <TextView android:layout_width="wrap_content"
                           android:id="@+id/reminderTimeTwoEdit"
                           android:layout_centerHorizontal="true"
+                          android:text="@={viewmodel.reminderTimeTwoEditContent}"
                           android:layout_below="@id/reminderTimeOneEdit"
                           android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 1) ? View.VISIBLE : View.GONE}"
                           android:textSize="20sp"
@@ -112,6 +114,7 @@
 
                 <TextView android:layout_width="wrap_content"
                           android:layout_centerHorizontal="true"
+                          android:text="@={viewmodel.reminderTimeThreeEditContent}"
                           android:id="@+id/reminderTimeThreeEdit"
                           android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 2) ? View.VISIBLE : View.GONE}"
                           android:layout_below="@id/reminderTimeTwoEdit"
@@ -122,6 +125,7 @@
                           android:layout_height="wrap_content"/>
 
                 <TextView android:layout_width="wrap_content"
+                          android:text="@={viewmodel.reminderTimeFourEditContent}"
                           android:id="@+id/reminderTimeFourEdit"
                           android:layout_below="@id/reminderTimeThreeEdit"
                           android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 3) ? View.VISIBLE : View.GONE}"
@@ -135,6 +139,7 @@
                 <TextView android:layout_width="wrap_content"
                           android:id="@+id/reminderTimeFiveEdit"
                           android:layout_below="@id/reminderTimeFourEdit"
+                          android:text="@={viewmodel.reminderTimeFiveEditContent}"
                           android:layout_centerHorizontal="true"
                           android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 4) ? View.VISIBLE : View.GONE}"
                           android:padding="10dp"
@@ -147,6 +152,7 @@
                           android:id="@+id/reminderTimeSixEdit"
                           android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 5) ? View.VISIBLE : View.GONE}"
                           android:layout_centerHorizontal="true"
+                          android:text="@={viewmodel.reminderTimeSixEditContent}"
                           android:textSize="20sp"
                           android:padding="10dp"
                           android:textStyle="bold"
@@ -156,6 +162,7 @@
 
                 <TextView android:layout_width="wrap_content"
                           android:layout_centerHorizontal="true"
+                          android:text="@={viewmodel.reminderTimeSevenEditContent}"
                           android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 6) ? View.VISIBLE : View.GONE}"
                           android:textSize="20sp"
                           android:layout_below="@id/reminderTimeSixEdit"
@@ -170,6 +177,7 @@
                           android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 7) ? View.VISIBLE : View.GONE}"
                           android:id="@+id/reminderTimeEightEdit"
                           android:textSize="20sp"
+                          android:text="@={viewmodel.reminderTimeEightEditContent}"
                           android:padding="10dp"
                           android:textStyle="bold"
                           android:layout_below="@id/reminderTimeSevenEdit"
@@ -179,6 +187,7 @@
                 <TextView android:layout_width="wrap_content"
                           android:layout_below="@id/reminderTimeEightEdit"
                           android:layout_centerHorizontal="true"
+                          android:text="@={viewmodel.reminderTimeNineEditContent}"
                           android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 8) ? View.VISIBLE : View.GONE}"
                           android:textSize="20sp"
                           android:id="@+id/reminderTimeNineEdit"
@@ -190,6 +199,7 @@
                 <TextView android:layout_width="wrap_content"
                           android:id="@+id/reminderTimeTenEdit"
                           android:layout_below="@id/reminderTimeNineEdit"
+                          android:text="@={viewmodel.reminderTimeTenEditContent}"
                           android:layout_centerHorizontal="true"
                           android:textSize="20sp"
                           android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 9) ? View.VISIBLE : View.GONE}"

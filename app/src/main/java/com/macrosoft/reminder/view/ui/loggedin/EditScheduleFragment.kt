@@ -1,6 +1,7 @@
 package com.macrosoft.reminder.view.ui.loggedin
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -74,16 +75,165 @@ class EditScheduleFragment : Fragment() {
             endDatePicker.show()
         })
 
-        reminderTimeOneEdit.text = "8:00"
-        reminderTimeTwoEdit.text = "8:00"
-        reminderTimeThreeEdit.text = "8:00"
-        reminderTimeFourEdit.text = "8:00"
-        reminderTimeFiveEdit.text = "8:00"
-        reminderTimeSixEdit.text = "8:00"
-        reminderTimeSevenEdit.text = "8:00"
-        reminderTimeEightEdit.text = "8:00"
-        reminderTimeNineEdit.text = "8:00"
-        reminderTimeTenEdit.text = "8:00"
+        val hour = calendar.get(Calendar.HOUR)
+        val minute = calendar.get(Calendar.MINUTE)
+
+        val timePickerDialogOne = TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
+
+            Log.i(AddScheduleFragment.TAG, "$h : $m : ")
+            if (m < 10) {
+                reminderTimeOneEdit.text = "$h:0$m"
+            } else {
+                reminderTimeOneEdit.text = "$h:$m"
+            }
+
+        }), hour, minute, false)
+
+        val timePickerDialogTwo = TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
+
+            Log.i(AddScheduleFragment.TAG, "$h : $m : ")
+            if (m < 10) {
+                reminderTimeTwoEdit.text = "$h:0$m"
+            } else {
+                reminderTimeTwoEdit.text = "$h:$m"
+            }
+
+        }), hour, minute, false)
+
+        val timePickerDialogThree =
+            TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
+
+                Log.i(AddScheduleFragment.TAG, "$h : $m : ")
+                if (m < 10) {
+                    reminderTimeThreeEdit.text = "$h:0$m"
+                } else {
+                    reminderTimeThreeEdit.text = "$h:$m"
+                }
+
+            }), hour, minute, false)
+
+        val timePickerDialogFour =
+            TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
+
+                Log.i(AddScheduleFragment.TAG, "$h : $m : ")
+                if (m < 10) {
+                    reminderTimeFourEdit.text = "$h:0$m"
+                } else {
+                    reminderTimeFourEdit.text = "$h:$m"
+                }
+
+            }), hour, minute, false)
+
+        val timePickerDialogFive =
+            TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
+
+                Log.i(AddScheduleFragment.TAG, "$h : $m : ")
+                if (m < 10) {
+                    reminderTimeFiveEdit.text = "$h:0$m"
+                } else {
+                    reminderTimeFiveEdit.text = "$h:$m"
+                }
+
+            }), hour, minute, false)
+
+        val timePickerDialogSix = TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
+
+            Log.i(AddScheduleFragment.TAG, "$h : $m : ")
+            if (m < 10) {
+                reminderTimeSixEdit.text = "$h:0$m"
+            } else {
+                reminderTimeSixEdit.text = "$h:$m"
+            }
+
+        }), hour, minute, false)
+
+        val timePickerDialogSeven =
+            TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
+
+                Log.i(AddScheduleFragment.TAG, "$h : $m : ")
+                if (m < 10) {
+                    reminderTimeSevenEdit.text = "$h:0$m"
+                } else {
+                    reminderTimeSevenEdit.text = "$h:$m"
+                }
+
+            }), hour, minute, false)
+
+        val timePickerDialogEight =
+            TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
+
+                Log.i(AddScheduleFragment.TAG, "$h : $m : ")
+                if (m < 10) {
+                    reminderTimeEightEdit.text = "$h:0$m"
+                } else {
+                    reminderTimeEightEdit.text = "$h:$m"
+                }
+
+            }), hour, minute, false)
+
+        val timePickerDialogNine =
+            TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
+
+                Log.i(AddScheduleFragment.TAG, "$h : $m : ")
+                if (m < 10) {
+                    reminderTimeNineEdit.text = "$h:0$m"
+                } else {
+                    reminderTimeNineEdit.text = "$h:$m"
+                }
+
+            }), hour, minute, false)
+
+        val timePickerDialogTen = TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
+
+            Log.i(AddScheduleFragment.TAG, "$h : $m : ")
+            if (m < 10) {
+                reminderTimeTenEdit.text = "$h:0$m"
+            } else {
+                reminderTimeTenEdit.text = "$h:$m"
+            }
+
+        }), hour, minute, false)
+
+        reminderTimeOneEdit.setOnClickListener {
+            timePickerDialogOne.show()
+        }
+
+        reminderTimeTwoEdit.setOnClickListener {
+            timePickerDialogTwo.show()
+        }
+
+
+        reminderTimeThreeEdit.setOnClickListener {
+            timePickerDialogThree.show()
+        }
+
+        reminderTimeFourEdit.setOnClickListener {
+            timePickerDialogFour.show()
+        }
+
+        reminderTimeFiveEdit.setOnClickListener {
+            timePickerDialogFive.show()
+        }
+
+        reminderTimeSixEdit.setOnClickListener {
+            timePickerDialogSix.show()
+        }
+
+        reminderTimeSevenEdit.setOnClickListener {
+            timePickerDialogSeven.show()
+        }
+
+        reminderTimeEightEdit.setOnClickListener {
+            timePickerDialogEight.show()
+        }
+
+        reminderTimeNineEdit.setOnClickListener {
+            timePickerDialogNine.show()
+        }
+
+        reminderTimeTenEdit.setOnClickListener {
+            timePickerDialogTen.show()
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -43,7 +43,50 @@ class ViewMedicineViewModel : ObservableViewModel() {
     val showEndDatePicker = LiveEvent<Boolean>()
 
     @Bindable
+    val reminderTimeOneEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeTwoEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeThreeEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeFourEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeFiveEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeSixEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeSevenEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeEightEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeNineEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeTenEditContent = MutableLiveData<String>()
+
+    @Bindable
     val spinnerEditIdItemPosition = MutableLiveData<Int>()
+
+    init {
+        reminderTimeOneEditContent.value = "8:00"
+        reminderTimeTwoEditContent.value = "9:00"
+        reminderTimeThreeEditContent.value = "10:00"
+        reminderTimeFourEditContent.value = "11:00"
+        reminderTimeFiveEditContent.value = "12:00"
+        reminderTimeSixEditContent.value = "13:00"
+        reminderTimeSevenEditContent.value = "14:00"
+        reminderTimeEightEditContent.value = "15:00"
+        reminderTimeNineEditContent.value = "16:00"
+        reminderTimeTenEditContent.value = "17:00"
+    }
 
     fun setMedicineDetailsDatabaseID(id: Int) {
 
@@ -108,5 +151,15 @@ class ViewMedicineViewModel : ObservableViewModel() {
     fun onSelectFrequencyClick() {
         Log.i(TAG, "onSelectFrequencyClick()")
         Log.i(TAG, spinnerEditIdItemPosition.value.toString())
+        Log.i(TAG, "First reminder: " + reminderTimeOneEditContent.value)
+        Log.i(TAG, "Second reminder: " + reminderTimeTwoEditContent.value)
+        Log.i(TAG, "Third reminder: " + reminderTimeThreeEditContent.value)
+        Log.i(TAG, "Fourth reminder: " + reminderTimeFourEditContent.value)
+        Log.i(TAG, "Fifth reminder: " + reminderTimeFiveEditContent.value)
+        Log.i(TAG, "Sixth reminder: " + reminderTimeSixEditContent.value)
+        Log.i(TAG, "Seventh reminder: " + reminderTimeSevenEditContent.value)
+        Log.i(TAG, "Eight reminder: " + reminderTimeEightEditContent.value)
+        Log.i(TAG, "Ninth reminder: " + reminderTimeNineEditContent.value)
+        Log.i(TAG, "Tenth reminder: " + reminderTimeTenEditContent.value)
     }
 }
