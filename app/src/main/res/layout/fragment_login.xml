@@ -54,7 +54,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="146dp"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:text="@string/log_in"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
@@ -64,10 +64,12 @@
                 android:onClick="@{() -> viewmodel.onLoginClick()}"
                 android:background="@color/blue"
                 android:layout_marginBottom="84dp"
+                app:cornerRadius="50dp"
+                android:padding="10dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:fontFamily="@font/royal"/>
+                android:fontFamily="@font/moonchild"/>
 
         <ImageView
                 app:srcCompat="@drawable/user_icon_img"
