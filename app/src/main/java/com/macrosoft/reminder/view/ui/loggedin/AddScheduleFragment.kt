@@ -60,6 +60,8 @@ class AddScheduleFragment : Fragment() {
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val hour = calendar.get(Calendar.HOUR)
+        val minute = calendar.get(Calendar.MINUTE)
 
         val startDatePicker =
             DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { _, startYear, monthOfYear, dayOfMonth ->
@@ -80,9 +82,6 @@ class AddScheduleFragment : Fragment() {
         viewModel.showEndDatePicker.observe(this, androidx.lifecycle.Observer {
             endDatePicker.show()
         })
-
-        val hour = calendar.get(Calendar.HOUR)
-        val minute = calendar.get(Calendar.MINUTE)
 
         val timePickerDialogOne = TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
 

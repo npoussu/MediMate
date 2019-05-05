@@ -36,12 +36,14 @@ class ViewMedicineViewModel : ObservableViewModel() {
     private val showAddReminderFragment = LiveEvent<Boolean>()
     val addReminderFragmentState: LiveData<Boolean> = showAddReminderFragment
 
+    // Single LiveEvents
     val showEditScheduleFragment = LiveEvent<Boolean>()
 
     val showStartDatePicker = LiveEvent<Boolean>()
 
     val showEndDatePicker = LiveEvent<Boolean>()
 
+    // Reminder Times Bindings
     @Bindable
     val reminderTimeOneEditContent = MutableLiveData<String>()
 
@@ -72,6 +74,7 @@ class ViewMedicineViewModel : ObservableViewModel() {
     @Bindable
     val reminderTimeTenEditContent = MutableLiveData<String>()
 
+    // Reminder Weekdays selected Bindings
     @Bindable
     val reminderMondayEditChecked = MutableLiveData<Boolean>()
 
@@ -102,6 +105,7 @@ class ViewMedicineViewModel : ObservableViewModel() {
     @Bindable
     val endDateEditContent = MutableLiveData<String>()
 
+    // Initialize the Reminder fields
     init {
         reminderTimeOneEditContent.value = "8:00"
         reminderTimeTwoEditContent.value = "9:00"
@@ -134,6 +138,7 @@ class ViewMedicineViewModel : ObservableViewModel() {
         medicineDetailsItem.value = medicineDetails
     }
 
+    // Triggers opening AddScheduleFragment
     fun onScheduleClick() {
 
         // TODO: Open date picker on click to select schedule
@@ -173,19 +178,23 @@ class ViewMedicineViewModel : ObservableViewModel() {
         showAddReminderFragment.value = true
     }
 
+    // Triggers opening the DatePickerDialog for selecting End Date of Reminder
     fun onSelectEndDateClick() {
         Log.i(TAG, "onSelectEndDateClick()")
         showEndDatePicker.value = true
     }
 
+    // Triggers opening the DatePickerDialog for selecting Start Date of Reminder
     fun onSelectStartDateClick() {
         Log.i(TAG, "onSelectStartDateClick()")
         showStartDatePicker.value = true
     }
 
+    // For debug logging
     fun onSelectFrequencyClick() {
         Log.i(TAG, "onSelectFrequencyClick()")
         Log.i(TAG, spinnerEditIdItemPosition.value.toString())
+
         Log.i(TAG, "First reminder: " + reminderTimeOneEditContent.value)
         Log.i(TAG, "Second reminder: " + reminderTimeTwoEditContent.value)
         Log.i(TAG, "Third reminder: " + reminderTimeThreeEditContent.value)
@@ -208,6 +217,7 @@ class ViewMedicineViewModel : ObservableViewModel() {
     }
 
     fun onSaveButtonClick() {
+        // TODO: Save the reminder and setup Alarms here
         Log.i(TAG, "onSaveButtonClick()")
     }
 }
