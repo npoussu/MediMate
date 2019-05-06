@@ -17,12 +17,12 @@
             android:gravity="center">
     </item>
 
-    <!-- <item
-            android:height="30dp"
-            android:width="147dp"
-            android:drawable="@drawable/splashtext"
+   <item
+            android:height="50dp"
+            android:width="160dp"
+            android:drawable="@drawable/splashtext1"
             android:gravity="bottom|center_horizontal"
-            android:bottom="250dp">
-    </item> -->
+            android:bottom="260dp">
+    </item>
 
 </layer-list>

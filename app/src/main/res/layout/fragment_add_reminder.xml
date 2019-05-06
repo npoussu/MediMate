@@ -28,6 +28,13 @@
                 android:layout_marginTop="20dp"
                 android:layout_alignParentTop="true"/>
 
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/medicineNameInput"
+                android:background="@color/pink"
+        />
+
         <EditText
                 android:id="@+id/dosageInput"
                 android:hint="@string/dosage"
@@ -43,8 +50,14 @@
                 android:paddingBottom="25dp"
                 android:textSize="20sp"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@id/medicineNameInput"/>
+
+        <TextView
+                android:layout_below="@id/dosageInput"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/pink"/>
 
         <EditText
                 android:id="@+id/requirementsInput"
@@ -61,8 +74,14 @@
                 android:paddingBottom="25dp"
                 android:textSize="20sp"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@id/dosageInput"/>
+
+        <TextView
+                android:layout_below="@id/requirementsInput"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/pink"/>
 
         <TextView
                 android:text="@string/schedule"
@@ -76,64 +95,73 @@
                 android:paddingEnd="90dp"
                 android:paddingBottom="25dp"
                 android:textSize="20sp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:layout_below="@+id/requirementsInput"
         />
 
+        <TextView
+                android:layout_below="@id/goToSchedule_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/pink"/>
+
         <ImageView
                 android:layout_width="65dp"
-                android:layout_height="76dp"
-                app:srcCompat="@drawable/medicine_img"
+                android:layout_height="65dp"
+                android:layout_marginTop="27dp"
+                app:srcCompat="@drawable/medicine"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="12dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="25dp"
                 android:contentDescription="@string/decorative_image_medicine_box_and_pill"/>
 
         <ImageView
-                android:layout_width="63dp"
-                android:layout_height="84dp"
-                app:srcCompat="@drawable/dosage_img"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="27dp"
+                android:layout_below="@+id/medicineNameInput"
+                app:srcCompat="@drawable/dosage"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="10dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="101dp"
+                android:layout_marginStart="12dp"
                 android:contentDescription="@string/decorative_image_medicine_doser"/>
 
         <ImageView
-                android:layout_width="63dp"
-                android:layout_height="84dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="27dp"
                 app:srcCompat="@drawable/food"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="9dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="182dp"
+                android:layout_marginStart="12dp"
+                android:layout_below="@id/dosageInput"
                 android:contentDescription="@string/a_box_of_vegetables"/>
 
         <ImageView
-                android:layout_width="63dp"
-                android:layout_height="84dp"
-                app:srcCompat="@drawable/calendar_img"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="27dp"
+                app:srcCompat="@drawable/calendar"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="10dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="266dp"
+                android:layout_marginStart="12dp"
+                android:layout_below="@id/requirementsInput"
                 android:contentDescription="@string/calendar_image"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:text="@string/save_med"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/addMedButton"
                 android:background="@color/blue"
-                android:fontFamily="@font/royal"
-                android:textSize="20sp"
+                android:fontFamily="@font/moonchild"
                 android:onClick="@{() -> viewmodel.onSaveMedClick()}"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="99dp"
-                android:layout_centerInParent="true"/>
+                android:layout_marginBottom="32dp"
+                android:layout_centerInParent="true"
+                app:cornerRadius="50dp"
+                android:padding="5dp"
+                android:textSize="25sp"
+                />
 
 
     </RelativeLayout>

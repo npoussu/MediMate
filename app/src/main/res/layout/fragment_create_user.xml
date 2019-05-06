@@ -74,7 +74,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_below="@+id/CreatePasswordInput"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
                 android:text="@string/create_account"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
@@ -84,9 +84,13 @@
                 android:onClick="@{() -> viewmodel.onCreateAccountClick()}"
                 android:layout_marginBottom="84dp"
                 android:textStyle="bold"
-                android:textSize="20sp"
                 android:background="@color/green"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                app:cornerRadius="50dp"
+                android:fontFamily="@font/moonchild"
+                android:padding="5dp"
+                android:textSize="25sp"
+        />
 
         <TextView
                 android:text="@string/acc_exist"

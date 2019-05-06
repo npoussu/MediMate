@@ -2,6 +2,7 @@ package com.macrosoft.reminder.view.ui.loggedin
 
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.macrosoft.reminder.R
@@ -9,7 +10,30 @@ import kotlinx.android.synthetic.main.toolbar_main.*
 
 class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardClickedListener,
     ViewMedicineDetailsFragment.OnDetailedListCardClickedListener, EditMedicineFragment.OnPopBackStack,
-    AddMedicineFragment.OnPopBackStack {
+    AddMedicineFragment.OnPopBackStack, AddScheduleFragment.IAddScheduleFragment,
+    EditScheduleFragment.IEditScheduleFragment {
+
+    private var takeMedicine = false
+
+    override fun onEditScheduleClicked() {
+        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+
+        with(ft) {
+            replace(R.id.fragment_holder, EditScheduleFragment())
+            addToBackStack(null)
+            commit()
+        }
+    }
+
+    override fun onAddScheduleClicked() {
+        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+
+        with(ft) {
+            replace(R.id.fragment_holder, AddScheduleFragment())
+            addToBackStack(null)
+            commit()
+        }
+    }
 
     override fun onAddReminderClicked() {
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
@@ -27,6 +51,34 @@ class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardCli
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        takeMedicine = intent.getBooleanExtra("takeMedicine", false)
+        val medicineName = intent.getStringExtra("medicineName")
+        val dosageValue = intent.getStringExtra("dosageValue")
+        val requirementsValue = intent.getStringExtra("requirementsValue")
+
+        if (takeMedicine && medicineName != null) {
+            // Initialize a new instance of
+            val builder = AlertDialog.Builder(this@MainActivity)
+            builder.setTitle("Reminder")
+            builder.setMessage("Take medicine: $medicineName\nDosage: $dosageValue\nRequirements: $requirementsValue")
+
+            builder.setPositiveButton("Taken") { dialog, which ->
+
+            }
+
+            builder.setNegativeButton("Cancel") { dialog, which ->
+            }
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+            takeMedicine = false
+        }
+
     }
 
     override fun onDetailedListCardClick() {

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+                name="viewmodel"
+                type="com.macrosoft.reminder.viewmodel.ViewMedicineViewModel"/>
+
+    </data>
+
+    <!-- This is the layout for the EditMedicineFragment, identical to AddMedicineFragment but with different bindings -->
+
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray">
+
+            <TextView
+                    android:id="@+id/setAlarm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/schedule"
+                    android:textColor="@color/pink"
+                    android:textStyle="bold"
+                    android:background="@color/light_gray"
+                    android:padding="10dp"
+                    android:textSize="20sp"
+                    android:layout_marginTop="9dp"
+                    android:fontFamily="@font/royal"
+            />
+
+            <TextView
+                    android:id="@+id/selectStartDate"
+                    android:hint="@string/select_start_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewmodel.startDateEditContent}"
+                    android:background="#ffffff"
+                    android:layout_below="@id/setAlarm"
+                    android:paddingStart="40dp"
+                    android:onClick="@{() -> viewmodel.onSelectStartDateClick()}"
+                    android:paddingEnd="40dp"
+                    android:paddingTop="25dp"
+                    android:paddingBottom="25dp"
+                    android:textSize="25sp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="24dp"
+            />
+
+            <TextView
+                    android:id="@+id/selectEndDate"
+                    android:hint="@string/select_end_date"
+                    android:layout_width="match_parent"
+                    android:text="@={viewmodel.endDateEditContent}"
+                    android:onClick="@{() -> viewmodel.onSelectEndDateClick()}"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/selectStartDate"
+                    android:background="#ffffff"
+                    android:paddingStart="40dp"
+                    android:paddingEnd="40dp"
+                    android:paddingTop="25dp"
+                    android:paddingBottom="25dp"
+                    android:textSize="20sp"
+                    android:layout_marginTop="9dp"/>
+
+            <TextView
+                    android:id="@+id/selectFrequencyTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reminders"
+                    android:textColor="@color/pink"
+                    android:onClick="@{() -> viewmodel.onSelectFrequencyClick()}"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/selectEndDate"
+                    android:background="@color/light_gray"
+                    android:fontFamily="@font/royal"
+                    android:padding="10dp"
+                    android:textSize="20sp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="20dp"/>
+
+            <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/selectFrequencyTitle"
+                    android:selectedItemPosition="@={viewmodel.spinnerEditIdItemPosition}"
+                    android:id="@+id/spinnerEdit"
+                    android:padding="10dp"/>
+
+            <TextView
+                    android:layout_below="@id/spinnerEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@color/pink"
+            />
+
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_below="@id/spinnerEdit"
+                            android:id="@+id/reminderEditRelativeLayout"
+                            android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/reminderTimeOneEdit"
+                        android:text="@={viewmodel.reminderTimeOneEditContent}"
+                        android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 0) ? View.VISIBLE : View.GONE}"
+                        android:layout_width="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:padding="10dp"
+                        tools:text="8:00"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                />
+
+                <TextView android:layout_width="wrap_content"
+                          android:id="@+id/reminderTimeTwoEdit"
+                          android:layout_centerHorizontal="true"
+                          android:text="@={viewmodel.reminderTimeTwoEditContent}"
+                          android:layout_below="@id/reminderTimeOneEdit"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 1) ? View.VISIBLE : View.GONE}"
+                          android:textSize="20sp"
+                          android:textStyle="bold"
+                          android:padding="10dp"
+                          tools:text="8:00"
+                          android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_centerHorizontal="true"
+                          android:text="@={viewmodel.reminderTimeThreeEditContent}"
+                          android:id="@+id/reminderTimeThreeEdit"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 2) ? View.VISIBLE : View.GONE}"
+                          android:layout_below="@id/reminderTimeTwoEdit"
+                          android:textSize="20sp"
+                          android:padding="10dp"
+                          android:textStyle="bold"
+                          tools:text="8:00"
+                          android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:text="@={viewmodel.reminderTimeFourEditContent}"
+                          android:id="@+id/reminderTimeFourEdit"
+                          android:layout_below="@id/reminderTimeThreeEdit"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 3) ? View.VISIBLE : View.GONE}"
+                          android:layout_centerHorizontal="true"
+                          android:textSize="20sp"
+                          android:padding="10dp"
+                          android:textStyle="bold"
+                          tools:text="8:00"
+                          android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:id="@+id/reminderTimeFiveEdit"
+                          android:layout_below="@id/reminderTimeFourEdit"
+                          android:text="@={viewmodel.reminderTimeFiveEditContent}"
+                          android:layout_centerHorizontal="true"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 4) ? View.VISIBLE : View.GONE}"
+                          android:padding="10dp"
+                          android:textSize="20sp"
+                          android:textStyle="bold"
+                          tools:text="8:00"
+                          android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:id="@+id/reminderTimeSixEdit"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 5) ? View.VISIBLE : View.GONE}"
+                          android:layout_centerHorizontal="true"
+                          android:text="@={viewmodel.reminderTimeSixEditContent}"
+                          android:textSize="20sp"
+                          android:padding="10dp"
+                          android:textStyle="bold"
+                          tools:text="8:00"
+                          android:layout_below="@id/reminderTimeFiveEdit"
+                          android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_centerHorizontal="true"
+                          android:text="@={viewmodel.reminderTimeSevenEditContent}"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 6) ? View.VISIBLE : View.GONE}"
+                          android:textSize="20sp"
+                          android:layout_below="@id/reminderTimeSixEdit"
+                          android:textStyle="bold"
+                          android:id="@+id/reminderTimeSevenEdit"
+                          android:padding="10dp"
+                          tools:text="8:00"
+                          android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_centerHorizontal="true"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 7) ? View.VISIBLE : View.GONE}"
+                          android:id="@+id/reminderTimeEightEdit"
+                          android:textSize="20sp"
+                          android:text="@={viewmodel.reminderTimeEightEditContent}"
+                          android:padding="10dp"
+                          android:textStyle="bold"
+                          android:layout_below="@id/reminderTimeSevenEdit"
+                          tools:text="8:00"
+                          android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_below="@id/reminderTimeEightEdit"
+                          android:layout_centerHorizontal="true"
+                          android:text="@={viewmodel.reminderTimeNineEditContent}"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 8) ? View.VISIBLE : View.GONE}"
+                          android:textSize="20sp"
+                          android:id="@+id/reminderTimeNineEdit"
+                          android:padding="10dp"
+                          android:textStyle="bold"
+                          tools:text="8:00"
+                          android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:id="@+id/reminderTimeTenEdit"
+                          android:layout_below="@id/reminderTimeNineEdit"
+                          android:text="@={viewmodel.reminderTimeTenEditContent}"
+                          android:layout_centerHorizontal="true"
+                          android:textSize="20sp"
+                          android:visibility="@{safeUnbox(viewmodel.spinnerEditIdItemPosition >= 9) ? View.VISIBLE : View.GONE}"
+                          android:textStyle="bold"
+                          tools:text="8:00"
+                          android:padding="10dp"
+                          android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:id="@+id/weekdayEditRelativeLayout"
+                            android:layout_below="@+id/reminderEditRelativeLayout"
+                            android:layout_marginBottom="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+            >
+
+                <ToggleButton
+                        android:id="@+id/buttonMonday"
+                        android:layout_width="55dp"
+                        android:textOn="@string/mo"
+                        android:checked="@={viewmodel.reminderMondayEditChecked}"
+                        android:textOff="@string/mo"
+                        android:text="@string/mo"
+                        android:layout_height="wrap_content"/>
+
+                <ToggleButton
+                        android:id="@+id/buttonTuesday"
+                        android:layout_width="55dp"
+                        android:checked="@={viewmodel.reminderTuesdayEditChecked}"
+                        android:textOn="@string/tu"
+                        android:textOff="@string/tu"
+                        android:layout_toEndOf="@id/buttonMonday"
+                        android:layout_height="wrap_content"/>
+
+                <ToggleButton
+                        android:id="@+id/buttonWednesday"
+                        android:layout_width="55dp"
+                        android:checked="@={viewmodel.reminderWednesdayEditChecked}"
+                        android:textOn="@string/we"
+                        android:textOff="@string/we"
+                        android:layout_toEndOf="@id/buttonTuesday"
+                        android:layout_height="wrap_content"/>
+
+                <ToggleButton
+                        android:id="@+id/buttonThursday"
+                        android:layout_width="55dp"
+                        android:checked="@={viewmodel.reminderThursdayEditChecked}"
+                        android:textOn="@string/th"
+                        android:textOff="@string/th"
+                        android:layout_toEndOf="@id/buttonWednesday"
+                        android:layout_height="wrap_content"/>
+
+                <ToggleButton
+                        android:id="@+id/buttonFriday"
+                        android:layout_width="55dp"
+                        android:checked="@={viewmodel.reminderFridayEditChecked}"
+                        android:textOn="@string/fr"
+                        android:textOff="@string/fr"
+                        android:layout_toEndOf="@id/buttonThursday"
+                        android:layout_height="wrap_content"/>
+
+                <ToggleButton
+                        android:id="@+id/buttonSaturday"
+                        android:layout_width="55dp"
+                        android:textOn="@string/sa"
+                        android:checked="@={viewmodel.reminderSaturdayEditChecked}"
+                        android:textOff="@string/sa"
+                        android:text="@string/sa"
+                        android:layout_toEndOf="@id/buttonFriday"
+                        android:layout_height="wrap_content"/>
+
+                <ToggleButton
+                        android:id="@+id/buttonSunday"
+                        android:textOn="@string/su"
+                        android:textOff="@string/su"
+                        android:layout_width="55dp"
+                        android:checked="@={viewmodel.reminderSundayEditChecked}"
+                        android:layout_toEndOf="@id/buttonSaturday"
+                        android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/saveButton"
+                    android:layout_below="@id/weekdayEditRelativeLayout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="300dp"
+                    android:text="@string/save"
+                    android:onClick="@{() -> viewmodel.onSaveButtonClick()}"
+                    android:layout_height="wrap_content"
+                    app:cornerRadius="50dp"
+                    android:background="@color/blue"
+                    android:fontFamily="@font/moonchild"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="32dp"
+                    android:padding="5dp"
+                    android:textSize="25sp"
+            />
+
+        </RelativeLayout>
+    </ScrollView>
+</layout>

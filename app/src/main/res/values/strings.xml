@@ -12,6 +12,8 @@
     <string name="dosage">Add dosage</string>
     <string name="req_info_field">Add requirements</string>
     <string name="schedule">Schedule</string>
+    <string name="add_schedule">Add Schedule</string>
+    <string name="edit_schedule">Edit Schedule</string>
     <string name="alarm_type">Alarm type</string>
     <string name="save_med">Save Reminder</string>
     <string name="delete_med">Delete Reminder</string>
@@ -44,22 +46,20 @@
     <string name="requirements">Requirements:</string>
     <string name="req_info">Information</string>
 
-
-    //Frequency spinner??
-    <string-array name="days">
-        <item>Everyday</item>
-        <item>Weekdays</item>
-        <item>Weekends</item>
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-        <item>Saturday</item>
-        <item>Sunday</item>
+    <string-array name="times_to_take_medicine">
+        <item>Once a day</item>
+        <item>Twice a day</item>
+        <item>3 times a day</item>
+        <item>4 times a day</item>
+        <item>5 times a day</item>
+        <item>6 times a day</item>
+        <item>7 times a day</item>
+        <item>8 times a day</item>
+        <item>9 times a day</item>
+        <item>10 times a day</item>
+        <item>Custom</item>
     </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_title">Login</string>
     <string name="my_medicines_title">My Medicines</string>
@@ -78,5 +78,15 @@
     <string name="medimate_logo_string">MediMate logo</string>
     <string name="add_button_logo">Add button logo</string>
     <string name="log_in">LOG IN</string>
+    <string name="edit_card">Click to make changes</string>
+    <string name="reminders">Reminders</string>
+    <string name="mo">MO</string>
+    <string name="tu">TU</string>
+    <string name="we">WE</string>
+    <string name="th">TH</string>
+    <string name="fr">FR</string>
+    <string name="sa">SA</string>
+    <string name="su">SU</string>
+    <string name="save">SAVE</string>
 
 </resources>

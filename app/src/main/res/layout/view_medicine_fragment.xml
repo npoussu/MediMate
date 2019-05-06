@@ -22,16 +22,27 @@
                 android:layout_marginBottom="100dp"
         />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.button.MaterialButton
                 android:id="@+id/addMedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="16dp"
                 android:onClick="@{() -> viewmodel.onAddMedicineClick()}"
-                android:backgroundTint="@color/pink"
-                app:fabSize="normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
                 android:src="@drawable/ic_add_white_24dp"
                 app:layout_anchor="@id/bottomAppBar"
+                app:layout_anchorGravity="center_horizontal"
+                android:layout_margin="16dp"
+                android:textStyle="bold"
+                android:text="@string/add_med"
+                app:cornerRadius="50dp"
+                app:icon="@drawable/ic_add_white_24dp"
+                app:iconTint="@color/white"
+                android:fontFamily="@font/moonchild"
+                app:strokeColor="@color/white"
+                app:strokeWidth="3dp"
+                android:padding="10dp"
+                android:textSize="25sp"
+
         />
 
         <com.google.android.material.bottomappbar.BottomAppBar
@@ -39,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:layout_gravity="bottom"
-                android:backgroundTint="@color/purple"
+                android:backgroundTint="@color/pink"
                 app:fabAlignmentMode="end"
         />
 
