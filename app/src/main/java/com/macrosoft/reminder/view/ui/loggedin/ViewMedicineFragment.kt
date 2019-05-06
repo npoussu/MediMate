@@ -94,7 +94,9 @@ class ViewMedicineFragment(val userId: Int) : Fragment() {
                 val medicineID = adapter.getMedicineAt(pos).medicineIDs
                 Log.i(TAG, "DB ID: $medicineID")
 
-                viewModel.setMedicineDetailsDatabaseID(medicineID)
+
+                viewModel.medicineDetailIDs = medicineID
+                viewModel.setMedicineDetailsDatabaseID()
             }
         })
     }

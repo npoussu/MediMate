@@ -18,9 +18,11 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import com.macrosoft.reminder.data.MedicineListObject
 import com.macrosoft.reminder.model.MedicineSchedule
+import com.macrosoft.reminder.model.Reminder
+import com.macrosoft.reminder.repository.ReminderRepository
 
 
-class ViewMedicineViewModel(private val med_repo: MedicineRepository, private val schedule_repo: ScheduleRepository) :
+class ViewMedicineViewModel(private val med_repo: MedicineRepository, private val reminder_repo: ReminderRepository) :
     ObservableViewModel() {
 
     companion object {
@@ -48,13 +50,20 @@ class ViewMedicineViewModel(private val med_repo: MedicineRepository, private va
     private val showAddReminderFragment = LiveEvent<Boolean>()
     val addReminderFragmentState: LiveData<Boolean> = showAddReminderFragment
 
+    var medicineDetailIDs : ArrayList<Int> = ArrayList()
+
 
     fun getMedicineSchedules(user_id: Int): LiveData<Array<MedicineSchedule>> {
         return med_repo.getMedicineSchedule(user_id)
     }
 
+    fun getMedicineDetails(ids: ArrayList<Int> = medicineDetailIDs):  LiveData<Array<MedicineDetails>> {
+        Log.i("MED IDS", medicineDetailIDs.toString())
+        return med_repo.getMedicineDetail(ids.toIntArray())
+    }
+
 //    fun setMedicineDetailsDatabaseID(id: Int) {
-    fun setMedicineDetailsDatabaseID(id: ArrayList<Int>) {
+    fun setMedicineDetailsDatabaseID() {
         // TODO: Get the Reminder from DB using the @id parameter and set the Reminder to medicineDetails.value
         medicineDetails.value = fakeMedicineDetails.value
     }

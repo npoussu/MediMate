@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.adapter.MedicineDetailedListAdapter
+import com.macrosoft.reminder.data.MedicineDetails
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
 import kotlinx.android.synthetic.main.fragment_view_medicine_details.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -58,6 +59,18 @@ class ViewMedicineDetailsFragment : Fragment() {
 
         medicineDetailedList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         medicineDetailedList.setHasFixedSize(true)
+
+        viewModel.getMedicineDetails().observe(this,
+            Observer {
+                val medsList = arrayListOf<MedicineDetails>()
+                it.forEach {
+                    medsList.add(it)
+                }
+
+                Log.i("MEDS", medsList.toString() +"\n")
+
+            }
+        )
 
         adapter = MedicineDetailedListAdapter()
         medicineDetailedList.adapter = adapter
