@@ -11,16 +11,21 @@ import androidx.room.ForeignKey.CASCADE
             parentColumns = ["id"],
             childColumns = ["user_id"],
             onDelete = CASCADE
+        ),
+        ForeignKey(
+            entity = MedicineData::class,
+            parentColumns = ["id"],
+            childColumns = ["medicine_id"],
+            onDelete = CASCADE
         )],
-    indices = [Index(value = ["user_id"])]
+    indices = [Index(value = ["medicine_id", "user_id"])]
 )
 data class Reminder(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var id: Int,
-
     @ColumnInfo(name = "user_id")
     var userID: Int,
+
+    @ColumnInfo(name = "medicine_id")
+    var medicineID: Int,
 
     @ColumnInfo(name = "frequency")
     var frequency: String,
@@ -33,5 +38,8 @@ data class Reminder(
 
     @ColumnInfo(name = "medicine_checker")
     var medicineChecker: Int?
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null
+}
 

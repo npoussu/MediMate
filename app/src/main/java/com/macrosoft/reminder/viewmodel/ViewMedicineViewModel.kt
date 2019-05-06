@@ -5,11 +5,18 @@ import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
-import com.macrosoft.reminder.model.MedicineDetails
-import com.macrosoft.reminder.model.MedicineDetailsList
+import com.macrosoft.reminder.data.MedicineDetails
+import com.macrosoft.reminder.data.MedicineDetailsList
 import com.macrosoft.reminder.repository.FakeRepository
+import com.macrosoft.reminder.repository.MedicineRepository
+import com.macrosoft.reminder.model.MedicineSchedule
+import com.macrosoft.reminder.repository.ReminderRepository
+import java.sql.Date
+import java.sql.Time
 
-class ViewMedicineViewModel : ObservableViewModel() {
+
+class ViewMedicineViewModel(private val med_repo: MedicineRepository, private val reminder_repo: ReminderRepository) :
+    ObservableViewModel() {
 
     companion object {
         private val TAG = ViewMedicineViewModel::class.java.simpleName
@@ -29,9 +36,6 @@ class ViewMedicineViewModel : ObservableViewModel() {
 
     private val medicineDetailsItem = LiveEvent<MedicineDetails>()
     val itemState: LiveData<MedicineDetails> = medicineDetailsItem
-
-    private val fakeMedicineDetails: LiveData<MedicineDetailsList>
-        get() = FakeRepository.fakeMedicineDetails
 
     private val showAddReminderFragment = LiveEvent<Boolean>()
     val addReminderFragmentState: LiveData<Boolean> = showAddReminderFragment
@@ -129,8 +133,23 @@ class ViewMedicineViewModel : ObservableViewModel() {
 
     fun setMedicineDetailsDatabaseID(id: Int) {
 
+    val medicineDetailIDs = LiveEvent<ArrayList<Int>>()
+    val getData: LiveData<ArrayList<Int>> = medicineDetailIDs
+
+    var medicineDetailTime : Time = Time(0)
+
+    fun getMedicineSchedules(user_id: Int): LiveData<Array<MedicineSchedule>> {
+        return med_repo.getMedicineSchedule(user_id)
+    }
+
+    fun getMedicineDetails(ids: ArrayList<Int> = medicineDetailIDs.value!!):  LiveData<Array<MedicineDetails>> {
+        return med_repo.getMedicineDetail(ids.toIntArray())
+    }
+
+//    fun setMedicineDetailsDatabaseID(id: Int) {
+    fun setMedicineDetailsDatabaseID(meds: MedicineDetailsList) {
         // TODO: Get the Reminder from DB using the @id parameter and set the Reminder to medicineDetails.value
-        medicineDetails.value = fakeMedicineDetails.value
+        medicineDetails.value = meds
     }
 
     // The State represents the currently selected medicine to be edited, this method sets the state
@@ -168,9 +187,9 @@ class ViewMedicineViewModel : ObservableViewModel() {
 
         Log.i(TAG, "setEditInputInitialValues()")
 
-        medicineNameInputContent.value = itemState.name
+        medicineNameInputContent.value = itemState.medicine_name
         dosageInputContent.value = itemState.dosage
-        requirementsInputContent.value = itemState.requirements
+        requirementsInputContent.value = itemState.description
     }
 
     fun onAddMedicineClick() {

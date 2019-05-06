@@ -1,13 +1,17 @@
-package com.macrosoft.reminder.data
+package com.macrosoft.reminder.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
-import com.macrosoft.reminder.data.MedicineListAdapter.ViewHolder
-import com.macrosoft.reminder.model.MedicineListObject
+import com.macrosoft.reminder.adapter.MedicineListAdapter.ViewHolder
+import com.macrosoft.reminder.data.MedicineListObject
+import com.macrosoft.reminder.model.MedicineSchedule
+import java.sql.Time
+
 
 /**
  * An adapter holding data for the Main Screen of the app displaying a card of reminder times for medicine to be taken
@@ -19,7 +23,7 @@ class MedicineListAdapter :
     RecyclerView.Adapter<ViewHolder>() {
 
     private lateinit var listenerImpl: OnItemClickListener
-    private var medicineData: List<MedicineListObject> = ArrayList()
+    private var medicineData: ArrayList<MedicineListObject> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.medicine_list_item, parent, false)
@@ -30,7 +34,7 @@ class MedicineListAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = medicineData[position]
-        holder.time?.text = item.time
+        holder.time?.text = item.time.toString().subSequence(0,5)
         holder.medicineNames?.text = item.medicineNames
     }
 
@@ -53,8 +57,39 @@ class MedicineListAdapter :
         listenerImpl = listener
     }
 
-    fun setMedicineList(medicineListObject: List<MedicineListObject>) {
-        medicineData = medicineListObject
+    private fun parseTime(medicineScheduleArray: Array<MedicineSchedule>): ArrayList<MedicineListObject> {
+        val medicineList = arrayListOf<MedicineListObject>()
+        val timesArrayList = arrayListOf<Time>()
+
+        // Get all Times and put in timesArrayList
+        for (medicineSchedule in medicineScheduleArray) {
+            for (time in medicineSchedule.time) {
+                if(!timesArrayList.contains(time)) {
+                    timesArrayList.add(time)
+                }
+            }
+        }
+
+        for(timeObject in timesArrayList) {
+            var time = timeObject
+            var medicineNames = ""
+            var medicineIDs: ArrayList<Int> = arrayListOf()
+
+
+            for(medicineSchedule in medicineScheduleArray) {
+                if(medicineSchedule.time.contains(timeObject)) {
+                    medicineNames += medicineSchedule.medicineName + "\n"
+                    medicineIDs.add(medicineSchedule.medicineID)
+                }
+            }
+
+            medicineList.add(MedicineListObject(medicineIDs, time, medicineNames))
+        }
+        return medicineList
+    }
+
+    fun setMedicineList(medicineScheduleArray: Array<MedicineSchedule>) {
+        medicineData = parseTime(medicineScheduleArray)
         notifyDataSetChanged()
     }
 

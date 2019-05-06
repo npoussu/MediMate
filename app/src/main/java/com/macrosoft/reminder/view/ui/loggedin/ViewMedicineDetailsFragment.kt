@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
-import com.macrosoft.reminder.data.MedicineDetailedListAdapter
+import com.macrosoft.reminder.adapter.MedicineDetailedListAdapter
+import com.macrosoft.reminder.data.MedicineDetails
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
 import kotlinx.android.synthetic.main.fragment_view_medicine_details.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel

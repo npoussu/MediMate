@@ -2,6 +2,10 @@ package com.macrosoft.reminder.application
 
 import androidx.room.Room
 import com.macrosoft.reminder.database.AppDatabase
+import com.macrosoft.reminder.database.ScheduleDAO
+import com.macrosoft.reminder.repository.MedicineRepository
+import com.macrosoft.reminder.repository.ReminderRepository
+import com.macrosoft.reminder.repository.ScheduleRepository
 import com.macrosoft.reminder.repository.UserRepository
 import com.macrosoft.reminder.viewmodel.AddMedicineViewModel
 import com.macrosoft.reminder.viewmodel.CreateAccountViewModel
@@ -15,13 +19,16 @@ object AppModules {
     val viewModelModule = module(override = true) {
         viewModel { LoginViewModel(get()) }
         viewModel { CreateAccountViewModel(get()) }
-        viewModel { ViewMedicineViewModel() }
+        viewModel { ViewMedicineViewModel(get(), get()) }
         viewModel { AddMedicineViewModel() }
     }
 
     val repositoryModule = module(override = true) {
         // Declare Repository dependencies here
         single { UserRepository(get()) }
+        single { MedicineRepository(get(), get()) }
+        single { ReminderRepository(get()) }
+        single { ScheduleRepository(get()) }
 
     }
 
@@ -40,6 +47,8 @@ object AppModules {
     val daoModule = module(override = true) {
         // Declare DAO dependencies here
         single { get<AppDatabase>().userDao() }
-
+        single { get<AppDatabase>().scheduleDao() }
+        single { get<AppDatabase>().reminderDAO() }
+        single { get<AppDatabase>().medicineDataDAO() }
     }
 }

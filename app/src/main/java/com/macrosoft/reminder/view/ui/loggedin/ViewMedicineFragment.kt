@@ -13,9 +13,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
-import com.macrosoft.reminder.data.MedicineListAdapter
+import com.macrosoft.reminder.adapter.MedicineListAdapter
+import com.macrosoft.reminder.data.MedicineDetails
+import com.macrosoft.reminder.data.MedicineDetailsList
+import com.macrosoft.reminder.data.MedicineListObject
 import com.macrosoft.reminder.databinding.ViewMedicineFragmentBinding
-import com.macrosoft.reminder.model.MedicineListObject
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
 import kotlinx.android.synthetic.main.view_medicine_fragment.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -25,7 +27,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
  * ViewMedicineFragment: Main screen of the application. Displays a list of card representing medicine to be taken at
  * certain times
  */
-class ViewMedicineFragment : Fragment() {
+class ViewMedicineFragment(val userId: Int) : Fragment() {
 
     private val TAG = ViewMedicineFragment::class.java.simpleName
 
@@ -73,14 +75,43 @@ class ViewMedicineFragment : Fragment() {
 
         medicineList_main.adapter = adapter
 
-        adapter.setMedicineList(
-            listOf(
-                MedicineListObject(1, "8:00AM", "Alpha E\nRazadyne\nDonepezil\nVitamin E1"),
-                MedicineListObject(5, "9:00AM", "Alpha E\nHydergine\nDonepezil\nEtanercept"),
-                MedicineListObject(11, "10:00AM", "Alpha E\nAquasol E\nDonepezil\nEtanercept"),
-                MedicineListObject(26, "11:00AM", "Alpha E\nAquasol E\nDonepezil\nEtanercept")
-            )
-        )
+
+
+
+
+
+
+
+
+        viewModel.getData.observe(this, Observer {
+            Log.i("DATA CHANGE", "!!!")
+            viewModel.getMedicineDetails().observe(this,
+            Observer {
+                val medsList = arrayListOf<MedicineDetails>()
+                it.forEach {
+                    it.time = viewModel.medicineDetailTime.toString()
+                    medsList.add(it)
+                }
+                val medicineList = MedicineDetailsList(1, medsList)
+                viewModel.setMedicineDetailsDatabaseID(medicineList)
+            })
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+        viewModel.getMedicineSchedules(userId).observe(this, Observer {
+            adapter.setMedicineList(it)
+        })
 
         viewModel.state.observe(viewLifecycleOwner, Observer {
             Log.i(TAG, it.toString())
@@ -97,10 +128,11 @@ class ViewMedicineFragment : Fragment() {
                 Log.i(TAG, "Adapter pos: $pos")
 
                 // Get the DB ID of a particular medicine item
-                val medicineID = adapter.getMedicineAt(pos).ID
+                val medicineID = adapter.getMedicineAt(pos).medicineIDs
                 Log.i(TAG, "DB ID: $medicineID")
 
-                viewModel.setMedicineDetailsDatabaseID(medicineID)
+                viewModel.medicineDetailTime = adapter.getMedicineAt(pos).time
+                viewModel.medicineDetailIDs.value = medicineID
             }
         })
     }

@@ -2,8 +2,8 @@ package com.macrosoft.reminder.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.macrosoft.reminder.model.MedicineDetails
-import com.macrosoft.reminder.model.MedicineDetailsList
+import com.macrosoft.reminder.data.MedicineDetails
+import com.macrosoft.reminder.data.MedicineDetailsList
 import com.macrosoft.reminder.model.User
 
 /**
@@ -16,7 +16,7 @@ object FakeRepository {
 
     init {
         _fakeUser.value = User("mary", "maryodriscoll", "password123")
-        val medicineDetails = listOf(
+        val medicineDetails = arrayListOf(
             MedicineDetails(
                 "Paracetamol", "8:00AM", "2 pills", "With water"
             ), MedicineDetails(

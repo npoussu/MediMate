@@ -108,16 +108,18 @@ class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardCli
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
-        with(ft) {
-            replace(R.id.fragment_holder, ViewMedicineFragment())
-            commit()
-        }
-
         // Get the userID from Intent extras, will be used to fetch data for a particular user from DB
         val userID = intent.getIntExtra("userID", 0)
         val userDisplayName = intent.getStringExtra("userDisplayName")
 
         Log.i(TAG, "UserDisplayName: $userDisplayName, ID: $userID")
+
+        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+        with(ft) {
+            replace(R.id.fragment_holder, ViewMedicineFragment(userID))
+            commit()
+        }
+
+
     }
 }

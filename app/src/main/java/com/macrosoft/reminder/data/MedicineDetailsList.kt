@@ -1,4 +1,4 @@
-package com.macrosoft.reminder.model
+package com.macrosoft.reminder.data
 
 /**
  * Wrapper for MedicineDetails. Also holds an Database ID for a group of medicine to be taken
@@ -10,5 +10,5 @@ package com.macrosoft.reminder.model
  */
 data class MedicineDetailsList(
     var ID: Int,
-    var items: List<MedicineDetails>
+    var items: ArrayList<MedicineDetails>
 )

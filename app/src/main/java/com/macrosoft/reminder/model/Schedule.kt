@@ -16,16 +16,21 @@ import java.sql.Time
             parentColumns = ["id"],
             childColumns = ["user_id"],
             onDelete = CASCADE
+        ),
+        ForeignKey(
+            entity = MedicineData::class,
+            parentColumns = ["id"],
+            childColumns = ["medicine_id"],
+            onDelete = CASCADE
         )],
-    indices = [androidx.room.Index(value = ["user_id"])]
+    indices = [androidx.room.Index(value = ["medicine_id", "user_id"])]
 )
 data class Schedule(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var id: Int,
-
     @ColumnInfo(name = "user_id")
     var userID: Int,
+
+    @ColumnInfo(name = "medicine_id")
+    var medicineID: Int,
 
     @ColumnInfo(name = "start_date")
     var startDate: Date,
@@ -38,4 +43,7 @@ data class Schedule(
 
     @ColumnInfo(name = "time")
     var time: ArrayList<Time>
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null
+}
