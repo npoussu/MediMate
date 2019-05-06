@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.databinding.Bindable
 import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
-import com.macrosoft.reminder.model.MedicineDetails
+import com.macrosoft.reminder.data.MedicineDetails
 
 class AddMedicineViewModel : ObservableViewModel() {
 

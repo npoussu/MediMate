@@ -131,8 +131,6 @@ class ViewMedicineViewModel(private val med_repo: MedicineRepository, private va
         reminderSundayEditChecked.value = false
     }
 
-    fun setMedicineDetailsDatabaseID(id: Int) {
-
     val medicineDetailIDs = LiveEvent<ArrayList<Int>>()
     val getData: LiveData<ArrayList<Int>> = medicineDetailIDs
 
