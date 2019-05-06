@@ -16,7 +16,7 @@ object FakeRepository {
 
     init {
         _fakeUser.value = User("mary", "maryodriscoll", "password123")
-        val medicineDetails = listOf(
+        val medicineDetails = arrayListOf(
             MedicineDetails(
                 "Paracetamol", "8:00AM", "2 pills", "With water"
             ), MedicineDetails(

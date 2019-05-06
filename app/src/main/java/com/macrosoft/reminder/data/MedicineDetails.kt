@@ -12,7 +12,7 @@ package com.macrosoft.reminder.data
  */
 data class MedicineDetails(
     val medicine_name: String,
-    val time: String,
+    var time: String,
     val dosage: String,
     val description: String
 )

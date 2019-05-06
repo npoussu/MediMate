@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.adapter.MedicineListAdapter
+import com.macrosoft.reminder.data.MedicineDetails
+import com.macrosoft.reminder.data.MedicineDetailsList
+import com.macrosoft.reminder.data.MedicineListObject
 import com.macrosoft.reminder.databinding.ViewMedicineFragmentBinding
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
 import kotlinx.android.synthetic.main.view_medicine_fragment.*
@@ -72,6 +75,40 @@ class ViewMedicineFragment(val userId: Int) : Fragment() {
 
         medicineList_main.adapter = adapter
 
+
+
+
+
+
+
+
+
+        viewModel.getData.observe(this, Observer {
+            Log.i("DATA CHANGE", "!!!")
+            viewModel.getMedicineDetails().observe(this,
+            Observer {
+                val medsList = arrayListOf<MedicineDetails>()
+                it.forEach {
+                    it.time = viewModel.medicineDetailTime.toString()
+                    medsList.add(it)
+                }
+                val medicineList = MedicineDetailsList(1, medsList)
+                viewModel.setMedicineDetailsDatabaseID(medicineList)
+            })
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
         viewModel.getMedicineSchedules(userId).observe(this, Observer {
             adapter.setMedicineList(it)
         })
@@ -94,9 +131,8 @@ class ViewMedicineFragment(val userId: Int) : Fragment() {
                 val medicineID = adapter.getMedicineAt(pos).medicineIDs
                 Log.i(TAG, "DB ID: $medicineID")
 
-
-                viewModel.medicineDetailIDs = medicineID
-                viewModel.setMedicineDetailsDatabaseID()
+                viewModel.medicineDetailTime = adapter.getMedicineAt(pos).time
+                viewModel.medicineDetailIDs.value = medicineID
             }
         })
     }

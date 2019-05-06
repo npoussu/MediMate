@@ -60,18 +60,6 @@ class ViewMedicineDetailsFragment : Fragment() {
         medicineDetailedList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         medicineDetailedList.setHasFixedSize(true)
 
-        viewModel.getMedicineDetails().observe(this,
-            Observer {
-                val medsList = arrayListOf<MedicineDetails>()
-                it.forEach {
-                    medsList.add(it)
-                }
-
-                Log.i("MEDS", medsList.toString() +"\n")
-
-            }
-        )
-
         adapter = MedicineDetailedListAdapter()
         medicineDetailedList.adapter = adapter
 

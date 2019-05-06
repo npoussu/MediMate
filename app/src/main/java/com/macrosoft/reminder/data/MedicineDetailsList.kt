@@ -10,5 +10,5 @@ package com.macrosoft.reminder.data
  */
 data class MedicineDetailsList(
     var ID: Int,
-    var items: List<MedicineDetails>
+    var items: ArrayList<MedicineDetails>
 )

@@ -24,7 +24,7 @@ class MedicineDetailedListAdapter : RecyclerView.Adapter<MedicineDetailedListAda
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = detailedList.items[position]
-        holder.medicineTime!!.text = item.time
+        holder.medicineTime!!.text = item.time.substring(0,5)
         holder.medicineName!!.text = item.medicine_name
         holder.pillAmount!!.text = item.dosage
         holder.requirementsText!!.text = item.description

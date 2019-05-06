@@ -34,7 +34,7 @@ class MedicineListAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = medicineData[position]
-        holder.time?.text = item.time.subSequence(0,5)
+        holder.time?.text = item.time.toString().subSequence(0,5)
         holder.medicineNames?.text = item.medicineNames
     }
 
@@ -83,10 +83,8 @@ class MedicineListAdapter :
                 }
             }
 
-            medicineList.add(MedicineListObject(medicineIDs, time.toString(), medicineNames))
+            medicineList.add(MedicineListObject(medicineIDs, time, medicineNames))
         }
-
-
         return medicineList
     }
 
