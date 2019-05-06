@@ -78,6 +78,7 @@
     <string name="medimate_logo_string">MediMate logo</string>
     <string name="add_button_logo">Add button logo</string>
     <string name="log_in">LOG IN</string>
+    <string name="edit_card">Click to make changes</string>
     <string name="reminders">Reminders</string>
     <string name="mo">MO</string>
     <string name="tu">TU</string>
