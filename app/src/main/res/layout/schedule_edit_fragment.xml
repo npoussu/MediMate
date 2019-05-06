@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View"/>
         <variable
@@ -23,12 +24,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/schedule"
-                    android:textColor="@color/white"
+                    android:textColor="@color/pink"
                     android:textStyle="bold"
-                    android:background="@color/orange"
+                    android:background="@color/light_gray"
                     android:padding="10dp"
-                    android:textSize="23sp"
-                    android:layout_marginTop="9dp"/>
+                    android:textSize="20sp"
+                    android:layout_marginTop="9dp"
+                    android:fontFamily="@font/royal"
+            />
 
             <TextView
                     android:id="@+id/selectStartDate"
@@ -43,9 +46,10 @@
                     android:paddingEnd="40dp"
                     android:paddingTop="25dp"
                     android:paddingBottom="25dp"
-                    android:textSize="20sp"
+                    android:textSize="25sp"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="24dp"/>
+                    android:layout_marginTop="24dp"
+            />
 
             <TextView
                     android:id="@+id/selectEndDate"
@@ -68,14 +72,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/reminders"
-                    android:textColor="@color/white"
+                    android:textColor="@color/pink"
                     android:onClick="@{() -> viewmodel.onSelectFrequencyClick()}"
                     android:textStyle="bold"
                     android:layout_below="@+id/selectEndDate"
-                    android:background="@color/orange"
+                    android:background="@color/light_gray"
+                    android:fontFamily="@font/royal"
                     android:padding="10dp"
-                    android:textSize="23sp"
-                    android:layout_marginTop="9dp"/>
+                    android:textSize="20sp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="20dp"/>
 
             <Spinner
                     android:layout_width="match_parent"
@@ -83,8 +89,16 @@
                     android:layout_below="@id/selectFrequencyTitle"
                     android:selectedItemPosition="@={viewmodel.spinnerEditIdItemPosition}"
                     android:id="@+id/spinnerEdit"
-                    android:layout_marginTop="9dp"
                     android:padding="10dp"/>
+
+            <TextView
+                    android:layout_below="@id/spinnerEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@color/pink"
+            />
+
 
             <RelativeLayout android:layout_width="match_parent"
                             android:layout_below="@id/spinnerEdit"
@@ -101,7 +115,9 @@
                         android:textStyle="bold"
                         android:padding="10dp"
                         tools:text="8:00"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                />
 
                 <TextView android:layout_width="wrap_content"
                           android:id="@+id/reminderTimeTwoEdit"
@@ -217,11 +233,14 @@
                             android:id="@+id/weekdayEditRelativeLayout"
                             android:layout_below="@+id/reminderEditRelativeLayout"
                             android:layout_marginBottom="20dp"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+            >
 
                 <ToggleButton
                         android:id="@+id/buttonMonday"
-                        android:layout_width="50dp"
+                        android:layout_width="55dp"
                         android:textOn="@string/mo"
                         android:checked="@={viewmodel.reminderMondayEditChecked}"
                         android:textOff="@string/mo"
@@ -230,7 +249,7 @@
 
                 <ToggleButton
                         android:id="@+id/buttonTuesday"
-                        android:layout_width="50dp"
+                        android:layout_width="55dp"
                         android:checked="@={viewmodel.reminderTuesdayEditChecked}"
                         android:textOn="@string/tu"
                         android:textOff="@string/tu"
@@ -239,7 +258,7 @@
 
                 <ToggleButton
                         android:id="@+id/buttonWednesday"
-                        android:layout_width="50dp"
+                        android:layout_width="55dp"
                         android:checked="@={viewmodel.reminderWednesdayEditChecked}"
                         android:textOn="@string/we"
                         android:textOff="@string/we"
@@ -248,7 +267,7 @@
 
                 <ToggleButton
                         android:id="@+id/buttonThursday"
-                        android:layout_width="50dp"
+                        android:layout_width="55dp"
                         android:checked="@={viewmodel.reminderThursdayEditChecked}"
                         android:textOn="@string/th"
                         android:textOff="@string/th"
@@ -257,7 +276,7 @@
 
                 <ToggleButton
                         android:id="@+id/buttonFriday"
-                        android:layout_width="50dp"
+                        android:layout_width="55dp"
                         android:checked="@={viewmodel.reminderFridayEditChecked}"
                         android:textOn="@string/fr"
                         android:textOff="@string/fr"
@@ -266,7 +285,7 @@
 
                 <ToggleButton
                         android:id="@+id/buttonSaturday"
-                        android:layout_width="50dp"
+                        android:layout_width="55dp"
                         android:textOn="@string/sa"
                         android:checked="@={viewmodel.reminderSaturdayEditChecked}"
                         android:textOff="@string/sa"
@@ -278,21 +297,30 @@
                         android:id="@+id/buttonSunday"
                         android:textOn="@string/su"
                         android:textOff="@string/su"
-                        android:layout_width="50dp"
+                        android:layout_width="55dp"
                         android:checked="@={viewmodel.reminderSundayEditChecked}"
                         android:layout_toEndOf="@id/buttonSaturday"
                         android:layout_height="wrap_content"/>
 
             </RelativeLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                     android:id="@+id/saveButton"
                     android:layout_below="@id/weekdayEditRelativeLayout"
                     android:layout_centerHorizontal="true"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:text="@string/save"
                     android:onClick="@{() -> viewmodel.onSaveButtonClick()}"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    app:cornerRadius="50dp"
+                    android:background="@color/blue"
+                    android:fontFamily="@font/moonchild"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="32dp"
+                    android:padding="5dp"
+                    android:textSize="25sp"
+            />
 
         </RelativeLayout>
     </ScrollView>

@@ -84,12 +84,12 @@
                 android:onClick="@{() -> viewmodel.onCreateAccountClick()}"
                 android:layout_marginBottom="84dp"
                 android:textStyle="bold"
-                android:textSize="20sp"
                 android:background="@color/green"
                 android:textColor="@color/white"
                 app:cornerRadius="50dp"
                 android:fontFamily="@font/moonchild"
-                android:padding="10dp"
+                android:padding="5dp"
+                android:textSize="25sp"
         />
 
         <TextView
