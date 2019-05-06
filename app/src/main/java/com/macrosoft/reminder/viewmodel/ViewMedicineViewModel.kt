@@ -36,6 +36,97 @@ class ViewMedicineViewModel : ObservableViewModel() {
     private val showAddReminderFragment = LiveEvent<Boolean>()
     val addReminderFragmentState: LiveData<Boolean> = showAddReminderFragment
 
+    // Single LiveEvents
+    val showEditScheduleFragment = LiveEvent<Boolean>()
+
+    val showStartDatePicker = LiveEvent<Boolean>()
+
+    val showEndDatePicker = LiveEvent<Boolean>()
+
+    // Reminder Times Bindings
+    @Bindable
+    val reminderTimeOneEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeTwoEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeThreeEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeFourEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeFiveEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeSixEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeSevenEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeEightEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeNineEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val reminderTimeTenEditContent = MutableLiveData<String>()
+
+    // Reminder Weekdays selected Bindings
+    @Bindable
+    val reminderMondayEditChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val reminderTuesdayEditChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val reminderWednesdayEditChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val reminderThursdayEditChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val reminderFridayEditChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val reminderSaturdayEditChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val reminderSundayEditChecked = MutableLiveData<Boolean>()
+
+    @Bindable
+    val spinnerEditIdItemPosition = MutableLiveData<Int>()
+
+    @Bindable
+    val startDateEditContent = MutableLiveData<String>()
+
+    @Bindable
+    val endDateEditContent = MutableLiveData<String>()
+
+    // Initialize the Reminder fields
+    init {
+        reminderTimeOneEditContent.value = "8:00"
+        reminderTimeTwoEditContent.value = "9:00"
+        reminderTimeThreeEditContent.value = "10:00"
+        reminderTimeFourEditContent.value = "11:00"
+        reminderTimeFiveEditContent.value = "12:00"
+        reminderTimeSixEditContent.value = "13:00"
+        reminderTimeSevenEditContent.value = "14:00"
+        reminderTimeEightEditContent.value = "15:00"
+        reminderTimeNineEditContent.value = "16:00"
+        reminderTimeTenEditContent.value = "17:00"
+
+        reminderMondayEditChecked.value = false
+        reminderTuesdayEditChecked.value = false
+        reminderWednesdayEditChecked.value = false
+        reminderThursdayEditChecked.value = false
+        reminderFridayEditChecked.value = false
+        reminderSaturdayEditChecked.value = false
+        reminderSundayEditChecked.value = false
+    }
+
     fun setMedicineDetailsDatabaseID(id: Int) {
 
         // TODO: Get the Reminder from DB using the @id parameter and set the Reminder to medicineDetails.value
@@ -47,6 +138,7 @@ class ViewMedicineViewModel : ObservableViewModel() {
         medicineDetailsItem.value = medicineDetails
     }
 
+    // Triggers opening AddScheduleFragment
     fun onScheduleClick() {
 
         // TODO: Open date picker on click to select schedule
@@ -55,12 +147,8 @@ class ViewMedicineViewModel : ObservableViewModel() {
         Log.i(TAG, medicineNameInputContent.value)
         Log.i(TAG, dosageInputContent.value)
         Log.i(TAG, requirementsInputContent.value)
-    }
 
-    fun onAlarmClick() {
-
-        // TODO: Open the alarm selection on clicking
-        Log.i(TAG, "onAlarmClick()")
+        showEditScheduleFragment.value = true
     }
 
     fun onDeleteMedClick() {
@@ -88,5 +176,48 @@ class ViewMedicineViewModel : ObservableViewModel() {
     fun onAddMedicineClick() {
         Log.i(TAG, "onAddMedicineClick()")
         showAddReminderFragment.value = true
+    }
+
+    // Triggers opening the DatePickerDialog for selecting End Date of Reminder
+    fun onSelectEndDateClick() {
+        Log.i(TAG, "onSelectEndDateClick()")
+        showEndDatePicker.value = true
+    }
+
+    // Triggers opening the DatePickerDialog for selecting Start Date of Reminder
+    fun onSelectStartDateClick() {
+        Log.i(TAG, "onSelectStartDateClick()")
+        showStartDatePicker.value = true
+    }
+
+    // For debug logging
+    fun onSelectFrequencyClick() {
+        Log.i(TAG, "onSelectFrequencyClick()")
+        Log.i(TAG, spinnerEditIdItemPosition.value.toString())
+
+        Log.i(TAG, "First reminder: " + reminderTimeOneEditContent.value)
+        Log.i(TAG, "Second reminder: " + reminderTimeTwoEditContent.value)
+        Log.i(TAG, "Third reminder: " + reminderTimeThreeEditContent.value)
+        Log.i(TAG, "Fourth reminder: " + reminderTimeFourEditContent.value)
+        Log.i(TAG, "Fifth reminder: " + reminderTimeFiveEditContent.value)
+        Log.i(TAG, "Sixth reminder: " + reminderTimeSixEditContent.value)
+        Log.i(TAG, "Seventh reminder: " + reminderTimeSevenEditContent.value)
+        Log.i(TAG, "Eight reminder: " + reminderTimeEightEditContent.value)
+        Log.i(TAG, "Ninth reminder: " + reminderTimeNineEditContent.value)
+        Log.i(TAG, "Tenth reminder: " + reminderTimeTenEditContent.value)
+
+
+        Log.i(TAG, "Monday reminder checked: " + reminderMondayEditChecked.value)
+        Log.i(TAG, "Tuesday reminder checked: " + reminderTuesdayEditChecked.value)
+        Log.i(TAG, "Wednesday reminder checked: " + reminderWednesdayEditChecked.value)
+        Log.i(TAG, "Thursday reminder checked: " + reminderThursdayEditChecked.value)
+        Log.i(TAG, "Friday reminder checked: " + reminderFridayEditChecked.value)
+        Log.i(TAG, "Saturday reminder checked: " + reminderSaturdayEditChecked.value)
+        Log.i(TAG, "Sunday reminder checked: " + reminderSundayEditChecked.value)
+    }
+
+    fun onSaveButtonClick() {
+        // TODO: Save the reminder and setup Alarms here
+        Log.i(TAG, "onSaveButtonClick()")
     }
 }
