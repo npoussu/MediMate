@@ -246,7 +246,7 @@ class AddScheduleFragment : Fragment() {
 
         viewModel.triggerMedicineReminderDialog.observe(this, androidx.lifecycle.Observer {
             if (!mNotified) {
-                NotificationUtils().setNotification(it.name, it.dosage, it.requirements, mNotificationTime, activity!!)
+                NotificationUtils().setNotification(it.medicine_name, it.dosage, it.description, mNotificationTime, activity!!)
             }
         })
     }
