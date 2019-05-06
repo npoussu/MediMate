@@ -152,7 +152,6 @@
                 android:id="@+id/addMedButton"
                 android:background="@color/blue"
                 android:fontFamily="@font/moonchild"
-                android:textSize="20sp"
                 android:onClick="@{() -> viewmodel.onSaveMedClick()}"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -160,7 +159,8 @@
                 android:layout_marginBottom="99dp"
                 android:layout_centerInParent="true"
                 app:cornerRadius="50dp"
-                android:padding="10dp"
+                android:padding="5dp"
+                android:textSize="25sp"
         />
 
         <com.google.android.material.button.MaterialButton
@@ -171,14 +171,14 @@
                 android:onClick="@{() -> viewmodel.onDeleteMedClick()}"
                 android:backgroundTint="@color/red"
                 android:fontFamily="@font/moonchild"
-                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_centerInParent="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="32dp"
                 app:cornerRadius="50dp"
-                android:padding="10dp"/>
+                android:padding="5dp"
+                android:textSize="25sp"/>
 
     </RelativeLayout>
 </layout>
