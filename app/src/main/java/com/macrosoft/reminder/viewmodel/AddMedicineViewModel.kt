@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.databinding.Bindable
 import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
+import com.macrosoft.reminder.model.MedicineDetails
 
 class AddMedicineViewModel : ObservableViewModel() {
 
@@ -82,6 +83,8 @@ class AddMedicineViewModel : ObservableViewModel() {
     val showStartDatePicker = LiveEvent<Boolean>()
 
     val showEndDatePicker = LiveEvent<Boolean>()
+
+    val triggerMedicineReminderDialog = LiveEvent<MedicineDetails>()
 
     // Start/End Date Bindings
     @Bindable
@@ -170,5 +173,12 @@ class AddMedicineViewModel : ObservableViewModel() {
     fun onSaveButtonClick() {
         // TODO: Save the reminder and setup Alarms here
         Log.i(TAG, "onSaveButtonClick()")
+
+        triggerMedicineReminderDialog.value = MedicineDetails(
+            medicineNameInputContent.value!!,
+            "8:00AM",
+            dosageInputContent.value!!,
+            requirementsInputContent.value!!
+        )
     }
 }

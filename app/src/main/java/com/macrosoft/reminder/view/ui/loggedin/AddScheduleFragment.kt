@@ -30,6 +30,10 @@ class AddScheduleFragment : Fragment() {
 
     private val viewModel: AddMedicineViewModel by sharedViewModel()
 
+    private val mNotificationTime =
+        Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time.
+    private var mNotified = false
+
     interface IAddScheduleFragment {
         fun setToolbarTitle(title: String)
     }
@@ -240,6 +244,11 @@ class AddScheduleFragment : Fragment() {
             timePickerDialogTen.show()
         }
 
+        viewModel.triggerMedicineReminderDialog.observe(this, androidx.lifecycle.Observer {
+            if (!mNotified) {
+                NotificationUtils().setNotification(it.name, it.dosage, it.requirements, mNotificationTime, activity!!)
+            }
+        })
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

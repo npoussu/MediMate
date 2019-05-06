@@ -21,6 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <receiver
+                android:name="com.macrosoft.reminder.view.ui.loggedin.AlarmReceiver"
+                android:enabled="true"/>
+
+        <service
+                android:name="com.macrosoft.reminder.view.ui.loggedin.NotificationService"
+                android:enabled="true"/>
+
     </application>
 
 </manifest>
