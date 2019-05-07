@@ -86,6 +86,8 @@ class AddMedicineViewModel : ObservableViewModel() {
 
     val triggerMedicineReminderDialog = LiveEvent<MedicineDetails>()
 
+    val triggerMedicineReminderDialogRTC = LiveEvent<MedicineDetails>()
+
     // Start/End Date Bindings
     @Bindable
     val startDateAddContent = MutableLiveData<String>()
@@ -171,7 +173,6 @@ class AddMedicineViewModel : ObservableViewModel() {
     }
 
     fun onSaveButtonClick() {
-        // TODO: Save the reminder and setup Alarms here
         Log.i(TAG, "onSaveButtonClick()")
 
         if (medicineNameInputContent.value != null && dosageInputContent.value != null && requirementsInputContent.value != null) {
@@ -183,5 +184,16 @@ class AddMedicineViewModel : ObservableViewModel() {
             )
         }
 
+    }
+
+    fun onSaveButtonRTCClick() {
+        Log.i(TAG, "onSaveButtonClick()")
+
+        if (medicineNameInputContent.value != null && dosageInputContent.value != null && requirementsInputContent.value != null) {
+            triggerMedicineReminderDialogRTC.value = MedicineDetails(
+                medicineNameInputContent.value!!, reminderTimeOneAddContent.value.toString(),
+                dosageInputContent.value!!, requirementsInputContent.value!!
+            )
+        }
     }
 }

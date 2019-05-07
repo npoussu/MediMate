@@ -96,7 +96,7 @@ class AddScheduleFragment : Fragment() {
                 reminderTimeOneAdd.text = "$h:$m"
             }
 
-        }), hour, minute, false)
+        }), hour, minute, true)
 
         val timePickerDialogTwo = TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
 
@@ -107,7 +107,7 @@ class AddScheduleFragment : Fragment() {
                 reminderTimeTwoAdd.text = "$h:$m"
             }
 
-        }), hour, minute, false)
+        }), hour, minute, true)
 
         val timePickerDialogThree =
             TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
@@ -119,7 +119,7 @@ class AddScheduleFragment : Fragment() {
                     reminderTimeThreeAdd.text = "$h:$m"
                 }
 
-            }), hour, minute, false)
+            }), hour, minute, true)
 
         val timePickerDialogFour =
             TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
@@ -131,7 +131,7 @@ class AddScheduleFragment : Fragment() {
                     reminderTimeFourAdd.text = "$h:$m"
                 }
 
-            }), hour, minute, false)
+            }), hour, minute, true)
 
         val timePickerDialogFive =
             TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
@@ -143,7 +143,7 @@ class AddScheduleFragment : Fragment() {
                     reminderTimeFiveAdd.text = "$h:$m"
                 }
 
-            }), hour, minute, false)
+            }), hour, minute, true)
 
         val timePickerDialogSix = TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
 
@@ -154,7 +154,7 @@ class AddScheduleFragment : Fragment() {
                 reminderTimeSixAdd.text = "$h:$m"
             }
 
-        }), hour, minute, false)
+        }), hour, minute, true)
 
         val timePickerDialogSeven =
             TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
@@ -166,7 +166,7 @@ class AddScheduleFragment : Fragment() {
                     reminderTimeSevenAdd.text = "$h:$m"
                 }
 
-            }), hour, minute, false)
+            }), hour, minute, true)
 
         val timePickerDialogEight =
             TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
@@ -178,7 +178,7 @@ class AddScheduleFragment : Fragment() {
                     reminderTimeEightAdd.text = "$h:$m"
                 }
 
-            }), hour, minute, false)
+            }), hour, minute, true)
 
         val timePickerDialogNine =
             TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
@@ -190,7 +190,7 @@ class AddScheduleFragment : Fragment() {
                     reminderTimeNineAdd.text = "$h:$m"
                 }
 
-            }), hour, minute, false)
+            }), hour, minute, true)
 
         val timePickerDialogTen = TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
 
@@ -201,7 +201,7 @@ class AddScheduleFragment : Fragment() {
                 reminderTimeTenAdd.text = "$h:$m"
             }
 
-        }), hour, minute, false)
+        }), hour, minute, true)
 
         reminderTimeOneAdd.setOnClickListener {
             timePickerDialogOne.show()
@@ -247,6 +247,22 @@ class AddScheduleFragment : Fragment() {
         viewModel.triggerMedicineReminderDialog.observe(this, androidx.lifecycle.Observer {
             if (!mNotified) {
                 NotificationUtils().setNotification(it.medicine_name, it.dosage, it.description, mNotificationTime, activity!!)
+            }
+        })
+
+        viewModel.triggerMedicineReminderDialogRTC.observe(this, androidx.lifecycle.Observer {
+            if (!mNotified) {
+                val timeSeparated: List<String> = it.time.split(":")
+                Log.i(TAG, "Hour: " + timeSeparated[0] + "Minute: " + timeSeparated[1])
+                NotificationUtils().setNotificationRTC(
+                    true,
+                    it.medicine_name,
+                    it.dosage,
+                    it.description,
+                    timeSeparated[0].toInt().toString().toInt(),
+                    timeSeparated[1].toInt().toString().toInt(),
+                    activity!!
+                )
             }
         })
     }
