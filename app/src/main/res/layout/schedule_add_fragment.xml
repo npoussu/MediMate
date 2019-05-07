@@ -331,6 +331,24 @@
                     android:textSize="25sp"
             />
 
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/saveButtoRTC"
+                    android:layout_below="@id/saveButton"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="300dp"
+                    android:text="SAVE (RTC)"
+                    android:onClick="@{() -> viewmodel.onSaveButtonRTCClick()}"
+                    android:layout_height="wrap_content"
+                    app:cornerRadius="50dp"
+                    android:background="@color/blue"
+                    android:fontFamily="@font/moonchild"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="32dp"
+                    android:padding="5dp"
+                    android:textSize="25sp"
+            />
+
         </RelativeLayout>
     </ScrollView>
 </layout>

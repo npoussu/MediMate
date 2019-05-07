@@ -12,15 +12,17 @@ class NotificationService : IntentService("NotificationService") {
         var medicineName = "X"
         var dosage = "0 pills"
         var requirements = "-"
+        var useRTC = false
 
         if (!(intent == null || intent.extras == null)) {
             timestamp = intent.extras!!.getLong("timestamp")
             medicineName = intent.extras!!.getString("medicineName")
             dosage = intent.extras!!.getString("dosageValue")
             requirements = intent.extras!!.getString("requirementsValue")
+            useRTC = intent.extras!!.getBoolean("useRTC")
         }
 
-        if (timestamp > 0) {
+        if (timestamp > 0 || useRTC) {
 
             val notifyIntent = Intent(this, MainActivity::class.java)
 
