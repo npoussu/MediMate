@@ -259,8 +259,8 @@ class AddScheduleFragment : Fragment() {
                     it.medicine_name,
                     it.dosage,
                     it.description,
-                    timeSeparated[0].toInt().toString().toInt(),
-                    timeSeparated[1].toInt().toString().toInt(),
+                    timeSeparated[0].toInt(),
+                    timeSeparated[1].toInt(),
                     activity!!
                 )
             }
