@@ -174,11 +174,14 @@ class AddMedicineViewModel : ObservableViewModel() {
         // TODO: Save the reminder and setup Alarms here
         Log.i(TAG, "onSaveButtonClick()")
 
-        triggerMedicineReminderDialog.value = MedicineDetails(
-            medicineNameInputContent.value!!,
-            "8:00AM",
-            dosageInputContent.value!!,
-            requirementsInputContent.value!!
-        )
+        if (medicineNameInputContent.value != null && dosageInputContent.value != null && requirementsInputContent.value != null) {
+            triggerMedicineReminderDialog.value = MedicineDetails(
+                medicineNameInputContent.value!!,
+                "8:00AM",
+                dosageInputContent.value!!,
+                requirementsInputContent.value!!
+            )
+        }
+
     }
 }
