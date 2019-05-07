@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -13,7 +14,7 @@ import com.macrosoft.reminder.databinding.FragmentAddReminderBinding
 import com.macrosoft.reminder.viewmodel.AddMedicineViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class AddMedicineFragment : Fragment() {
+class AddMedicineFragment(val userID: Int) : Fragment() {
 
     private val viewModel: AddMedicineViewModel by sharedViewModel()
 
@@ -43,6 +44,21 @@ class AddMedicineFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        viewModel.userID = userID
+
+        viewModel.getLastMedID().observe(this, Observer {
+            if(it.size > 0){
+                viewModel.lastMedID = it.max()!!
+            }
+            else {
+                viewModel.lastMedID = 0
+            }
+        })
+
+        viewModel.showToast.observe(this, androidx.lifecycle.Observer {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        })
+
         viewModel.showAddScheduleFragment.observe(viewLifecycleOwner, Observer {
             listener!!.onAddScheduleClicked()
         })

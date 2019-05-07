@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.macrosoft.reminder.R
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 
 class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardClickedListener,
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardCli
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
 
         with(ft) {
-            replace(R.id.fragment_holder, AddMedicineFragment())
+            replace(R.id.fragment_holder, AddMedicineFragment(intent.getIntExtra("userID", 0)))
             addToBackStack(null)
             commit()
         }

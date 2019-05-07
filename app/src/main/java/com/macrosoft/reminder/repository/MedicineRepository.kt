@@ -24,12 +24,17 @@ class MedicineRepository(medicineDataDAO: MedicineDataDAO, scheduleDAO: Schedule
         return medicineDataDAOImpl.getMedicineByUserID(id)
     }
 
+
     fun getMedicineSchedule(user_id: Int): LiveData<Array<MedicineSchedule>> {
         return medicineDataDAOImpl.getMedicineSchedule(user_id)
     }
 
     fun getMedicineDetail(med_id: IntArray): LiveData<Array<MedicineDetails>> {
         return medicineDataDAOImpl.getMedicineDetail(med_id)
+    }
+
+    fun getMedicineIDs(): LiveData<Array<Int>>{
+        return medicineDataDAOImpl.getMedicineIDs()
     }
 
     fun deleteMedicine(medicine: MedicineData) {

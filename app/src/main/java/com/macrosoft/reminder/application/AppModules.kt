@@ -19,8 +19,8 @@ object AppModules {
     val viewModelModule = module(override = true) {
         viewModel { LoginViewModel(get()) }
         viewModel { CreateAccountViewModel(get()) }
-        viewModel { ViewMedicineViewModel(get(), get()) }
-        viewModel { AddMedicineViewModel() }
+        viewModel { ViewMedicineViewModel(get()) }
+        viewModel { AddMedicineViewModel(get(), get(), get()) }
     }
 
     val repositoryModule = module(override = true) {

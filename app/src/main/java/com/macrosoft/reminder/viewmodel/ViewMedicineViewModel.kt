@@ -15,7 +15,7 @@ import java.sql.Date
 import java.sql.Time
 
 
-class ViewMedicineViewModel(private val med_repo: MedicineRepository, private val reminder_repo: ReminderRepository) :
+class ViewMedicineViewModel(private val med_repo: MedicineRepository) :
     ObservableViewModel() {
 
     companion object {
