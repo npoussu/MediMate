@@ -55,13 +55,14 @@ class AddMedicineFragment(val userID: Int) : Fragment() {
             }
         })
 
-        viewModel.showToast.observe(this, androidx.lifecycle.Observer {
+        viewModel.showToast.observe(this, Observer {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         })
 
         viewModel.showAddScheduleFragment.observe(viewLifecycleOwner, Observer {
             listener!!.onAddScheduleClicked()
         })
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
