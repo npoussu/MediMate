@@ -1,3 +1,4 @@
+
 package com.macrosoft.reminder.view.ui.loggedin
 
 import android.media.MediaPlayer
@@ -151,3 +152,4 @@ class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardCli
 
     }
 }
+
