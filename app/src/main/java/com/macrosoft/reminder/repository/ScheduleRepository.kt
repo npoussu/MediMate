@@ -20,8 +20,8 @@ class ScheduleRepository(scheduleDAO: ScheduleDAO) {
         return scheduleDAOImpl.getScheduleByMedicineID(medID)
     }
 
-    fun deleteSchedule(schedule: Schedule) {
-        return scheduleDAOImpl.delete(schedule)
+    fun deleteScheduleByID(id: Int) {
+        return scheduleDAOImpl.deleteScheduleByID(id)
     }
 
     fun insertSchedule(schedule: Schedule) {

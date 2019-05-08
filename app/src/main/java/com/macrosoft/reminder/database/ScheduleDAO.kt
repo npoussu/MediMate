@@ -18,4 +18,7 @@ interface ScheduleDAO : BaseDao<Schedule>{
 
     @Query("UPDATE schedules SET start_date = :start_date, end_date = :end_date, time = :time WHERE id = :id")
     fun updateScheduleByID(id: Int, start_date: Date, end_date: Date, time: ArrayList<Time>)
+
+    @Query("DELETE FROM schedules WHERE id = :id")
+    fun deleteScheduleByID(id: Int)
 }

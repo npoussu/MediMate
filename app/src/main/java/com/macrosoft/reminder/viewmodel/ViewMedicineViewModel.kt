@@ -164,7 +164,6 @@ class ViewMedicineViewModel(
     }
 
     fun setMedicineDetailsDatabaseID(meds: MedicineDetailsList) {
-        // TODO: Get the Reminder from DB using the @id parameter and set the Reminder to medicineDetails.value
         medicineDetails.value = meds
     }
 
@@ -189,6 +188,12 @@ class ViewMedicineViewModel(
     fun onDeleteMedClick() {
 
         // TODO: Update the DB entity "MedicineDetailsList" by deleting a medicine "MedicineDetails" member variable from the current DB entity
+        val medID = medicineDetailsItem.value!!.id
+        val scheduleID = currentlySelectedSchedule.value!!.id
+        med_repo.deleteMedicineByID(medID)
+        schedule_repo.deleteScheduleByID(scheduleID!!)
+        reminder_repo.deleteReminderByMedID(medID)
+
         Log.i(TAG, "onDeleteMedClick()")
     }
 
@@ -203,6 +208,7 @@ class ViewMedicineViewModel(
             showToast.value = "Requirements cant be null"
         } else {
             val medID = medicineDetailsItem.value!!.id
+
             reminder_repo.updateReminderByMedicineID(
                 medID,
                 dosageInputContent.value!!

@@ -37,8 +37,8 @@ class MedicineRepository(medicineDataDAO: MedicineDataDAO, scheduleDAO: Schedule
         return medicineDataDAOImpl.getMedicineIDs()
     }
 
-    fun deleteMedicine(medicine: MedicineData) {
-        return medicineDataDAOImpl.delete(medicine)
+    fun deleteMedicineByID(id: Int) {
+        return medicineDataDAOImpl.deleteMedicineByID(id)
     }
 
     fun insertMedicine(medicine: MedicineData) {

@@ -30,4 +30,7 @@ interface MedicineDataDAO: BaseDao<MedicineData>{
 
     @Query("UPDATE medicine_data SET medicine_name = :medicineName, description = :description WHERE id = :id")
     fun updateMedicineByID(id: Int, medicineName: String, description: String)
+
+    @Query("DELETE FROM medicine_data WHERE id = :id")
+    fun deleteMedicineByID(id: Int)
 }
