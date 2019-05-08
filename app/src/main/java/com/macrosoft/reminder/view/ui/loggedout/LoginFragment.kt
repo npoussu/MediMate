@@ -26,6 +26,7 @@ class LoginFragment : Fragment() {
 
     interface OnCreateAccountClickedListener {
         fun onCreateAccountClicked()
+        fun setToolbarTitle(title: String)
     }
 
     override fun onAttach(context: Context) {
@@ -41,6 +42,11 @@ class LoginFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        listener?.setToolbarTitle(getString(R.string.login_title))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

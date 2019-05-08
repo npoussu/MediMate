@@ -12,6 +12,10 @@ class StartActivity : AppCompatActivity(),
     LoginFragment.OnCreateAccountClickedListener,
     CreateAccountFragment.OnAccExistsClickedListener {
 
+    override fun setToolbarTitle(title: String) {
+        toolbar_title.text = title
+    }
+
     override fun onCreateAccountClicked() {
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
 
