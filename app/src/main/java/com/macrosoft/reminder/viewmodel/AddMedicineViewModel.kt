@@ -98,6 +98,8 @@ class AddMedicineViewModel(private val med_repo: MedicineRepository, private val
 
     val triggerMedicineReminderDialog = LiveEvent<MedicineDetails>()
 
+    val triggerMedicineReminderDialogRTC = LiveEvent<MedicineDetails>()
+
     // Start/End Date Bindings
     @Bindable
     val startDateAddContent = MutableLiveData<String>()
@@ -266,8 +268,27 @@ class AddMedicineViewModel(private val med_repo: MedicineRepository, private val
             ifScheduleIsSet = true
             showToast.value = "Schedule Saved!"
             showAddScheduleFragment.value = true
+          
+            // Setup alarm
+            if (medicineNameInputContent.value != null && dosageInputContent.value != null && requirementsInputContent.value != null) {
+            triggerMedicineReminderDialog.value = MedicineDetails(
+                medicineNameInputContent.value!!,
+                "8:00AM",
+                dosageInputContent.value!!,
+                requirementsInputContent.value!!
+            )
         }
+          
+     }
 
+    fun onSaveButtonRTCClick() {
+        Log.i(TAG, "onSaveButtonClick()")
 
+        if (medicineNameInputContent.value != null && dosageInputContent.value != null && requirementsInputContent.value != null) {
+            triggerMedicineReminderDialogRTC.value = MedicineDetails(
+                medicineNameInputContent.value!!, reminderTimeOneAddContent.value.toString(),
+                dosageInputContent.value!!, requirementsInputContent.value!!
+            )
+        }
     }
 }

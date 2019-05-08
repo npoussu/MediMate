@@ -1,5 +1,7 @@
 package com.macrosoft.reminder.view.ui.loggedin
 
+import android.media.MediaPlayer
+import android.media.RingtoneManager
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
@@ -9,11 +11,13 @@ import com.macrosoft.reminder.R
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 
+
 class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardClickedListener,
     ViewMedicineDetailsFragment.OnDetailedListCardClickedListener, EditMedicineFragment.OnPopBackStack,
     AddMedicineFragment.OnPopBackStack, AddScheduleFragment.IAddScheduleFragment,
     EditScheduleFragment.IEditScheduleFragment {
 
+    private var playerStarted = false
     private var takeMedicine = false
 
     override fun onEditScheduleClicked() {
@@ -63,21 +67,36 @@ class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardCli
         val requirementsValue = intent.getStringExtra("requirementsValue")
 
         if (takeMedicine && medicineName != null) {
-            // Initialize a new instance of
-            val builder = AlertDialog.Builder(this@MainActivity)
-            builder.setTitle("Reminder")
-            builder.setMessage("Take medicine: $medicineName\nDosage: $dosageValue\nRequirements: $requirementsValue")
 
-            builder.setPositiveButton("Taken") { dialog, which ->
-
-            }
-
-            builder.setNegativeButton("Cancel") { dialog, which ->
-            }
-
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
             takeMedicine = false
+            val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+            val player = MediaPlayer.create(this, notification)
+            player.isLooping = true
+
+            if (!playerStarted) {
+                player.start()
+                playerStarted = true
+
+                // Initialize a new instance of
+                val builder = AlertDialog.Builder(this@MainActivity)
+                builder.setTitle("Reminder")
+                builder.setMessage("Take medicine: $medicineName\nDosage: $dosageValue\nRequirements: $requirementsValue")
+
+                builder.setPositiveButton("Taken") { dialog, which ->
+                    player.stop()
+                }
+
+                builder.setNegativeButton("Cancel") { dialog, which ->
+                    player.stop()
+                }
+
+                builder.setOnDismissListener {
+                    player.stop()
+                    onBackPressed()
+                }
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+            }
         }
 
     }

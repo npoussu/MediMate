@@ -11,6 +11,7 @@ class AlarmReceiver : BroadcastReceiver() {
         service.putExtra("medicineName", intent?.getStringExtra("medicineName"))
         service.putExtra("dosageValue", intent?.getStringExtra("dosageValue"))
         service.putExtra("requirementsValue", intent?.getStringExtra("requirementsValue"))
+        service.putExtra("useRTC", intent?.getBooleanExtra("useRTC", false))
         context?.startService(service)
     }
 }
