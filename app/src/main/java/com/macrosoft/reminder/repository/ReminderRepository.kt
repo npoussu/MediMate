@@ -22,7 +22,7 @@ class ReminderRepository(reminderDAO: ReminderDAO) {
         return reminderDAOImpl.insert(reminder)
     }
 
-    fun updateReminder(reminder: Reminder) {
-        return reminderDAOImpl.update(reminder)
+    fun updateReminderByMedicineID(id: Int, frequency: String){
+        return reminderDAOImpl.updateReminderByMedicineID(id, frequency)
     }
 }

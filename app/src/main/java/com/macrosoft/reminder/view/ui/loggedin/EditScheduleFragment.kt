@@ -9,16 +9,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.databinding.ScheduleEditFragmentBinding
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.schedule_edit_fragment.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import java.text.SimpleDateFormat
 import java.util.*
 
-class EditScheduleFragment : Fragment() {
+class EditScheduleFragment(val userID: Int) : Fragment() {
 
     lateinit var binding: ScheduleEditFragmentBinding
 
@@ -42,6 +46,10 @@ class EditScheduleFragment : Fragment() {
         super.onStart()
         listener!!.setToolbarTitle(getString(R.string.edit_schedule))
 
+        viewModel.showToast.observe(this, androidx.lifecycle.Observer {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        })
+
         val arrayAdapter = ArrayAdapter.createFromResource(
             context!!,
             R.array.times_to_take_medicine,
@@ -52,12 +60,18 @@ class EditScheduleFragment : Fragment() {
 
         val calendar = Calendar.getInstance()
 
+        viewModel.userID = userID
+
         // Get today's Date values (year, month, day)
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val hour = calendar.get(Calendar.HOUR)
         val minute = calendar.get(Calendar.MINUTE)
+
+        var dateFormatter = SimpleDateFormat("yyyy/MM/dd")
+        viewModel.startDateEditContent.value = dateFormatter.format(viewModel.currentlySelectedSchedule.value!!.startDate)
+        viewModel.endDateEditContent.value = dateFormatter.format(viewModel.currentlySelectedSchedule.value!!.endDate)
 
         val startDatePicker =
             DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { _, startYear, monthOfYear, dayOfMonth ->
@@ -78,6 +92,16 @@ class EditScheduleFragment : Fragment() {
         viewModel.showEndDatePicker.observe(this, androidx.lifecycle.Observer {
             endDatePicker.show()
         })
+
+        var userSelectedTimes = viewModel.currentlySelectedSchedule.value!!.time
+
+        viewModel.spinnerEditIdItemPosition.value = userSelectedTimes.size-1
+
+        for (i in 0..userSelectedTimes.size-1) {
+            var reminderEditContent = getReminderTime(i)
+//            Log.i("TIME!", userSelectedTimes[i].toString().substring(0,5))
+            reminderEditContent?.value = userSelectedTimes[i].toString().substring(0,5)
+        }
 
         val timePickerDialogOne = TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
 
@@ -244,4 +268,19 @@ class EditScheduleFragment : Fragment() {
         return binding.root
     }
 
+    private fun getReminderTime(num: Int): MutableLiveData<String>? {
+        val reminderTimeMap = hashMapOf(
+            0 to viewModel.reminderTimeOneEditContent,
+            1 to viewModel.reminderTimeTwoEditContent,
+            2 to viewModel.reminderTimeThreeEditContent,
+            3 to viewModel.reminderTimeFourEditContent,
+            4 to viewModel.reminderTimeFiveEditContent,
+            5 to viewModel.reminderTimeSixEditContent,
+            6 to viewModel.reminderTimeSevenEditContent,
+            7 to viewModel.reminderTimeEightEditContent,
+            8 to viewModel.reminderTimeNineEditContent,
+            9 to viewModel.reminderTimeTenEditContent
+            )
+        return reminderTimeMap[num]
+    }
 }

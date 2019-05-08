@@ -19,7 +19,7 @@ object AppModules {
     val viewModelModule = module(override = true) {
         viewModel { LoginViewModel(get()) }
         viewModel { CreateAccountViewModel(get()) }
-        viewModel { ViewMedicineViewModel(get()) }
+        viewModel { ViewMedicineViewModel(get(), get(), get()) }
         viewModel { AddMedicineViewModel(get(), get(), get()) }
     }
 

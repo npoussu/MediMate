@@ -7,6 +7,8 @@ import com.macrosoft.reminder.data.MedicineDetails
 import com.macrosoft.reminder.data.MedicineListObject
 import com.macrosoft.reminder.model.MedicineData
 import com.macrosoft.reminder.model.MedicineSchedule
+import java.sql.Date
+import java.sql.Time
 
 
 @Dao
@@ -25,4 +27,7 @@ interface MedicineDataDAO: BaseDao<MedicineData>{
 
     @Query("SELECT id FROM medicine_data")
     fun getMedicineIDs(): LiveData<Array<Int>>
+
+    @Query("UPDATE medicine_data SET medicine_name = :medicineName, description = :description WHERE id = :id")
+    fun updateMedicineByID(id: Int, medicineName: String, description: String)
 }

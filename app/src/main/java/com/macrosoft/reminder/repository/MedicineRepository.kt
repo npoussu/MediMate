@@ -45,7 +45,7 @@ class MedicineRepository(medicineDataDAO: MedicineDataDAO, scheduleDAO: Schedule
         return medicineDataDAOImpl.insert(medicine)
     }
 
-    fun updateMedicine(medicine: MedicineData) {
-        return medicineDataDAOImpl.update(medicine)
+    fun updateMedicineByID(id: Int, medicineName: String, description: String) {
+        return medicineDataDAOImpl.updateMedicineByID(id, medicineName, description)
     }
 }

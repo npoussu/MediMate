@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardCli
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
 
         with(ft) {
-            replace(R.id.fragment_holder, EditScheduleFragment())
+            replace(R.id.fragment_holder, EditScheduleFragment(intent.getIntExtra("userID", 0)))
             addToBackStack(null)
             commit()
         }

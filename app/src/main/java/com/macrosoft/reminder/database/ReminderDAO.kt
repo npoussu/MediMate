@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import com.macrosoft.reminder.model.Reminder
+import java.sql.Date
+import java.sql.Time
 
 @Dao
 interface ReminderDAO :BaseDao<Reminder> {
@@ -13,4 +15,6 @@ interface ReminderDAO :BaseDao<Reminder> {
     @Query("SELECT * FROM reminders where user_id = :user_id")
     fun getReminderByUserID(user_id: Int): LiveData<Array<Reminder>>
 
+    @Query("UPDATE reminders SET frequency = :frequency WHERE id = :id")
+    fun updateReminderByMedicineID(id: Int, frequency: String)
 }
