@@ -7,15 +7,24 @@ import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
 import com.macrosoft.reminder.data.MedicineDetails
 import com.macrosoft.reminder.data.MedicineDetailsList
+import com.macrosoft.reminder.model.MedicineData
 import com.macrosoft.reminder.repository.FakeRepository
 import com.macrosoft.reminder.repository.MedicineRepository
 import com.macrosoft.reminder.model.MedicineSchedule
+import com.macrosoft.reminder.model.Reminder
+import com.macrosoft.reminder.model.Schedule
 import com.macrosoft.reminder.repository.ReminderRepository
+import com.macrosoft.reminder.repository.ScheduleRepository
 import java.sql.Date
 import java.sql.Time
+import java.text.SimpleDateFormat
 
 
-class ViewMedicineViewModel(private val med_repo: MedicineRepository, private val reminder_repo: ReminderRepository) :
+class ViewMedicineViewModel(
+    private val med_repo: MedicineRepository,
+    private val schedule_repo: ScheduleRepository,
+    private val reminder_repo: ReminderRepository
+) :
     ObservableViewModel() {
 
     companion object {
@@ -109,6 +118,10 @@ class ViewMedicineViewModel(private val med_repo: MedicineRepository, private va
     @Bindable
     val endDateEditContent = MutableLiveData<String>()
 
+    val showToast = LiveEvent<String>()
+
+    var userID = 0
+
     // Initialize the Reminder fields
     init {
         reminderTimeOneEditContent.value = "8:00"
@@ -134,19 +147,23 @@ class ViewMedicineViewModel(private val med_repo: MedicineRepository, private va
     val medicineDetailIDs = LiveEvent<ArrayList<Int>>()
     val getData: LiveData<ArrayList<Int>> = medicineDetailIDs
 
-    var medicineDetailTime : Time = Time(0)
+    var currentlySelectedSchedule = MutableLiveData<Schedule>()
+
+    var medicineDetailTime: Time = Time(0)
 
     fun getMedicineSchedules(user_id: Int): LiveData<Array<MedicineSchedule>> {
         return med_repo.getMedicineSchedule(user_id)
     }
 
-    fun getMedicineDetails(ids: ArrayList<Int> = medicineDetailIDs.value!!):  LiveData<Array<MedicineDetails>> {
+    fun getMedicineDetails(ids: ArrayList<Int> = medicineDetailIDs.value!!): LiveData<Array<MedicineDetails>> {
         return med_repo.getMedicineDetail(ids.toIntArray())
     }
 
-//    fun setMedicineDetailsDatabaseID(id: Int) {
+    fun getSelectedMedicineSchedule(med_id: Int = medicineDetailsItem.value!!.id): LiveData<Schedule> {
+        return schedule_repo.getScheduleByMedicineID(med_id)
+    }
+
     fun setMedicineDetailsDatabaseID(meds: MedicineDetailsList) {
-        // TODO: Get the Reminder from DB using the @id parameter and set the Reminder to medicineDetails.value
         medicineDetails.value = meds
     }
 
@@ -171,12 +188,38 @@ class ViewMedicineViewModel(private val med_repo: MedicineRepository, private va
     fun onDeleteMedClick() {
 
         // TODO: Update the DB entity "MedicineDetailsList" by deleting a medicine "MedicineDetails" member variable from the current DB entity
+        val medID = medicineDetailsItem.value!!.id
+        val scheduleID = currentlySelectedSchedule.value!!.id
+        med_repo.deleteMedicineByID(medID)
+        schedule_repo.deleteScheduleByID(scheduleID!!)
+        reminder_repo.deleteReminderByMedID(medID)
+
         Log.i(TAG, "onDeleteMedClick()")
     }
 
     fun onSaveMedClick() {
-
         // TODO: Update itemState here and update the DB entity "MedicineDetailsList" to save the new values
+
+        if (medicineNameInputContent.value == null) {
+            showToast.value = "Medicine name cant be null"
+        } else if (dosageInputContent.value == null) {
+            showToast.value = "Dosage cant be null"
+        } else if (requirementsInputContent.value == null) {
+            showToast.value = "Requirements cant be null"
+        } else {
+            val medID = medicineDetailsItem.value!!.id
+
+            reminder_repo.updateReminderByMedicineID(
+                medID,
+                dosageInputContent.value!!
+            )
+            med_repo.updateMedicineByID(
+                medID,
+                medicineNameInputContent.value!!,
+                requirementsInputContent.value!!
+            )
+        }
+        Log.i(TAG, "Current Med is" + medicineDetailsItem.value.toString())
         Log.i(TAG, "onSaveMedClick()")
     }
 
@@ -233,8 +276,47 @@ class ViewMedicineViewModel(private val med_repo: MedicineRepository, private va
         Log.i(TAG, "Sunday reminder checked: " + reminderSundayEditChecked.value)
     }
 
+    // To update Schedule
     fun onSaveButtonClick() {
         // TODO: Save the reminder and setup Alarms here
+
+
+        val userInputTimes: ArrayList<String?> = arrayListOf(
+            reminderTimeOneEditContent.value,
+            reminderTimeTwoEditContent.value,
+            reminderTimeThreeEditContent.value,
+            reminderTimeFourEditContent.value,
+            reminderTimeFiveEditContent.value,
+            reminderTimeSixEditContent.value,
+            reminderTimeSevenEditContent.value,
+            reminderTimeEightEditContent.value,
+            reminderTimeNineEditContent.value,
+            reminderTimeTenEditContent.value
+        )
+        val userSelectedTimes: ArrayList<Time> = arrayListOf()
+        val timeFormatter = SimpleDateFormat("HH:mm")
+        val dateFormatter = SimpleDateFormat("yyyy/MM/dd")
+
+        if (startDateEditContent.value == null) {
+            showToast.value = "Please Select Start Date"
+        } else if (endDateEditContent.value == null) {
+            showToast.value = "Please Select End Date"
+        } else {
+            for (i in 0..spinnerEditIdItemPosition.value!!.toInt()) {
+                val parsedTime = timeFormatter.parse(userInputTimes[i])
+                val time = Time(parsedTime.time)
+                userSelectedTimes.add(time)
+            }
+
+            val startDate = Date(dateFormatter.parse(startDateEditContent.value).time)
+            val endDate = Date(dateFormatter.parse(endDateEditContent.value).time)
+
+            val scheduleID = currentlySelectedSchedule.value!!.id
+
+            schedule_repo.updateScheduleByID(scheduleID!!, startDate, endDate, userSelectedTimes)
+            showToast.value = "Schedule Saved!"
+            showEditScheduleFragment.value = true
+        }
         Log.i(TAG, "onSaveButtonClick()")
     }
 }

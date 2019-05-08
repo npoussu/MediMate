@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.macrosoft.reminder.R
@@ -243,6 +244,10 @@ class AddScheduleFragment : Fragment() {
         reminderTimeTenAdd.setOnClickListener {
             timePickerDialogTen.show()
         }
+
+        viewModel.showToast.observe(this, androidx.lifecycle.Observer {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        })
 
         viewModel.triggerMedicineReminderDialog.observe(this, androidx.lifecycle.Observer {
             if (!mNotified) {

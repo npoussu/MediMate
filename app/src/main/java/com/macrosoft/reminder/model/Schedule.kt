@@ -39,7 +39,7 @@ data class Schedule(
     var endDate: Date?,
 
     @ColumnInfo(name = "indefinite_end_date")
-    var indefiniteEndDate: Boolean,
+    var indefiniteEndDate: Boolean?,
 
     @ColumnInfo(name = "time")
     var time: ArrayList<Time>

@@ -11,6 +11,7 @@ package com.macrosoft.reminder.data
  *
  */
 data class MedicineDetails(
+    val id: Int,
     val medicine_name: String,
     var time: String,
     val dosage: String,

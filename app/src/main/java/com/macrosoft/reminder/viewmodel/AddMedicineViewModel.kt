@@ -2,11 +2,23 @@ package com.macrosoft.reminder.viewmodel
 
 import android.util.Log
 import androidx.databinding.Bindable
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
 import com.macrosoft.reminder.data.MedicineDetails
+import com.macrosoft.reminder.model.MedicineData
+import com.macrosoft.reminder.model.Reminder
+import com.macrosoft.reminder.model.Schedule
+import com.macrosoft.reminder.repository.MedicineRepository
+import com.macrosoft.reminder.repository.ReminderRepository
+import com.macrosoft.reminder.repository.ScheduleRepository
+import com.macrosoft.reminder.view.ui.loggedin.MainActivity
+import java.sql.Date
+import java.sql.Time
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 
-class AddMedicineViewModel : ObservableViewModel() {
+class AddMedicineViewModel(private val med_repo: MedicineRepository, private val reminder_repo: ReminderRepository, private val schedule_repo: ScheduleRepository) : ObservableViewModel() {
 
     companion object {
         val TAG: String = AddMedicineViewModel::class.java.simpleName
@@ -95,6 +107,18 @@ class AddMedicineViewModel : ObservableViewModel() {
     @Bindable
     val endDateAddContent = MutableLiveData<String>()
 
+    val showToast = LiveEvent<String>()
+
+    var userID = 0
+
+    var newMed = MutableLiveData<MedicineData>()
+    var newReminder = MutableLiveData<Reminder>()
+    var newSchedule = MutableLiveData<Schedule>()
+    var ifScheduleIsSet : Boolean = false
+    var lastMedID: Int = 0
+
+
+
     // Initialize the Reminder fields
     init {
         reminderTimeOneAddContent.value = "8:00"
@@ -117,6 +141,10 @@ class AddMedicineViewModel : ObservableViewModel() {
         reminderSundayAddChecked.value = false
     }
 
+    fun getLastMedID(): LiveData<Array<Int>> {
+        return med_repo.getMedicineIDs()
+    }
+
     // Triggers opening AddScheduleFragment
     fun onScheduleClick() {
 
@@ -130,8 +158,37 @@ class AddMedicineViewModel : ObservableViewModel() {
     }
 
     fun onSaveMedClick() {
-
         // TODO: Update itemState here and update the DB entity "MedicineDetailsList" to save the new values
+
+        if (medicineNameInputContent.value == null) {
+            showToast.value = "Medicine name cant be null"
+        } else if (dosageInputContent.value == null) {
+            showToast.value = "Dosage cant be null"
+        } else if (requirementsInputContent.value == null) {
+            showToast.value = "Requirements cant be null"
+        } else {
+            newMed.value = MedicineData(userID, medicineNameInputContent.value!!, requirementsInputContent.value)
+
+            if(ifScheduleIsSet) {
+                med_repo.insertMedicine(newMed.value!!)
+                reminder_repo.insertReminder(newReminder.value!!)
+                schedule_repo.insertSchedule(newSchedule.value!!)
+                showToast.value = "Medicine Saved!"
+                ifScheduleIsSet = false
+
+                // TODO: When save return to main page
+
+            }
+            else {
+                showToast.value = "Please Select Schedule"
+            }
+        }
+
+        ifScheduleIsSet  = false
+
+        Log.i(TAG, "Medicine name: " + medicineNameInputContent.value)
+        Log.i(TAG, "Dosage: " + dosageInputContent.value)
+        Log.i(TAG, "Requirements: " + requirementsInputContent.value)
         Log.i(TAG, "onSaveMedClick()")
     }
 
@@ -172,10 +229,48 @@ class AddMedicineViewModel : ObservableViewModel() {
         showStartDatePicker.value = true
     }
 
+    // To save the schedule
     fun onSaveButtonClick() {
-        Log.i(TAG, "onSaveButtonClick()")
+        // TODO: Save the reminder and setup Alarms here
 
-        if (medicineNameInputContent.value != null && dosageInputContent.value != null && requirementsInputContent.value != null) {
+        val userInputTimes: ArrayList<String?> = arrayListOf(
+            reminderTimeOneAddContent.value,
+            reminderTimeTwoAddContent.value,
+            reminderTimeThreeAddContent.value,
+            reminderTimeFourAddContent.value,
+            reminderTimeFiveAddContent.value,
+            reminderTimeSixAddContent.value,
+            reminderTimeSevenAddContent.value,
+            reminderTimeEightAddContent.value,
+            reminderTimeNineAddContent.value,
+            reminderTimeTenAddContent.value
+        )
+        val userSelectedTimes: ArrayList<Time> = arrayListOf()
+        val timeFormatter = SimpleDateFormat("HH:mm")
+        val dateFormatter = SimpleDateFormat("yyyy/MM/dd")
+
+        if (startDateAddContent.value == null) {
+            showToast.value = "Please Select Start Date"
+        } else if (endDateAddContent.value == null) {
+            showToast.value = "Please Select End Date"
+        } else {
+            for(i in 0..spinnerAddIdItemPosition.value!!.toInt()) {
+                val parsedTime = timeFormatter.parse(userInputTimes[i])
+                val time = Time(parsedTime.time)
+                userSelectedTimes.add(time)
+            }
+
+            val startDate = Date(dateFormatter.parse(startDateAddContent.value).time)
+            val endDate = Date(dateFormatter.parse(endDateAddContent.value).time)
+
+            newSchedule.value = Schedule(userID, lastMedID+1, startDate, endDate, false, userSelectedTimes)
+            newReminder.value = Reminder(userID, lastMedID+1,userSelectedTimes.toString(), "Default", dosageInputContent.value!!, null)
+            ifScheduleIsSet = true
+            showToast.value = "Schedule Saved!"
+            showAddScheduleFragment.value = true
+          
+            // Setup alarm
+            if (medicineNameInputContent.value != null && dosageInputContent.value != null && requirementsInputContent.value != null) {
             triggerMedicineReminderDialog.value = MedicineDetails(
                 medicineNameInputContent.value!!,
                 "8:00AM",
@@ -183,8 +278,8 @@ class AddMedicineViewModel : ObservableViewModel() {
                 requirementsInputContent.value!!
             )
         }
-
-    }
+          
+     }
 
     fun onSaveButtonRTCClick() {
         Log.i(TAG, "onSaveButtonClick()")

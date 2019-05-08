@@ -24,6 +24,7 @@ class MedicineRepository(medicineDataDAO: MedicineDataDAO, scheduleDAO: Schedule
         return medicineDataDAOImpl.getMedicineByUserID(id)
     }
 
+
     fun getMedicineSchedule(user_id: Int): LiveData<Array<MedicineSchedule>> {
         return medicineDataDAOImpl.getMedicineSchedule(user_id)
     }
@@ -32,15 +33,19 @@ class MedicineRepository(medicineDataDAO: MedicineDataDAO, scheduleDAO: Schedule
         return medicineDataDAOImpl.getMedicineDetail(med_id)
     }
 
-    fun deleteMedicine(medicine: MedicineData) {
-        return medicineDataDAOImpl.delete(medicine)
+    fun getMedicineIDs(): LiveData<Array<Int>>{
+        return medicineDataDAOImpl.getMedicineIDs()
+    }
+
+    fun deleteMedicineByID(id: Int) {
+        return medicineDataDAOImpl.deleteMedicineByID(id)
     }
 
     fun insertMedicine(medicine: MedicineData) {
         return medicineDataDAOImpl.insert(medicine)
     }
 
-    fun updateMedicine(medicine: MedicineData) {
-        return medicineDataDAOImpl.update(medicine)
+    fun updateMedicineByID(id: Int, medicineName: String, description: String) {
+        return medicineDataDAOImpl.updateMedicineByID(id, medicineName, description)
     }
 }

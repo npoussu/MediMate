@@ -14,15 +14,16 @@ class ReminderRepository(reminderDAO: ReminderDAO) {
     fun getReminderByUserID(user_id: Int): LiveData<Array<Reminder>> {
         return reminderDAOImpl.getReminderByUserID(user_id)
     }
-    fun deleteReminder(reminder: Reminder) {
-        return reminderDAOImpl.delete(reminder)
+
+    fun deleteReminderByMedID(id: Int) {
+        return reminderDAOImpl.deleteReminderByMedID(id)
     }
 
     fun insertReminder(reminder: Reminder) {
         return reminderDAOImpl.insert(reminder)
     }
 
-    fun updateReminder(reminder: Reminder) {
-        return reminderDAOImpl.update(reminder)
+    fun updateReminderByMedicineID(id: Int, frequency: String){
+        return reminderDAOImpl.updateReminderByMedicineID(id, frequency)
     }
 }
