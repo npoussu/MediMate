@@ -89,4 +89,21 @@
     <string name="su">SU</string>
     <string name="save">SAVE</string>
 
+
+
+    <!-- faq page strings -->
+    <string name="faq_title">FAQ</string>
+
+
+    <string name= "a1">On the start screen select the create account option under the log in button </string>
+    <string name= "q1">How do I create an account?</string>
+
+    <string name="a2">Go to My Medicines, Edit, fill in the page and click save reminder</string>
+    <string name="q2">How do I create a reminder?</string>
+
+    <string name="a3">Medimate allows you to create reminders to take with certain foods or drinks</string>
+    <string name="q3">What if I have to have food with certain medicines?</string>
+    <string name="text">Answer:</string>
+
+
 </resources>
