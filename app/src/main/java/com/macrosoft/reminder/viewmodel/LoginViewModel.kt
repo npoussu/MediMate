@@ -36,7 +36,13 @@ class LoginViewModel(private val repo: UserRepository) : ObservableViewModel() {
 
         val databaseUser: LiveData<User> = repo.getUserByName(userName)
 
-        if (databaseUser.value == null) { // User Don't exist
+        if(userName.isBlank()) {
+            showToast.value = "Please Enter User Name"
+        }
+        else if(userPassword.isBlank()) {
+            showToast.value = "Please Enter Password Name"
+        }
+        else if (databaseUser.value == null) { // User Don't exist
             showToast.value = "User does not exist!"
         } else if (databaseUser.value!!.userPassword != userPassword) { // Exists but wrong password
             showToast.value = "Incorrect Password"

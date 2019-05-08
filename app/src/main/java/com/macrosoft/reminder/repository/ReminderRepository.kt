@@ -7,23 +7,15 @@ import com.macrosoft.reminder.model.Reminder
 class ReminderRepository(reminderDAO: ReminderDAO) {
     private val reminderDAOImpl: ReminderDAO = reminderDAO
 
-    fun getReminderByID(id: Int): LiveData<Reminder> {
-        return reminderDAOImpl.getReminderByID(id)
-    }
-
-    fun getReminderByUserID(user_id: Int): LiveData<Array<Reminder>> {
-        return reminderDAOImpl.getReminderByUserID(user_id)
-    }
-
     fun deleteReminderByMedID(id: Int) {
         return reminderDAOImpl.deleteReminderByMedID(id)
     }
 
-    fun insertReminder(reminder: Reminder) {
+    fun insertReminder(reminder: Reminder): Long {
         return reminderDAOImpl.insert(reminder)
     }
 
-    fun updateReminderByMedicineID(id: Int, frequency: String){
-        return reminderDAOImpl.updateReminderByMedicineID(id, frequency)
+    fun updateReminderByMedicineID(id: Int, dosage: String){
+        return reminderDAOImpl.updateReminderByMedicineID(id, dosage)
     }
 }

@@ -14,16 +14,6 @@ import com.macrosoft.reminder.model.Schedule
 
 class MedicineRepository(medicineDataDAO: MedicineDataDAO, scheduleDAO: ScheduleDAO) {
     private val medicineDataDAOImpl: MedicineDataDAO = medicineDataDAO
-    private val scheduleDAOImpl: ScheduleDAO = scheduleDAO
-
-    fun getMedicineByID(id: Int): LiveData<MedicineData> {
-        return medicineDataDAOImpl.getMedicineByID(id)
-    }
-
-    fun getMedicineByUserID(id: Int): LiveData<Array<MedicineData>> {
-        return medicineDataDAOImpl.getMedicineByUserID(id)
-    }
-
 
     fun getMedicineSchedule(user_id: Int): LiveData<Array<MedicineSchedule>> {
         return medicineDataDAOImpl.getMedicineSchedule(user_id)
@@ -33,15 +23,11 @@ class MedicineRepository(medicineDataDAO: MedicineDataDAO, scheduleDAO: Schedule
         return medicineDataDAOImpl.getMedicineDetail(med_id)
     }
 
-    fun getMedicineIDs(): LiveData<Array<Int>>{
-        return medicineDataDAOImpl.getMedicineIDs()
-    }
-
     fun deleteMedicineByID(id: Int) {
         return medicineDataDAOImpl.deleteMedicineByID(id)
     }
 
-    fun insertMedicine(medicine: MedicineData) {
+    fun insertMedicine(medicine: MedicineData): Long {
         return medicineDataDAOImpl.insert(medicine)
     }
 

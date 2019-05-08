@@ -12,6 +12,7 @@ import com.macrosoft.reminder.model.Schedule
 import com.macrosoft.reminder.repository.MedicineRepository
 import com.macrosoft.reminder.repository.ReminderRepository
 import com.macrosoft.reminder.repository.ScheduleRepository
+import java.lang.Thread.sleep
 import java.sql.Date
 import java.sql.Time
 import java.text.SimpleDateFormat
@@ -112,14 +113,12 @@ class AddMedicineViewModel(
     val endDateAddContent = MutableLiveData<String>()
 
     val showToast = LiveEvent<String>()
-
     var userID = 0
 
-    var newMed = MutableLiveData<MedicineData>()
-    var newReminder = MutableLiveData<Reminder>()
-    var newSchedule = MutableLiveData<Schedule>()
+    var newMed: MedicineData? = null
+    var newReminder: Reminder? = null
+    var newSchedule: Schedule? = null
     var ifScheduleIsSet: Boolean = false
-    var lastMedID: Int = 0
 
 
     // Initialize the Reminder fields
@@ -144,10 +143,6 @@ class AddMedicineViewModel(
         reminderSundayAddChecked.value = false
     }
 
-    fun getLastMedID(): LiveData<Array<Int>> {
-        return med_repo.getMedicineIDs()
-    }
-
     // Triggers opening AddScheduleFragment
     fun onScheduleClick() {
 
@@ -161,8 +156,6 @@ class AddMedicineViewModel(
     }
 
     fun onSaveMedClick() {
-        // TODO: Update itemState here and update the DB entity "MedicineDetailsList" to save the new values
-
         if (medicineNameInputContent.value == null) {
             showToast.value = "Medicine name cant be null"
         } else if (dosageInputContent.value == null) {
@@ -170,18 +163,17 @@ class AddMedicineViewModel(
         } else if (requirementsInputContent.value == null) {
             showToast.value = "Requirements cant be null"
         } else {
-            newMed.value = MedicineData(userID, medicineNameInputContent.value!!, requirementsInputContent.value)
+            newMed = MedicineData(userID, medicineNameInputContent.value!!, requirementsInputContent.value)
 
             if (ifScheduleIsSet) {
-                med_repo.insertMedicine(newMed.value!!)
-                reminder_repo.insertReminder(newReminder.value!!)
-                schedule_repo.insertSchedule(newSchedule.value!!)
+                val newMed_id = med_repo.insertMedicine(newMed!!)
+                newSchedule!!.medicineID = newMed_id.toInt()
+                newReminder!!.medicineID = newMed_id.toInt()
+                schedule_repo.insertSchedule(newSchedule!!)
+                reminder_repo.insertReminder(newReminder!!)
                 showToast.value = "Medicine Saved!"
                 ifScheduleIsSet = false
                 navigateBack.value = true
-
-                // TODO: When save return to main page
-
             } else {
                 showToast.value = "Please Select Schedule"
             }
@@ -266,10 +258,10 @@ class AddMedicineViewModel(
             val startDate = Date(dateFormatter.parse(startDateAddContent.value).time)
             val endDate = Date(dateFormatter.parse(endDateAddContent.value).time)
 
-            newSchedule.value = Schedule(userID, lastMedID + 1, startDate, endDate, false, userSelectedTimes)
-            newReminder.value = Reminder(
+            newSchedule = Schedule(userID, 0, startDate, endDate, false, userSelectedTimes)
+            newReminder = Reminder(
                 userID,
-                lastMedID + 1,
+                0,
                 userSelectedTimes.toString(),
                 "Default",
                 dosageInputContent.value!!,
@@ -289,6 +281,7 @@ class AddMedicineViewModel(
                     requirementsInputContent.value!!
                 )
             }
+            navigateBack.value = true
 
         }
     }

@@ -2,6 +2,7 @@ package com.macrosoft.reminder.view.ui.loggedin
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,15 +46,6 @@ class AddMedicineFragment(val userID: Int) : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel.userID = userID
-
-        viewModel.getLastMedID().observe(this, Observer {
-            if(it.size > 0){
-                viewModel.lastMedID = it.max()!!
-            }
-            else {
-                viewModel.lastMedID = 0
-            }
-        })
 
         viewModel.showToast.observe(this, Observer {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()

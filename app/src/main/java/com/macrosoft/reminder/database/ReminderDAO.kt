@@ -15,8 +15,8 @@ interface ReminderDAO :BaseDao<Reminder> {
     @Query("SELECT * FROM reminders where user_id = :user_id")
     fun getReminderByUserID(user_id: Int): LiveData<Array<Reminder>>
 
-    @Query("UPDATE reminders SET frequency = :frequency WHERE id = :id")
-    fun updateReminderByMedicineID(id: Int, frequency: String)
+    @Query("UPDATE reminders SET dosage = :dosage WHERE medicine_id = :id")
+    fun updateReminderByMedicineID(id: Int, dosage: String)
 
     @Query("DELETE FROM reminders WHERE id = :id")
     fun deleteReminderByMedID(id: Int)

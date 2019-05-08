@@ -11,11 +11,6 @@ import java.sql.Time
 class ScheduleRepository(scheduleDAO: ScheduleDAO) {
     private val scheduleDAOImpl: ScheduleDAO = scheduleDAO
 
-
-    fun getScheduleByUserID(id: Int): LiveData<Array<Schedule>> {
-        return scheduleDAOImpl.getScheduleByUserID(id)
-    }
-
     fun getScheduleByMedicineID(medID: Int): LiveData<Schedule> {
         return scheduleDAOImpl.getScheduleByMedicineID(medID)
     }
@@ -24,7 +19,7 @@ class ScheduleRepository(scheduleDAO: ScheduleDAO) {
         return scheduleDAOImpl.deleteScheduleByID(id)
     }
 
-    fun insertSchedule(schedule: Schedule) {
+    fun insertSchedule(schedule: Schedule): Long {
         return scheduleDAOImpl.insert(schedule)
     }
 

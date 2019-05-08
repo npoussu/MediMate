@@ -15,21 +15,8 @@ class UserRepository(userDAO: UserDAO) {
         userLiveData.value = userDAOImpl.getUserByName(name)
         return userLiveData
     }
-
-    fun getUserByID(id: Int): LiveData<User> {
-        return userDAOImpl.getUserByID(id)
-    }
-
-    fun deleteUser(user: User) {
-        return userDAOImpl.delete(user)
-    }
-
-    fun insertUser(user: User) {
+    fun insertUser(user: User): Long {
         return userDAOImpl.insert(user)
-    }
-
-    fun updateUser(user: User) {
-        return userDAOImpl.update(user)
     }
 }
 
