@@ -63,6 +63,10 @@ class AddMedicineFragment(val userID: Int) : Fragment() {
             listener!!.onAddScheduleClicked()
         })
 
+        viewModel.navigateBack.observe(viewLifecycleOwner, Observer {
+            activity?.onBackPressed()
+        })
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

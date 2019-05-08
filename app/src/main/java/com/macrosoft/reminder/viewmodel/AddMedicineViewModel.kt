@@ -102,6 +102,8 @@ class AddMedicineViewModel(
 
     val triggerMedicineReminderDialogRTC = LiveEvent<MedicineDetails>()
 
+    val navigateBack = LiveEvent<Boolean>()
+
     // Start/End Date Bindings
     @Bindable
     val startDateAddContent = MutableLiveData<String>()
@@ -176,6 +178,7 @@ class AddMedicineViewModel(
                 schedule_repo.insertSchedule(newSchedule.value!!)
                 showToast.value = "Medicine Saved!"
                 ifScheduleIsSet = false
+                navigateBack.value = true
 
                 // TODO: When save return to main page
 

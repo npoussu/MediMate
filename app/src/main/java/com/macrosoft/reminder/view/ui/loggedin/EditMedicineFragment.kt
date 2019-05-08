@@ -42,6 +42,11 @@ class EditMedicineFragment : Fragment() {
         listener?.setToolbarTitle(getString(R.string.edit))
 
         viewModel.setEditInputInitialValues(viewModel.itemState.value!!)
+
+        viewModel.navigateBack.observe(viewLifecycleOwner, Observer {
+            activity?.onBackPressed()
+        })
+
         viewModel.showEditScheduleFragment.observe(viewLifecycleOwner, Observer {
             listener!!.onEditScheduleClicked()
         })

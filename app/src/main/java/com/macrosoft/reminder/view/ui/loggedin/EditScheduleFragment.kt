@@ -16,7 +16,6 @@ import androidx.lifecycle.MutableLiveData
 import com.macrosoft.reminder.R
 import com.macrosoft.reminder.databinding.ScheduleEditFragmentBinding
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
-import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.schedule_edit_fragment.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.text.SimpleDateFormat
@@ -70,7 +69,8 @@ class EditScheduleFragment(val userID: Int) : Fragment() {
         val minute = calendar.get(Calendar.MINUTE)
 
         var dateFormatter = SimpleDateFormat("yyyy/MM/dd")
-        viewModel.startDateEditContent.value = dateFormatter.format(viewModel.currentlySelectedSchedule.value!!.startDate)
+        viewModel.startDateEditContent.value =
+            dateFormatter.format(viewModel.currentlySelectedSchedule.value!!.startDate)
         viewModel.endDateEditContent.value = dateFormatter.format(viewModel.currentlySelectedSchedule.value!!.endDate)
 
         val startDatePicker =
@@ -95,12 +95,12 @@ class EditScheduleFragment(val userID: Int) : Fragment() {
 
         var userSelectedTimes = viewModel.currentlySelectedSchedule.value!!.time
 
-        viewModel.spinnerEditIdItemPosition.value = userSelectedTimes.size-1
+        viewModel.spinnerEditIdItemPosition.value = userSelectedTimes.size - 1
 
-        for (i in 0..userSelectedTimes.size-1) {
+        for (i in 0..userSelectedTimes.size - 1) {
             var reminderEditContent = getReminderTime(i)
 //            Log.i("TIME!", userSelectedTimes[i].toString().substring(0,5))
-            reminderEditContent?.value = userSelectedTimes[i].toString().substring(0,5)
+            reminderEditContent?.value = userSelectedTimes[i].toString().substring(0, 5)
         }
 
         val timePickerDialogOne = TimePickerDialog(context!!, TimePickerDialog.OnTimeSetListener(function = { _, h, m ->
@@ -280,7 +280,7 @@ class EditScheduleFragment(val userID: Int) : Fragment() {
             7 to viewModel.reminderTimeEightEditContent,
             8 to viewModel.reminderTimeNineEditContent,
             9 to viewModel.reminderTimeTenEditContent
-            )
+        )
         return reminderTimeMap[num]
     }
 }
