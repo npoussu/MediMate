@@ -93,6 +93,10 @@ class EditScheduleFragment(val userID: Int) : Fragment() {
             endDatePicker.show()
         })
 
+        viewModel.navigateBack.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            activity?.onBackPressed()
+        })
+
         var userSelectedTimes = viewModel.currentlySelectedSchedule.value!!.time
 
         viewModel.spinnerEditIdItemPosition.value = userSelectedTimes.size - 1

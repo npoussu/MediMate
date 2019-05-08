@@ -36,8 +36,7 @@ class CreateAccountViewModel(private val repo: UserRepository) : ObservableViewM
 
         if (databaseUser.value != null) { // If user already exists
             onAccountExists()
-        }
-        else { // Input new user into db
+        } else { // Input new user into db
             onCreateNewAccount()
         }
     }
@@ -48,10 +47,21 @@ class CreateAccountViewModel(private val repo: UserRepository) : ObservableViewM
         val inputRepeatPassword = repeatPasswordContent.value.toString()
         val inputDisplayName = displayNameContent.value.toString()
 
-        if (inputPassword != inputRepeatPassword) { // If both passwords not match
+        Log.i("CREATE ACC", "Display Name: "+inputDisplayName + "| User name: "+inputUserName)
+
+        if (inputDisplayName.isBlank() || inputDisplayName.isEmpty() || displayNameContent.value == null) {
+            showToast.value = "Please Enter Display Name"
+        } else if (inputUserName.isBlank() || inputUserName.isEmpty()||  userIdContent.value == null) {
+            showToast.value = "Please Enter User Name"
+        } else if (inputPassword.isBlank() || inputPassword.isEmpty()|| passwordContent.value == null) {
+            showToast.value = "Please Enter a Password"
+        } else if (inputRepeatPassword.isBlank() || inputRepeatPassword.isEmpty()|| repeatPasswordContent.value == null) {
+            showToast.value = "Please Enter repeat password"
+        } else if (inputPassword != inputRepeatPassword) { // If both passwords not match
             showToast.value = "Password do not match"
-        }
-        else {
+        } else if (inputPassword.length < 8) {
+            showToast.value = "Password should be at least 8 characters long"
+        } else {
             val user = User(userPassword = inputPassword, userName = inputUserName, displayName = inputDisplayName)
             repo.insertUser(user)
             showToast.value = "Account Created"

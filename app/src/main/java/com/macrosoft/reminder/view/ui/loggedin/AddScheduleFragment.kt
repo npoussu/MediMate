@@ -245,6 +245,10 @@ class AddScheduleFragment : Fragment() {
             timePickerDialogTen.show()
         }
 
+        viewModel.navigateBack.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            activity?.onBackPressed()
+        })
+
         viewModel.showToast.observe(this, androidx.lifecycle.Observer {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         })

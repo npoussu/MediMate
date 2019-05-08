@@ -119,7 +119,10 @@ class ViewMedicineViewModel(
 
     val navigateBack = LiveEvent<Boolean>()
 
+    val returnToMainPage = LiveEvent<Boolean>()
+
     var userID = 0
+
 
     // Initialize the Reminder fields
     init {
@@ -185,18 +188,18 @@ class ViewMedicineViewModel(
     }
 
     fun onDeleteMedClick() {
-
         // TODO: Update the DB entity "MedicineDetailsList" by deleting a medicine "MedicineDetails" member variable from the current DB entity
         val medID = medicineDetailsItem.value!!.id
         val scheduleID = currentlySelectedSchedule.value!!.id
+
         med_repo.deleteMedicineByID(medID)
         schedule_repo.deleteScheduleByID(scheduleID!!)
         reminder_repo.deleteReminderByMedID(medID)
-        navigateBack.value = true
-
-        Log.i(TAG, "onDeleteMedClick()")
+        showToast.value = "Medicine Deleted!"
+        returnToMainPage.value = true
     }
 
+    // To save Medicine and return to main page
     fun onSaveMedClick() {
         // TODO: Update itemState here and update the DB entity "MedicineDetailsList" to save the new values
 
@@ -219,7 +222,7 @@ class ViewMedicineViewModel(
                 requirementsInputContent.value!!
             )
             showToast.value = "Medicine saved!"
-            navigateBack.value = true
+            returnToMainPage.value = true
         }
         Log.i(TAG, "Current Med is" + medicineDetailsItem.value.toString())
         Log.i(TAG, "onSaveMedClick()")
@@ -318,6 +321,7 @@ class ViewMedicineViewModel(
             schedule_repo.updateScheduleByID(scheduleID!!, startDate, endDate, userSelectedTimes)
             showToast.value = "Schedule Saved!"
             showEditScheduleFragment.value = true
+            navigateBack.value = true
         }
         Log.i(TAG, "onSaveButtonClick()")
     }

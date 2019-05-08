@@ -26,6 +26,7 @@ class EditMedicineFragment : Fragment() {
     interface OnPopBackStack {
         fun setToolbarTitle(title: String)
         fun onEditScheduleClicked()
+        fun returnToViewMedicineFragment()
     }
 
     override fun onAttach(context: Context) {
@@ -47,9 +48,14 @@ class EditMedicineFragment : Fragment() {
             activity?.onBackPressed()
         })
 
+        viewModel.returnToMainPage.observe(viewLifecycleOwner, Observer {
+            listener!!.returnToViewMedicineFragment()
+        })
+
         viewModel.showEditScheduleFragment.observe(viewLifecycleOwner, Observer {
             listener!!.onEditScheduleClicked()
         })
+
 
         viewModel.getSelectedMedicineSchedule().observe(this, Observer {
             viewModel.currentlySelectedSchedule.value = it

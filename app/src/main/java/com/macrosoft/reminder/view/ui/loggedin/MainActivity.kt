@@ -121,6 +121,14 @@ class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardCli
         }
     }
 
+    override fun returnToViewMedicineFragment(){
+        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+        with(ft) {
+            replace(R.id.fragment_holder, ViewMedicineFragment(intent.getIntExtra("userID", 0)))
+            commit()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

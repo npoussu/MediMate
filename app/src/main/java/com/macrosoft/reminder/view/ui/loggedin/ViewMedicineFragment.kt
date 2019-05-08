@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -91,6 +92,10 @@ class ViewMedicineFragment(val userId: Int) : Fragment() {
 
         viewModel.getMedicineSchedules(userId).observe(viewLifecycleOwner, Observer {
             adapter.setMedicineList(it)
+        })
+
+        viewModel.showToast.observe(this, Observer {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         })
 
         viewModel.state.observe(viewLifecycleOwner, Observer {
