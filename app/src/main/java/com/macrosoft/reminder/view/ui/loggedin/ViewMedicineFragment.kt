@@ -16,7 +16,6 @@ import com.macrosoft.reminder.R
 import com.macrosoft.reminder.adapter.MedicineListAdapter
 import com.macrosoft.reminder.data.MedicineDetails
 import com.macrosoft.reminder.data.MedicineDetailsList
-import com.macrosoft.reminder.data.MedicineListObject
 import com.macrosoft.reminder.databinding.ViewMedicineFragmentBinding
 import com.macrosoft.reminder.viewmodel.ViewMedicineViewModel
 import kotlinx.android.synthetic.main.view_medicine_fragment.*
@@ -75,17 +74,10 @@ class ViewMedicineFragment(val userId: Int) : Fragment() {
 
         medicineList_main.adapter = adapter
 
-
-
-
-
-
-
-
-
-        viewModel.getData.observe(this, Observer {
+        viewModel.getData.observe(viewLifecycleOwner, Observer {
             Log.i("DATA CHANGE", "!!!")
-            viewModel.getMedicineDetails().observe(this,
+            viewModel.getMedicineDetails().observe(
+                viewLifecycleOwner,
             Observer {
                 val medsList = arrayListOf<MedicineDetails>()
                 it.forEach {
@@ -97,19 +89,7 @@ class ViewMedicineFragment(val userId: Int) : Fragment() {
             })
         })
 
-
-
-
-
-
-
-
-
-
-
-
-
-        viewModel.getMedicineSchedules(userId).observe(this, Observer {
+        viewModel.getMedicineSchedules(userId).observe(viewLifecycleOwner, Observer {
             adapter.setMedicineList(it)
         })
 
@@ -136,5 +116,4 @@ class ViewMedicineFragment(val userId: Int) : Fragment() {
             }
         })
     }
-
 }

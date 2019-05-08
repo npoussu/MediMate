@@ -12,13 +12,15 @@ import com.macrosoft.reminder.model.Schedule
 import com.macrosoft.reminder.repository.MedicineRepository
 import com.macrosoft.reminder.repository.ReminderRepository
 import com.macrosoft.reminder.repository.ScheduleRepository
-import com.macrosoft.reminder.view.ui.loggedin.MainActivity
 import java.sql.Date
 import java.sql.Time
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 
-class AddMedicineViewModel(private val med_repo: MedicineRepository, private val reminder_repo: ReminderRepository, private val schedule_repo: ScheduleRepository) : ObservableViewModel() {
+class AddMedicineViewModel(
+    private val med_repo: MedicineRepository,
+    private val reminder_repo: ReminderRepository,
+    private val schedule_repo: ScheduleRepository
+) : ObservableViewModel() {
 
     companion object {
         val TAG: String = AddMedicineViewModel::class.java.simpleName
@@ -100,6 +102,8 @@ class AddMedicineViewModel(private val med_repo: MedicineRepository, private val
 
     val triggerMedicineReminderDialogRTC = LiveEvent<MedicineDetails>()
 
+    val navigateBack = LiveEvent<Boolean>()
+
     // Start/End Date Bindings
     @Bindable
     val startDateAddContent = MutableLiveData<String>()
@@ -114,9 +118,8 @@ class AddMedicineViewModel(private val med_repo: MedicineRepository, private val
     var newMed = MutableLiveData<MedicineData>()
     var newReminder = MutableLiveData<Reminder>()
     var newSchedule = MutableLiveData<Schedule>()
-    var ifScheduleIsSet : Boolean = false
+    var ifScheduleIsSet: Boolean = false
     var lastMedID: Int = 0
-
 
 
     // Initialize the Reminder fields
@@ -169,22 +172,22 @@ class AddMedicineViewModel(private val med_repo: MedicineRepository, private val
         } else {
             newMed.value = MedicineData(userID, medicineNameInputContent.value!!, requirementsInputContent.value)
 
-            if(ifScheduleIsSet) {
+            if (ifScheduleIsSet) {
                 med_repo.insertMedicine(newMed.value!!)
                 reminder_repo.insertReminder(newReminder.value!!)
                 schedule_repo.insertSchedule(newSchedule.value!!)
                 showToast.value = "Medicine Saved!"
                 ifScheduleIsSet = false
+                navigateBack.value = true
 
                 // TODO: When save return to main page
 
-            }
-            else {
+            } else {
                 showToast.value = "Please Select Schedule"
             }
         }
 
-        ifScheduleIsSet  = false
+        ifScheduleIsSet = false
 
         Log.i(TAG, "Medicine name: " + medicineNameInputContent.value)
         Log.i(TAG, "Dosage: " + dosageInputContent.value)
@@ -254,7 +257,7 @@ class AddMedicineViewModel(private val med_repo: MedicineRepository, private val
         } else if (endDateAddContent.value == null) {
             showToast.value = "Please Select End Date"
         } else {
-            for(i in 0..spinnerAddIdItemPosition.value!!.toInt()) {
+            for (i in 0..spinnerAddIdItemPosition.value!!.toInt()) {
                 val parsedTime = timeFormatter.parse(userInputTimes[i])
                 val time = Time(parsedTime.time)
                 userSelectedTimes.add(time)
@@ -263,29 +266,39 @@ class AddMedicineViewModel(private val med_repo: MedicineRepository, private val
             val startDate = Date(dateFormatter.parse(startDateAddContent.value).time)
             val endDate = Date(dateFormatter.parse(endDateAddContent.value).time)
 
-            newSchedule.value = Schedule(userID, lastMedID+1, startDate, endDate, false, userSelectedTimes)
-            newReminder.value = Reminder(userID, lastMedID+1,userSelectedTimes.toString(), "Default", dosageInputContent.value!!, null)
+            newSchedule.value = Schedule(userID, lastMedID + 1, startDate, endDate, false, userSelectedTimes)
+            newReminder.value = Reminder(
+                userID,
+                lastMedID + 1,
+                userSelectedTimes.toString(),
+                "Default",
+                dosageInputContent.value!!,
+                null
+            )
             ifScheduleIsSet = true
             showToast.value = "Schedule Saved!"
             showAddScheduleFragment.value = true
-          
+
             // Setup alarm
             if (medicineNameInputContent.value != null && dosageInputContent.value != null && requirementsInputContent.value != null) {
-            triggerMedicineReminderDialog.value = MedicineDetails(
-                medicineNameInputContent.value!!,
-                "8:00AM",
-                dosageInputContent.value!!,
-                requirementsInputContent.value!!
-            )
+                triggerMedicineReminderDialog.value = MedicineDetails(
+                    1,
+                    medicineNameInputContent.value!!,
+                    "8:00AM",
+                    dosageInputContent.value!!,
+                    requirementsInputContent.value!!
+                )
+            }
+
         }
-          
-     }
+    }
 
     fun onSaveButtonRTCClick() {
         Log.i(TAG, "onSaveButtonClick()")
 
         if (medicineNameInputContent.value != null && dosageInputContent.value != null && requirementsInputContent.value != null) {
             triggerMedicineReminderDialogRTC.value = MedicineDetails(
+                1,
                 medicineNameInputContent.value!!, reminderTimeOneAddContent.value.toString(),
                 dosageInputContent.value!!, requirementsInputContent.value!!
             )

@@ -7,12 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
 import com.macrosoft.reminder.data.MedicineDetails
 import com.macrosoft.reminder.data.MedicineDetailsList
-import com.macrosoft.reminder.model.MedicineData
-import com.macrosoft.reminder.repository.FakeRepository
-import com.macrosoft.reminder.repository.MedicineRepository
 import com.macrosoft.reminder.model.MedicineSchedule
-import com.macrosoft.reminder.model.Reminder
 import com.macrosoft.reminder.model.Schedule
+import com.macrosoft.reminder.repository.MedicineRepository
 import com.macrosoft.reminder.repository.ReminderRepository
 import com.macrosoft.reminder.repository.ScheduleRepository
 import java.sql.Date
@@ -120,6 +117,8 @@ class ViewMedicineViewModel(
 
     val showToast = LiveEvent<String>()
 
+    val navigateBack = LiveEvent<Boolean>()
+
     var userID = 0
 
     // Initialize the Reminder fields
@@ -193,6 +192,7 @@ class ViewMedicineViewModel(
         med_repo.deleteMedicineByID(medID)
         schedule_repo.deleteScheduleByID(scheduleID!!)
         reminder_repo.deleteReminderByMedID(medID)
+        navigateBack.value = true
 
         Log.i(TAG, "onDeleteMedClick()")
     }
@@ -218,6 +218,8 @@ class ViewMedicineViewModel(
                 medicineNameInputContent.value!!,
                 requirementsInputContent.value!!
             )
+            showToast.value = "Medicine saved!"
+            navigateBack.value = true
         }
         Log.i(TAG, "Current Med is" + medicineDetailsItem.value.toString())
         Log.i(TAG, "onSaveMedClick()")
