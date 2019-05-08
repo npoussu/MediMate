@@ -4,10 +4,13 @@ import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.macrosoft.reminder.R
+import com.macrosoft.reminder.view.ui.loggedout.FaqFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 
@@ -138,6 +141,36 @@ class MainActivity : AppCompatActivity(), ViewMedicineFragment.OnMedicineCardCli
         with(ft) {
             replace(R.id.fragment_holder, ViewMedicineFragment(userID))
             commit()
+        }
+
+
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item1 -> {
+
+                toolbar_title.text = getString(R.string.faq_title)
+
+                val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+                with(ft) {
+                    replace(R.id.fragment_holder, FaqFragment())
+                    addToBackStack(null)
+                    commit()
+                }
+
+
+                return true
+            }
+
+            else -> return super.onOptionsItemSelected(item)
         }
 
 
